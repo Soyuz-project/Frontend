@@ -17,12 +17,12 @@ export default {
 
   },
   render(h, { props }) {
-    console.log('router', props);
     const defaultEvent = {
+      name: 'Pages',
       slug: 'pages',
       method: 'READ',
       query_variables: { slug: '^router.params.slug' },
-      filters: [{ get: { source: 'pages.0' } }],
+      responce_filters: [{ get: { source: 'pages.0' } }],
     };
 
 
@@ -51,7 +51,7 @@ export default {
     //  BLOCKS AGGREGATION  (list of this same blocks, cards, products, posts etc)
     // 
     
-    const data = runEvent(defaultEvent) || [];    
+    const data = runEvent(defaultEvent, props.URLQuery) || [];    
 
     // BLOCKS COLLECTION 
     return  data ? (

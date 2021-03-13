@@ -1,10 +1,10 @@
 /* 
   Soyuz walker 
 */
-export const w = (o, d) =>
+export const w = (o, d, r) =>
   Object.entries(o).reduce((acc, [k, v]) => {
-    if (v && typeof v === 'object') acc[k] = w(v, d);
-    else acc[k] = replace(k, g_p_v(d, v)) || replace(k, v);
+    if (v && typeof v === 'object') acc[k] = w(v, d, r);
+    else acc[k] = replace(k, g_p_v(d, v), r) || replace(k, v, r);
     return acc;
   }, {});
 
@@ -37,7 +37,7 @@ export const s_p_v = (o, v, p) => {
 /* 
   replacer 
 */
-export const replace = (k, v) => {
+export const replace = (k, v, r) => {
   const split = v.split('.');
   // if (split[0] == "^blockAttrs") {
   //   split.shift();
@@ -55,9 +55,9 @@ export const replace = (k, v) => {
 
   // !!!!! TODO NOW !!!!  Remove replacer to TOP 
 
-  // if (split[0] == '^router') {
-  //   split.shift();
-  //   return context_route[split[0]][split[1]];
-  // }
+  if (split[0] == '^router') {
+    split.shift();
+    return r[split[0]][split[1]];
+  }
   return v;
 };

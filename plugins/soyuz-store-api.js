@@ -44,7 +44,7 @@ export const S = {
 Vue.prototype.$store = store;
 
 
-/* Responce filter  */
+/* Responce filter (js filter collection by many pairs keys and values) */
 export const query_filters = (d, f) => {
   if (f && Array.isArray(d)) {
     return d.filter(function(e) {
