@@ -1,4 +1,9 @@
-# soyuz-project frontend application
+# Soyuz-project Frontend application
+
+Next generation tool, sharpen to build bussinness focused applicationss.
+
+Sojuz project is technological 
+alliance between backends services, sourcing design, and nice to have frontend implementation.
 
 ## Build Setup
 

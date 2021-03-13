@@ -28,8 +28,6 @@ export default {
     const compName = blockName.replace(/[\/-]/g, '');
     const Block = modules[compName];
 
-   
-
     const Attrs = Object.assign({}, attrs, attrs.componentAttrs, { compName });
     delete Attrs.componentAttrs;
     const Tpl = (

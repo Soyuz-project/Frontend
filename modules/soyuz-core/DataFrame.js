@@ -10,8 +10,14 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    URLQuery: {
+      type: Object,
+      default: () => ({}),
+    },
+
   },
   render(h, { props }) {
+    console.log('router', props);
     const defaultEvent = {
       slug: 'pages',
       method: 'READ',

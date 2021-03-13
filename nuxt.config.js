@@ -38,7 +38,6 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/inner-block', },
-    { src: '~/plugins/soyuz-events-api', },
   ],
   router: {
   prefetchLinks: false,
@@ -75,12 +74,14 @@ export default {
           path: '/',
           component: PageComponent,
           children: modalRoute,
+          props: route => ({URLQuery: { params:route.params, query:route.query  }})
         },
         {
           name: 'page',
           path: '/:slug',
           component: PageComponent,
           children: modalRoute,
+          props: route => ({URLQuery: { params:route.params, query:route.query }})
         },
       ]
     );

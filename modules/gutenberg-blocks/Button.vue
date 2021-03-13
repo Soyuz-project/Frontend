@@ -2,6 +2,12 @@
   <div  :class="[blockAttrs.className]">
 
     <span v-html="blockAttrs.content" />
+    <router-link
+  to="/page-1"
+  
+>
+  page-1
+</router-link>
    
   </div>
 </template>
