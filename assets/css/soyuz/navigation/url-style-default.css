@@ -1,0 +1,37 @@
+	/* 
+		url style 
+	*/
+	a{
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+	a:hover{
+		text-decoration: underline;
+	}
+
+
+	/* hover - inverse */
+	.-hvr-invert:hover, .-td-hvr-invert > *:hover {
+		filter: invert(.75);
+		cursor: pointer;
+		text-decoration: none;
+	}
+	/* hover - inverse */
+	.-hvr-brightness:hover, .-td-hvr-brightness > *:hover {
+		filter: brightness(.75) contrast(1.75);
+		cursor: pointer;
+		text-decoration: none;
+	}
+
+	.-nav-separator > *:first-of-type::before{
+		content: initial;
+	}
+	.-nav-separator > *::before{
+		content: '';
+		position: absolute;
+		width: 1px;
+		height: 100%;
+		background-color: #ccc;
+		z-index: 1;
+	}
+	

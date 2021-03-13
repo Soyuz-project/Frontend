@@ -1,0 +1,57 @@
+/* 
+	_ _ _ _ ___  ___ _  _
+	| | | | |  \  |  |__|
+	|_|_| | |__/  |  |  |
+	---------------------------------------------------------------------------------------
+	WIDTH 
+*/
+	.-wide{
+		max-width:75vw;
+		width:100%;
+	}
+	.-default{
+		max-width:50vw;
+		width:100%;
+	}
+	.-tight{
+		max-width: calc(25vw - 15px);
+		width:100%;
+	}
+	.-min{
+		max-width:min-content;
+	}
+	.-default, .-wide, .-min{
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	.-full, .-td-full > *{
+		width:100%;
+		left:0; right:0; 
+	}
+
+	.-w-min > .td{
+		overflow: initial;
+	}
+
+		/*
+	MODAL
+	*/
+	.-fix{
+		position:fixed;
+	}
+	.-abs-right{
+		right:0;
+	}
+	.-abs-left{
+		left:0;
+	}
+	.-h-full{
+		height:100%;
+		top:0; bottom:0;
+	}
+	.-h-wide{
+		height:80vh;
+		top:10vh;
+		bottom:10vh;
+	}

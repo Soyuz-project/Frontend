@@ -1,0 +1,17 @@
+.-scroll{
+  overflow-y: scroll;
+}
+.-scroll::-webkit-scrollbar{
+  background: #fff;
+  width: 14px;
+}
+.-scroll::-webkit-scrollbar-button{
+  background: #fff;
+}
+.-scroll::-webkit-scrollbar-track-piece{
+   background: #fff;
+}
+.-scroll::-webkit-scrollbar-thumb{
+   background: #ccc;
+   border: 6px solid #fff;
+}

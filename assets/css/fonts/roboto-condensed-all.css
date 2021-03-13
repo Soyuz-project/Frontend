@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Roboto-Condensed';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@/assets/fonts/RobotoCondensed-Light.woff2') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto-Condensed';
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@/assets/fonts/RobotoCondensed-Bold.woff2') format('truetype');
+}
+
+body,
+button,
+input,select,textarea {
+  font-family: 'Roboto-Condensed', Arial, sans-serif;
+}

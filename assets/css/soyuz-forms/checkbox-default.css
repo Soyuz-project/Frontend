@@ -1,0 +1,39 @@
+/*
+@module: global
+@submodule: forms
+@name: checkbox-default
+@description: Forms
+@tags:
+  - form-element
+
+@atom
+*/
+
+/* checkbox */
+/* Customize the label (the container) */
+	/* checkbox */  
+	input[type="checkbox"] {
+		display:none;
+	}
+	.checkmark{
+		height:0;
+		cursor:pointer;
+		margin-right:1vw;
+	}
+	.checkmark:before {
+		content: '';
+		position: absolute;
+		border-bottom: 4px solid #fff;
+		border-left: 4px solid #fff;
+		width: 50%;
+		height: 25%;
+		left: 13%;
+		top: 20%;
+		-webkit-transform: rotate(-45deg);
+		-ms-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+	}
+	/* On mouse-over, add a grey background color */
+	.checkbox:hover .checkmark {
+	  background-color: #ccc;
+	}

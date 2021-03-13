@@ -1,0 +1,57 @@
+/* 
+@module: global
+@submodule: nav-list
+@name: nav-h-dropdown-tip
+@description: dropdown tooltip decorator
+@tags:
+  - nav-list
+  - nav-dropdown
+
+@atom
+*/
+
+.horizontal .dropdown{
+  display:flex;
+}
+
+.horizontal .dropdown > ul {
+    border-radius: 10px;
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 40px;
+    margin-right: -15px;
+    z-index: 110;
+    position: absolute;
+    width: max-content;
+}
+
+.horizontal .dropdown > ul:after {
+    content: " ";
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    margin-left: -10px;
+    border: 10px solid transparent;
+    border-bottom-color: #fff;
+}
+.horizontal .dropdown-mask {
+    position: fixed !important;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: rgba(0,0,0,.6);
+    /* pointer-events: none; */
+}
+/* align right */
+.horizontal .dropdown{
+  justify-content: flex-end;
+}
+/* .nav-v-list ul li,
+.nav-h-list ul li{
+    position:relative;
+}
+.dropdown > ul {
+  right:0;
+} */

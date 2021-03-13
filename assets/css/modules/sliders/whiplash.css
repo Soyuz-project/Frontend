@@ -1,0 +1,207 @@
+/*
+
+@module: global
+@submodule: decorators
+@name: whiplash
+@description: Dobest
+@tags:
+  - decorators
+  - whiplash-core
+
+@atom */
+.wisplash {
+  width: 100%;
+  position: relative;
+}
+.wisplash .slides-container > * {
+  overflow: hidden;
+}
+.wisplash .controlls.--X .prev {
+  position: absolute;
+  top: 50%;
+  left: 2%;
+  cursor: pointer;
+}
+.wisplash .controlls.--X .next {
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  cursor: pointer;
+}
+
+.wisplash .controlls.--Y .prev {
+  /* position: absolute;
+  top: 2vh;
+  left:calc(50% - 10px);
+  cursor: pointer; */
+  display: none;
+}
+.wisplash .controlls.--Y .next {
+  position: absolute;
+  bottom: 3vh;
+  left: calc(50% - 10px);
+  cursor: pointer;
+  opacity: 1;
+}
+.wisplash .controlls .next.disabled,
+.wisplash .controlls .prev.disabled {
+  display: none;
+}
+
+.controlls.t30 > * {
+  top: 30%;
+}
+/*slide wrapper*/
+.--mobile::-webkit-scrollbar {
+  display: none;
+}
+/*slide wrapper*/
+.--mobile.center > * {
+  scroll-snap-align: center;
+}
+.--desktop.center.scrollableDesktop > * {
+  scroll-snap-align: center;
+}
+.--mobile.start > * {
+  scroll-snap-align: start;
+}
+.--desktop.start.scrollableDesktop > * {
+  scroll-snap-align: start;
+}
+.--desktop.scrollableDesktop::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollBehavior {
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .scrollBehavior::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollBehavior.center > * {
+    scroll-snap-align: center;
+  }
+  .scrollBehavior.start > * {
+    scroll-snap-align: start;
+  }
+}
+.scrollPreventChildrens > * {
+  pointer-events: none;
+}
+.slides-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  will-change: scroll-position;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.slides-container.--Y {
+  flex-direction: column;
+  overflow-x: hidden;
+}
+.slides-container.--X {
+  flex-direction: row;
+  overflow-y: hidden;
+}
+.slides-container.--desktop:not(.scrollableDesktop) {
+  overflow: hidden;
+}
+
+/*slide*/
+.slides-container {
+  display: grid;
+  will-change: scroll-position;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.slides-container.--X {
+  grid-auto-flow: column;
+}
+.slides-container.--Y {
+  grid-auto-flow: row;
+}
+
+/*slide content*/
+.slides-container .content {
+  box-sizing: border-box;
+}
+.Whiplash .alignwide {
+  width: 100%;
+}
+/*only desktop*/
+@media screen and (min-width: 768px) {
+  .slides-container {
+    overflow-x: hidden;
+  }
+  .--slides-1.--X {
+    grid-auto-columns: 100%;
+  }
+  .--slides-1.--Y {
+    grid-auto-rows: 100%;
+  }
+  .--slides-2.--X {
+    grid-auto-columns: 50%;
+    /* flex: 0 0 50%; */
+  }
+  .--slides-3.--X {
+    grid-auto-columns: 33.3%;
+  }
+  .--slides-4.--X {
+    grid-auto-columns: 25%;
+  }
+  .--slides-5.--X {
+    grid-auto-columns: 20%;
+  }
+}
+.whipslash-gap .slides-container > * {
+  padding: 0 1.5vw;
+}
+/* / only mobile /  */
+@media only screen and (max-width: 768px) {
+  .--slides-1.--X {
+    grid-auto-columns: 100%;
+  }
+  .--slides-1.--Y {
+    grid-auto-rows: 100%;
+  }
+}
+
+/* SIDEBAR SLIDE*/
+/*only desktop*/
+@media screen and (min-width: 768px) {
+  .sidebar-slide {
+    max-width: 100%;
+  }
+  .sidebar-slide .slides-container {
+    grid-auto-columns: 20%;
+    margin-left: 10%;
+    width: 100%;
+  }
+  .sidebar-slide .sidebar-slide-slide:last-of-type {
+    width: max-content;
+    min-width: max-content;
+  }
+}
+/* / only mobile /  */
+@media only screen and (max-width: 768px) {
+  .sidebar-slide .sidebar-slide-slide:first-of-type {
+    width: min-content;
+    margin: 0;
+    padding-left: 3%;
+  }
+  .sidebar-slide .sidebar-slide-slide:last-of-type {
+    margin-left: -50%;
+  }
+
+  /* / mobile center mode /  */
+  .-m-center-slide .slides-container {
+    grid-auto-columns: 70%;
+  }
+  .-m-center-slide .slides-container > * {
+    transform: translateX(15%) !important;
+    scroll-snap-align: center !important;
+  }
+}

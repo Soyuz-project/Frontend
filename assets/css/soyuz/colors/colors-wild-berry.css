@@ -1,0 +1,110 @@
+/* 
+
+@module: global
+@submodule: colors
+@name: colors-wild-berry
+@description: Sojuz core css
+@tags:
+  - colors-palette
+
+@atom */
+/* 
+	___  ____ ____ _  _ ____ ____ ____ _  _ _  _ ___     ____ ____ _    ____ ____ ____
+	|__] |__| |    |_/  | __ |__/ |  | |  | |\ | |  \    |    |  | |    |  | |__/ [__ 
+	|__] |  | |___ | \_ |__] |  \ |__| |__| | \| |__/    |___ |__| |___ |__| |  \ ___]
+
+	---------------------------------------------------------------------------------------
+	background colors 
+*/
+
+	.-bg-c-default,
+	.-bg-c-white, .-td-bg-c-white > *{
+		background-color: #fff;
+	}
+	.-bg-c-primary, .-td-bg-c-primary > * {
+		background-color: #668ec2;
+	}
+	.-bg-c-secondary, .-td-bg-c-secondary > * {
+		background-color: #ff92c5;
+	}
+	.-bg-c-light-gray, .-td-bg-c-light-gray > * {
+		background-color: #f8f8f8;
+	}
+	.-bg-c-dark-gray, .-td-bg-c-dark-gray > * {
+		background-color: #717171;
+	}
+	.-bg-c-mask, .-td-bg-c-mask > * {
+		background-color: #0000009d;
+	}
+
+/* 
+	
+	---------------------------------------------------------------------------------------
+	text colors
+*/
+	body,
+	.-color-default,
+	.-color-black, 
+	.-color-black a,
+	.-color-black button{
+		color: #3d3d3d;
+	}
+	.-color-white, 
+	.-color-white a,
+	.-color-white button{
+		color: #fff;
+	}
+	.-color-primary,
+	.-color-primary button,
+	.-color-primary a, a{
+		color: #668ec2;
+	}
+	.-color-secondary,
+	.-color-secondary button,
+	.-color-secondary a{
+		color: #ff92c5;
+	}
+	.-color-light-gray,
+	.-color-light-gray button,
+	.-color-light-gray a{
+		color: #b3b3b3;;
+	}
+	.-color-dark-gray,
+	.-color-dark-gray button,
+	.-color-dark-gray a{
+		color: #696969;
+	}
+
+
+	
+/* 
+	border color 
+*/
+	.-b-light-gray, .-td-b-light-gray > *{
+		border-color: #ccc;
+		/* fix for hairline */
+		border-top-color: #ccc;
+	}
+	.-b-dark-gray, .-td-b-dark-gray > * {
+		border-color: #404040;
+		/* fix for hairline */
+		border-top-color: #404040;
+	}
+	.selected, .selected > *{
+		border-color: #668ec2;
+		background-color: #668ec22d;
+	}
+
+/* 
+	nav-separator color
+*/
+	.-nav-separator > *::before{
+		background-color: #668ec2;
+	}
+
+/* 
+	checkbox color
+*/
+	.checkbox input:checked ~ .checkmark {
+	  background-color: #668ec2;
+	}	
