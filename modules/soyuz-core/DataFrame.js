@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/react-in-jsx-scope */
 
+/* data frame component start renderind app */
 /* blocks data frame default run `pages READ` event */
 import { runEvent } from '~/plugins/soyuz-events-api';
 export default {
@@ -25,7 +26,7 @@ export default {
       })
     }
   },
-  render(h, { props }) {
+  render(h, { props: {blockAttrs, URLQuery, event} }) {
 
     //  DATA MODEL
     //
@@ -52,18 +53,18 @@ export default {
     //  BLOCKS AGGREGATION  (list of this same blocks, cards, products, posts etc)
     // 
     
-    const data = runEvent(props.event, props.URLQuery) || [];  
-    const wrapperClass = props.blockAttrs.className ? `wrapper-${props.blockAttrs.className}` : ''
+    const data = runEvent(event, URLQuery) || [];  
+    const wrapperClass = blockAttrs.className ? `wrapper-${blockAttrs.className}` : ''
 
     // BLOCKS COLLECTION 
     return  data ? (
       <div class={`blocks-wrapper ${wrapperClass}`}>
           {/* Render blocks collection (like pages collection) */}
           {data?.map((entry, i) => {
-            return (<div class={props.blockAttrs.className}>
+            return (<div class={blockAttrs.className}>
               {
                 entry.blocks.map((block, j) => {
-                  return <inner-block key={i+j} blocks={block}/>
+                  return <inner-block key={i+j} blocks={block} URLQuery={URLQuery} />
                 })
               }
             </div>)

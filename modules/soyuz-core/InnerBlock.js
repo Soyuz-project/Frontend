@@ -6,6 +6,8 @@
 
 /* dynamic modules */
 import { modules } from '~/nuxt.modules.js';
+
+// if innerblock isnt global - import it (check /plugins/inner-block.js)
 // import { InnerBlock } from '~/modules/soyuz-core/InnerBlock.js';
 
 export default {
@@ -15,13 +17,17 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    URLQuery: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   // eslint-disable-next-line react/display-name
   render(
     h,
     {
       props: {
-        blocks: { blockName = '', blockAttrs = {}, attrs = blockAttrs, innerBlocks = [] },
+        blocks: { blockName = '', blockAttrs = {}, attrs = blockAttrs, innerBlocks = [],  URLQuery},
       },
     }
   ) {
@@ -37,8 +43,11 @@ export default {
           default: innerBlocks
             ? () =>
                 innerBlocks.map((block, i) =>  (
-                  // <InnerBlock r={r} key={i} blocks={{ ...block, attrs: { ...block.attrs } }} />
-                  <InnerBlock key={i} blocks={{ ...block, attrs: { ...block.attrs } }} />
+                  <InnerBlock 
+                    key={i} 
+                    URLQuery={URLQuery} 
+                    blocks={{ ...block, attrs: { ...block.attrs } }} 
+                  />
                 ))
             : null,
         }}
