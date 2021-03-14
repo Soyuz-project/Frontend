@@ -1,10 +1,12 @@
 /* 
   Soyuz walker 
 */
-export const w = (o, d, r) =>
+import { store } from '~/plugins/soyuz-store-api';
+
+export const w = (o, d) =>
   Object.entries(o).reduce((acc, [k, v]) => {
-    if (v && typeof v === 'object') acc[k] = w(v, d, r);
-    else acc[k] = replace(k, g_p_v(d, v), r) || replace(k, v, r);
+    if (v && typeof v === 'object') acc[k] = w(v, d);
+    else acc[k] = replace(k, g_p_v(d, v)) || replace(k, v);
     return acc;
   }, {});
 
@@ -37,7 +39,12 @@ export const s_p_v = (o, v, p) => {
 /* 
   replacer 
 */
-export const replace = (k, v, r) => {
+export const replace = (k, v) => {
+
+  if(typeof v !== 'string'){
+    return v
+  }
+
   const split = v.split('.');
   // if (split[0] == "^blockAttrs") {
   //   split.shift();
@@ -57,7 +64,7 @@ export const replace = (k, v, r) => {
 
   if (split[0] == '^router') {
     split.shift();
-    return r[split[0]][split[1]];
+    return store['soyuz_router'][split[0]][split[1]];
   }
   return v;
 };

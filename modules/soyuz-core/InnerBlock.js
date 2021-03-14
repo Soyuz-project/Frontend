@@ -7,6 +7,7 @@
 /* dynamic modules */
 import { modules } from '~/nuxt.modules.js';
 import { S, store } from '~/plugins/soyuz-store-api';
+import { checkDisplay } from '~/plugins/soyuz-conditional-logic';
 // if innerblock isnt global - import it (check /plugins/inner-block.js)
 // import { InnerBlock } from '~/modules/soyuz-core/InnerBlock.js';
 
@@ -34,13 +35,13 @@ export default {
     delete Attrs.componentAttrs;
 
 
-    const Tpl = (
+    const Tpl = checkDisplay(
       <Block
         blockAttrs={Attrs}
         scopedSlots={{
           default: innerBlocks 
             ? () =>
-                innerBlocks.map((block, i) =>  (
+                innerBlocks.map((block, i) => (
                   <InnerBlock 
                     key={i} 
                     blocks={{ ...block, attrs: { ...block.attrs } }} 
@@ -48,7 +49,7 @@ export default {
                 ))
             : null,
         }}
-      />
+      /> , Attrs
     );
 
     return  Block ? (

@@ -36,7 +36,7 @@ export default {
       try {
         var data = JSON.parse(lines);
         console.log('recive', data.pages);
-        window.localStorage.setItem(`sojuz_pages`, JSON.stringify(data.pages));
+        window.localStorage.setItem(`soyuz_pages`, JSON.stringify(data.pages));
       } catch (err) {
         /* show message */
         this.message = 'Script fromat error. Please load atother file';

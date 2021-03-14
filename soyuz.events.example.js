@@ -22,3 +22,10 @@ export const events = [
         query_variables: { slug: 'footer' },
     }
 ]
+
+/* 
+    Example conditional logic
+*/
+const conditionalLogic = [
+    { '^router.params.slug':'page-1'  , condition:'=='}
+]

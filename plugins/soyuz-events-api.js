@@ -21,9 +21,9 @@ const eventREAD = (event) => {
     try {
 
     /* 
-      1. load data from localstorage
+      1. load data from localstorage by event-slug
     */
-      const localData = JSON.parse(window.localStorage.getItem(`sojuz_${event.slug}`));
+      const localData = JSON.parse(window.localStorage.getItem(`soyuz_${event.slug}`));
     /* 
       2. and save from observable store 
     */
@@ -31,7 +31,7 @@ const eventREAD = (event) => {
     /* 
       3. now prepare query_variables to filters responce data
     */
-      const filters_qv = w(event.query_variables, '', store['sojuz_router'])
+      const filters_qv = w(event.query_variables, '')
     /* 
       4. and get storage data and filter to responce
     */

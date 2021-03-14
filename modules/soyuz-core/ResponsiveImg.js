@@ -1,6 +1,4 @@
 /* eslint-disable react/react-in-jsx-scope */
-// const generateSrcset = (data = [], location, metas = {}) => data.map(({ file, width }) => `${location}${file} ${width}w`).join(',');
-// import { parser } from '~/plugins/sojuz-renderer';
 export default {
   name: 'ResponsiveImg',
   props: {

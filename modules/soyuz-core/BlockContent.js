@@ -1,9 +1,4 @@
 /* eslint-disable react/react-in-jsx-scope */
-// import { parser } from '~/plugins/sojuz-renderer';
-/* editable methods */
-// import { eData } from '~/plugins/sojuz-editable';
-// import { sClass } from '~/plugins/sojuz-renderer';
-
 export default {
   name: 'Content',
   // functional: true,

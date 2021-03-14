@@ -23,7 +23,7 @@ export default {
         slug: 'pages',
         method: 'READ',
         query_variables: { slug: '^router.params.slug' },
-        responce_filters: [{ get: { source: 'pages.0' } }],
+        // responce_filters: [{ get: { source: 'pages.0' } }],
       })
     }
   },
@@ -54,7 +54,9 @@ export default {
     //  BLOCKS AGGREGATION  (list of this same blocks, cards, products, posts etc)
     // 
 
+
     const storageUrlQuery = S.set({ source:'router', value: urlQuery })
+    
     const data = runEvent(event) || [];  
     const wrapperClass = blockAttrs.className ? `wrapper-${blockAttrs.className}` : ''
 

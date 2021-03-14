@@ -9,7 +9,7 @@ export const store = Vue.observable({});
 /*
   API METHODS
 */
-const _p = 'sojuz_';
+const _p = 'soyuz_';
 /* sGet */
 export const S = {
   get(attrs) {
