@@ -14,17 +14,18 @@ export default {
       type: Object,
       default: () => ({}),
     },
-
+    /* nice to use only READ events */
+    event: {
+      default: () => ({
+        name: 'Pages',
+        slug: 'pages',
+        method: 'READ',
+        query_variables: { slug: '^router.params.slug' },
+        responce_filters: [{ get: { source: 'pages.0' } }],
+      })
+    }
   },
   render(h, { props }) {
-    const defaultEvent = {
-      name: 'Pages',
-      slug: 'pages',
-      method: 'READ',
-      query_variables: { slug: '^router.params.slug' },
-      responce_filters: [{ get: { source: 'pages.0' } }],
-    };
-
 
     //  DATA MODEL
     //
@@ -51,7 +52,7 @@ export default {
     //  BLOCKS AGGREGATION  (list of this same blocks, cards, products, posts etc)
     // 
     
-    const data = runEvent(defaultEvent, props.URLQuery) || [];    
+    const data = runEvent(props.event, props.URLQuery) || [];    
 
     // BLOCKS COLLECTION 
     return  data ? (
