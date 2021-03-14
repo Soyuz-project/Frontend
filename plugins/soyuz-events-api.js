@@ -1,15 +1,18 @@
 /*
-  SOJUZ EVENTS API
+  SOJUZ EVENTS API 
+  part of methods to realize action point
 */
 import { S, store } from '~/plugins/soyuz-store-api';
 import { w } from '~/plugins/soyuz-walker';
 
 const MOCKUPMODE = true;
 
-export const runEvent = (event, URLQuery) => {
-  return event.method == 'READ' ? eventREAD(event, URLQuery) : eventWRITE(event, URLQuery);
+export const runEvent = (event) => {
+  return event.method == 'READ' ? eventREAD(event) : eventWRITE(event);
 };
-const eventREAD = (event, URLQuery) => {
+const eventREAD = (event) => {
+
+
   let output;
   /* 
     MOCKUPMODE update store from localStorage if exist
@@ -28,7 +31,7 @@ const eventREAD = (event, URLQuery) => {
     /* 
       3. now prepare query_variables to filters responce data
     */
-      const filters_qv = w(event.query_variables, '', URLQuery)
+      const filters_qv = w(event.query_variables, '', store['sojuz_router'])
     /* 
       4. and get storage data and filter to responce
     */

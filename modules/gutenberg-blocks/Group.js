@@ -25,7 +25,8 @@ export default {
     },
   },
   render(h, { props, scopedSlots }) {
-    const slots = scopedSlots.default();
+
+    const slots = scopedSlots ? scopedSlots?.default() : [];
     const compName = props.blockAttrs.componentName;
     const Block = compName ? modules[compName] : null;
     return compName || !slots?.length ? (

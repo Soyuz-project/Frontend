@@ -6,7 +6,7 @@
 
 /* dynamic modules */
 import { modules } from '~/nuxt.modules.js';
-
+import { S, store } from '~/plugins/soyuz-store-api';
 // if innerblock isnt global - import it (check /plugins/inner-block.js)
 // import { InnerBlock } from '~/modules/soyuz-core/InnerBlock.js';
 
@@ -16,36 +16,33 @@ export default {
     blocks: {
       type: Object,
       default: () => ({}),
-    },
-    URLQuery: {
-      type: Object,
-      default: () => ({}),
-    },
+    }
   },
   // eslint-disable-next-line react/display-name
   render(
     h,
     {
       props: {
-        blocks: { blockName = '', blockAttrs = {}, attrs = blockAttrs, innerBlocks = [],  URLQuery},
+        blocks: { blockName = '', blockAttrs = {}, attrs = blockAttrs, innerBlocks = []},
       },
     }
   ) {
+   
     const compName = blockName.replace(/[\/-]/g, '');
     const Block = modules[compName];
-
     const Attrs = Object.assign({}, attrs, attrs.componentAttrs, { compName });
     delete Attrs.componentAttrs;
+
+
     const Tpl = (
       <Block
         blockAttrs={Attrs}
         scopedSlots={{
-          default: innerBlocks
+          default: innerBlocks 
             ? () =>
                 innerBlocks.map((block, i) =>  (
                   <InnerBlock 
                     key={i} 
-                    URLQuery={URLQuery} 
                     blocks={{ ...block, attrs: { ...block.attrs } }} 
                   />
                 ))
@@ -53,12 +50,19 @@ export default {
         }}
       />
     );
-    return Block ? (
+
+    return  Block ? (
       Tpl
     ) : (
       // Vue bug - if we return null but when rendering InnerBlock added some prop
       // eg: ':key="key"' - vue throws error and sometimes duplicate render tree
       <template />
     );
+
+  
+
+  // console.log('compName', compName, urlQuery)
+
+    
   },
 };

@@ -10,7 +10,7 @@ export const modules = {
   coreimage: () => import(/* webpackChunkName: "default" */ '~/modules/soyuz-core/ResponsiveImg.js'),
   coreseparator: () => import(/* webpackChunkName: "separator" */ '~/modules/gutenberg-blocks/Separator'),
   corespacer: () => import(/* webpackChunkName: "separator" */ '~/modules/gutenberg-blocks/Spacer'),
-  corebutton: () => import(/* webpackChunkName: "spacer" */ '~/modules/gutenberg-blocks/Button'),
+  corebutton: () => import(/* webpackChunkName: "spacer" */ '~/modules/gutenberg-blocks/Button.js'),
   corebuttons: () => import(/* webpackChunkName: "group" */ '~/modules/gutenberg-blocks/Group.js'),
 
   /* Render sojuz data */

@@ -4,6 +4,7 @@
 /* data frame component start renderind app */
 /* blocks data frame default run `pages READ` event */
 import { runEvent } from '~/plugins/soyuz-events-api';
+import { S } from '~/plugins/soyuz-store-api';
 export default {
   functional: true,
   props: {
@@ -11,7 +12,7 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    URLQuery: {
+    urlQuery: {
       type: Object,
       default: () => ({}),
     },
@@ -26,7 +27,7 @@ export default {
       })
     }
   },
-  render(h, { props: {blockAttrs, URLQuery, event} }) {
+  render(h, { props: {blockAttrs, urlQuery, event} }) {
 
     //  DATA MODEL
     //
@@ -52,8 +53,9 @@ export default {
 
     //  BLOCKS AGGREGATION  (list of this same blocks, cards, products, posts etc)
     // 
-    
-    const data = runEvent(event, URLQuery) || [];  
+
+    const storageUrlQuery = S.set({ source:'router', value: urlQuery })
+    const data = runEvent(event) || [];  
     const wrapperClass = blockAttrs.className ? `wrapper-${blockAttrs.className}` : ''
 
     // BLOCKS COLLECTION 
@@ -64,7 +66,7 @@ export default {
             return (<div class={blockAttrs.className}>
               {
                 entry.blocks.map((block, j) => {
-                  return <inner-block key={i+j} blocks={block} URLQuery={URLQuery} />
+                  return <inner-block key={i+j} blocks={block} />
                 })
               }
             </div>)

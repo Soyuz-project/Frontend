@@ -1,14 +1,6 @@
 <template>
-  <div  :class="[blockAttrs.className]">
-
+  <div @click="action(event)" :class="[blockAttrs.className]">
     <span v-html="blockAttrs.content" />
-    <router-link
-  to="/page-1"
-  
->
-  page-1
-</router-link>
-   
   </div>
 </template>
 
@@ -33,6 +25,7 @@ export default {
       // sRun(this.attrs, AWL);
       /* is Editable mode then edit clicked group*/
       // eData(event, this.attrs);
+      console.log('clicked', this)
     },
   },
 };
