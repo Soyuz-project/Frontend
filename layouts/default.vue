@@ -1,8 +1,8 @@
 <template>
   <div>
-  	<header><DataFrame :URLQuery="{query:$route.query, params:$route.params}"></DataFrame></header>
+  	<DataFrame :blockAttrs="{tagName:'header',className:'header'}" :URLQuery="{query:{}, params:{slug:'header'}}"></DataFrame>
     <Nuxt />
-    <div>Footer</div>
+  	<DataFrame :blockAttrs="{className:'footer'}" :URLQuery="{query:{}, params:{slug:'footer'}}"></DataFrame>
   </div>
 </template>
 <script>

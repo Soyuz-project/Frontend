@@ -52,14 +52,15 @@ export default {
     //  BLOCKS AGGREGATION  (list of this same blocks, cards, products, posts etc)
     // 
     
-    const data = runEvent(props.event, props.URLQuery) || [];    
+    const data = runEvent(props.event, props.URLQuery) || [];  
+    const wrapperClass = props.blockAttrs.className ? `wrapper-${props.blockAttrs.className}` : ''
 
     // BLOCKS COLLECTION 
     return  data ? (
-      <div class="frame" style="border:1px solid red; padding:5px;">
+      <div class={`blocks-wrapper ${wrapperClass}`}>
           {/* Render blocks collection (like pages collection) */}
           {data?.map((entry, i) => {
-            return (<div style="border:1px solid blue; padding:5px;">
+            return (<div class={props.blockAttrs.className}>
               {
                 entry.blocks.map((block, j) => {
                   return <inner-block key={i+j} blocks={block}/>
