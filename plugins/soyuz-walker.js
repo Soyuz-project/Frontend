@@ -3,12 +3,7 @@
 */
 import { store } from '~/plugins/soyuz-store-api';
 
-export const w = (o, d) =>
-  Object.entries(o).reduce((acc, [k, v]) => {
-    if (v && typeof v === 'object') acc[k] = w(v, d);
-    else acc[k] = replace(k, g_p_v(d, v)) || replace(k, v);
-    return acc;
-  }, {});
+
 
 /* 
   get value from object by path 
@@ -37,7 +32,17 @@ export const s_p_v = (o, v, p) => {
 };
 
 /* 
-  replacer 
+  search and replace soyuz shorthand with configs
+*/
+export const transformer = (o, d) =>
+  Object.entries(o).reduce((acc, [k, v]) => {
+    if (v && typeof v === 'object') acc[k] = transformer(v, d);
+    else acc[k] = replace(k, g_p_v(d, v)) || replace(k, v);
+    return acc;
+  }, {});
+
+/* 
+  soyuz shorthands replacer 
 */
 export const replace = (k, v) => {
 

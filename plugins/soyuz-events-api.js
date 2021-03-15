@@ -3,7 +3,7 @@
   part of methods to realize action point
 */
 import { S, store } from '~/plugins/soyuz-store-api';
-import { w } from '~/plugins/soyuz-walker';
+import { transformer } from '~/plugins/soyuz-walker';
 
 const MOCKUPMODE = true;
 
@@ -31,7 +31,7 @@ const eventREAD = (event) => {
     /* 
       3. now prepare query_variables to filters responce data
     */
-      const filters_qv = w(event.query_variables, '')
+      const filters_qv = transformer(event.query_variables, '')
     /* 
       4. and get storage data and filter to responce
     */

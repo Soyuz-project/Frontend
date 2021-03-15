@@ -3,7 +3,7 @@
   soyuz-conditional-cogic
   for rendering components
 */
-import { w } from '~/plugins/soyuz-walker';
+import { transformer } from '~/plugins/soyuz-walker';
 
 const condition = (v1, v2, c) => {
 	if (c === '==') {
@@ -15,13 +15,13 @@ export const checkDisplay = (data, attrs) => {
 	if(attrs.conditionalLogic && attrs.conditionalLogic.length){
 		let guardian = true
 		attrs.conditionalLogic.map((el)=>{
-			const res = w(el,'');
+			const res = transformer(el,'');
 
-			// if defined key exist
-			if(res.value && res.key){
-				console.log('ok')
-				guardian = false
-			}
+			// // if defined key exist
+			// if(res.value && res.key){
+				//guardian = false
+			// }
+			guardian != res.value && res.key
 		})
 		if(guardian){
 			return ''
