@@ -7,7 +7,8 @@
 </template>
 
 <script>
-import { S, store } from '~/plugins/soyuz-store-api';
+import { S, store, setTick } from '~/plugins/soyuz-store-api';
+import Vue from 'vue';
 export default {
   name: 'Input',
   props: {
@@ -38,6 +39,7 @@ export default {
         return S.get({ source: this.source })
       },
       set(value) {
+        setTick()
         return S.set({ source: this.source, value })
       },
     },

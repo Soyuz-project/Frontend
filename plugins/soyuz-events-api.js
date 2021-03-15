@@ -60,8 +60,6 @@ const eventREAD = (event) => {
         template.collection_index = i;
         collection_template.push(template)
 
-        console.log('template',template, i)
-
       })
       output = collection_template;
 

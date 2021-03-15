@@ -11,7 +11,6 @@ const actionsOutput = []
 export const runAction = (blockAttrs) => {
   blockAttrs.actions.map((el)=>{
   	const key = Object.keys(el)[0];
-    console.log('act',el)
     
     const value = el[key]
 

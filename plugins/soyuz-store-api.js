@@ -5,7 +5,9 @@
 import Vue from 'vue';
 import { g_p_v, s_p_v } from '~/plugins/soyuz-walker';
 export const store = Vue.observable({});
-
+export const tick = Vue.observable({
+  value:0
+});
 /*
   API METHODS
 */
@@ -41,7 +43,6 @@ export const S = {
     return s_p_v(store, attrs.value, `${_p}${attrs.source}`);
   },
 };
-Vue.prototype.$store = store;
 
 
 /* Responce filter (js filter collection by many pairs keys and values) */
@@ -55,3 +56,9 @@ export const query_filters = (d, f) => {
   }
   return d;
 };
+
+/* Hack to run reactivity with store */
+export const setTick = () => tick.value++;
+
+Vue.prototype.$store = store;
+Vue.prototype.$tick = tick;

@@ -1,7 +1,7 @@
 /* 
   Soyuz walker 
 */
-import { store } from '~/plugins/soyuz-store-api';
+import { S, store } from '~/plugins/soyuz-store-api';
 
 /* 
   get value from object by path 
@@ -32,17 +32,17 @@ export const s_p_v = (o, v, p) => {
 /* 
   search and replace soyuz shorthand with configs
 */
-export const transformer = (o, d) =>
+export const transformer = (o, d, b = null) =>
   Object.entries(o).reduce((acc, [k, v]) => {
-    if (v && typeof v === 'object') acc[k] = transformer(v, d);
-    else acc[k] = replace(k, g_p_v(d, v)) || replace(k, v);
+    if (v && typeof v === 'object') acc[k] = transformer(v, d, b);
+    else acc[k] = replace(k, g_p_v(d, v, b)) || replace(k, v, b);
     return acc;
   }, {});
 
 /* 
   soyuz shorthands replacer 
 */
-export const replace = (k, v) => {
+export const replace = (k, v, b) => {
 
   if(typeof v !== 'string'){
     return v
@@ -61,6 +61,11 @@ export const replace = (k, v) => {
   //   split.shift();
   //   v = S.getDeep({ nq: split[0], path: split[1] })
   // }
+
+  if (split[0] == '^collection') {
+    split.shift();
+    return S.get({source:`${b.collection_source}.${b.collection_index}.${split[0]}`})
+  }
 
   if (split[0] == '^router') {
     split.shift();

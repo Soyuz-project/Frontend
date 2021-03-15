@@ -62,7 +62,6 @@ export default {
 
     const wrapperClass = blockAttrs.className ? `wrapper-${blockAttrs.className}` : ''
 
-    console.log('store', store)
 
     // BLOCKS COLLECTION 
     return  data ? (
