@@ -1,10 +1,8 @@
 /* register action method */
 import { S, store } from '~/plugins/soyuz-store-api';
-const action = (e, attrs) => {
-  // sRun(bAttrs, AWL);
-  /* is Editable mode then edit clicked group*/
-  // eData(e, bAttrs);
-  console.log(attrs, store)
+import { runAction } from '~/plugins/soyuz-actions-api';
+const action = (e, blockAttrs) => {
+  runAction(blockAttrs)
 };
 export default {
   functional: true,
@@ -14,9 +12,9 @@ export default {
       default: () => ({}),
     },
   },
-  render(h, { props }) {
+  render(h, { props: {blockAttrs} }) {
     return  (
-      <div onClick={(e) => action(e, props)} class={[props.blockAttrs.className]}>
+      <div onClick={(e) => action(e, blockAttrs)} class={[blockAttrs.className]}>
       	<span>button</span>
       </div>
     );
