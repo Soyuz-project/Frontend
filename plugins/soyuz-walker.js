@@ -3,8 +3,6 @@
 */
 import { store } from '~/plugins/soyuz-store-api';
 
-
-
 /* 
   get value from object by path 
 */
@@ -63,9 +61,6 @@ export const replace = (k, v) => {
   //   split.shift();
   //   v = S.getDeep({ nq: split[0], path: split[1] })
   // }
-
-
-  // !!!!! TODO NOW !!!!  Remove replacer to TOP 
 
   if (split[0] == '^router') {
     split.shift();

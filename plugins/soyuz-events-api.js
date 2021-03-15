@@ -38,6 +38,41 @@ const eventREAD = (event) => {
       output = S.get({ source: event.slug, query_variables: filters_qv });
 
 
+    /* 
+      5. if output have COLLECTION condition then:
+    */
+    
+    if( event.collection && output.length <= 1){
+      
+      const collection_template = [];
+      const collection_data = event.collection.default_data;
+      
+      S.set({ source: event.collection.source, value: collection_data });
+      
+      // filter data
+      if(event.collection.query_variables){
+        collection_data = S.get({ source: event.collection.source, query_variables: event.collection.query_variables });
+      }
+
+      collection_data.map((el,i)=>{
+        const template = Object.assign({}, output[0]);
+        template.collection_source = event.collection.source;
+        template.collection_index = i;
+        collection_template.push(template)
+
+        console.log('template',template, i)
+
+      })
+      output = collection_template;
+
+      // output = [{"blocks":[{
+      //   "blockName": "core/paragraph",
+      //   "attrs": {
+      //     "content": "I found collection"
+      //   }
+      // }]}]
+    }
+
     } catch (error) {}
    
 

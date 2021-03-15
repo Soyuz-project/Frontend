@@ -4,7 +4,7 @@
 /* data frame component start renderind app */
 /* blocks data frame default run `pages READ` event */
 import { runEvent } from '~/plugins/soyuz-events-api';
-import { S } from '~/plugins/soyuz-store-api';
+import { S , store} from '~/plugins/soyuz-store-api';
 import { InitialStoreRouter } from '~/plugins/soyuz-actions-router';
 export default {
   functional: true,
@@ -62,7 +62,7 @@ export default {
 
     const wrapperClass = blockAttrs.className ? `wrapper-${blockAttrs.className}` : ''
 
-    console.log('render data frame', blockAttrs, data)
+    console.log('store', store)
 
     // BLOCKS COLLECTION 
     return  data ? (
@@ -72,6 +72,11 @@ export default {
             return (<div class={blockAttrs.className}>
               {
                 entry.blocks.map((block, j) => {
+                  
+                  /* add collection handler if exist */
+                  entry.collection_source != undefined ? block.attrs.collection_source = entry.collection_source : null
+                  entry.collection_index != undefined  ? block.attrs.collection_index = entry.collection_index : null
+                  /* render block */
                   return <inner-block key={i+j} blocks={block} />
                 })
               }

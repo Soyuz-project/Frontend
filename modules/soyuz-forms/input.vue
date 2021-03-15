@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { S, store } from '~/plugins/soyuz-store-api';
 export default {
   name: 'Input',
   props: {
@@ -28,26 +29,16 @@ export default {
       tagName: this.blockAttrs.tagName || 'input',
       rows: this.blockAttrs.rows || 4,
       inputClass: 'td -pad-s -b -b-light-gray',
+      source: `${this.blockAttrs.collection_source}.${this.blockAttrs.collection_index}.${this.blockAttrs.collection_map.value}`
     };
   },
   computed: {
     value: {
       get() {
-        // const b = this.blockAttrs;
-        // if (b.nq && b.path) {
-        //   b.value = S.getDeep({ nq: b.nq, path: `${b.path}${b.pathSufix || ''}` });
-        // }
-        // return b.value;
+        return S.get({ source: this.source })
       },
       set(value) {
-        // const b = this.blockAttrs;
-        // if (b.nq && b.path) {
-        //   // set by defined path
-        //   S.setDeep({ nq: b.nq, path: `${b.path}${b.pathSufix || ''}`, value: value });
-        // } else {
-        //   // set by auto path
-        //   b.nq ? S.setDeep({ nq: b.nq, path: `${b.i}.${b.map.value}`, value: value }) : null;
-        // }
+        return S.set({ source: this.source, value })
       },
     },
   },
