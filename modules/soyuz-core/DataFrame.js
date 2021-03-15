@@ -5,6 +5,7 @@
 /* blocks data frame default run `pages READ` event */
 import { runEvent } from '~/plugins/soyuz-events-api';
 import { S } from '~/plugins/soyuz-store-api';
+import { InitialStoreRouter } from '~/plugins/soyuz-actions-router';
 export default {
   functional: true,
   props: {
@@ -54,15 +55,18 @@ export default {
     //  BLOCKS AGGREGATION  (list of this same blocks, cards, products, posts etc)
     // 
 
-
-    const storageUrlQuery = S.set({ source:'router', value: urlQuery })
+    InitialStoreRouter(urlQuery)
     
+    blockAttrs.initial_event ? event = blockAttrs.initial_event : null
     const data = runEvent(event) || [];  
+
     const wrapperClass = blockAttrs.className ? `wrapper-${blockAttrs.className}` : ''
+
+    console.log('render data frame', blockAttrs, data)
 
     // BLOCKS COLLECTION 
     return  data ? (
-      <div class={`blocks-wrapper ${wrapperClass}`}>
+      <div class={`blocks-wrapper ${wrapperClass}`} style="border:1px dashed red; padding:2px; margin:2px">
           {/* Render blocks collection (like pages collection) */}
           {data?.map((entry, i) => {
             return (<div class={blockAttrs.className}>

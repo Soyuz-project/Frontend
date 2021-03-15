@@ -14,12 +14,36 @@ export const events = [
         slug: 'header',
         method: 'READ',
         query_variables: { slug: '^router.params.slug' },
-    }
+    },
     {
         name: 'Pages',
         slug: 'footer',
         method: 'READ',
         query_variables: { slug: 'footer' },
+    },
+    // {
+    //     name: 'Pages all',
+    //     slug: 'pages',
+    //     method: 'READ',
+    //     query_variables: { slug: 'footer' },
+    // },
+    {
+        name: 'Insert page form',
+        slug: 'pages',
+        method: 'READ',
+        query_variables: { slug: 'insert-page' },
+        default_data: [{
+            name: 'New page',
+            slug: '',
+            blocks: []
+        }]
+    },
+    {
+        name: 'Insert page',
+        slug: 'insert-page',
+        method: 'WRITE',
+        actions: [
+        ]
     }
 ]
 
@@ -29,3 +53,25 @@ export const events = [
 const conditionalLogic = [
     { '^router.params.slug':'page-1'  , condition:'=='}
 ]
+
+/* 
+    Example block
+*/
+{
+  "blockName": "core/button",
+  "attrs": {
+    "className": "",
+    "conditionalLogic": [],
+    "componentAttrs": [],
+    "map": [],
+    "content": "Close without changes",
+    "actions": [
+      {
+        "routerDelQuery": [
+          "editable"
+        ]
+      }
+    ]
+  },
+  "innerBlocks": []
+}

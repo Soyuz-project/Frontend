@@ -69,7 +69,7 @@ export const replace = (k, v) => {
 
   if (split[0] == '^router') {
     split.shift();
-    return store['soyuz_router'][split[0]][split[1]];
+    return store['soyuz_router']?.[split[0]]?.[split[1]];
   }
   return v;
 };

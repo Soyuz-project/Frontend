@@ -15,7 +15,7 @@ export default {
   render(h, { props: {blockAttrs} }) {
     return  (
       <div onClick={(e) => action(e, blockAttrs)} class={[blockAttrs.className]}>
-      	<span>button</span>
+      	<span>{blockAttrs.content}</span>
       </div>
     );
   },

@@ -1,10 +1,11 @@
 /* 
   router actions 
 */
+import { S } from '~/plugins/soyuz-store-api';
+
 let router = {};
 export default function(context) {
   router = context.app.router;
-  console.log('router access', router)
 }
 
 export const soyuzRouter = {
@@ -38,3 +39,8 @@ export const soyuzRouter = {
     return Object.fromEntries(urlParams); 
   }
 };
+
+export const InitialStoreRouter = (urlQuery) => {
+  /* TODO - error if first init dont have urlQuery. Then get it form context */ 
+  Object.keys(urlQuery).length === 0 ? null : S.set({ source:'router', value: urlQuery })  
+}
