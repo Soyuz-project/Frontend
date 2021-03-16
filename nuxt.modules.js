@@ -18,7 +18,7 @@ export const modules = {
   DataFrame: () => import(/* webpackChunkName: "default" */ '~/modules/soyuz-core/DataFrame.js'),
   BlockContent: () => import(/* webpackChunkName: "default" */ '~/modules/soyuz-core/BlockContent.js'),
 
-  input: () => import(/* webpackChunkName: "acf" */ '~/modules/soyuz-forms/input'),
+  input: () => import(/* webpackChunkName: "acf" */ '~/modules/soyuz-forms/input.vue'),
   file: () => import(/* webpackChunkName: "acf" */ '~/modules/soyuz-forms/file'), 
 
 };

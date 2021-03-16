@@ -45,9 +45,17 @@ const eventREAD = (event) => {
     if( event.collection && output.length <= 1){
       
       const collection_template = [];
-      const collection_data = event.collection.default_data;
+      let collection_data;
+
+      if(event.collection.default_data){
+        
+        collection_data = event.collection.default_data;
+        S.set({ source: event.collection.source, value: collection_data });
       
-      S.set({ source: event.collection.source, value: collection_data });
+      }else{
+        collection_data = S.get({ source: event.collection.source });
+      }
+      
       
       // filter data
       if(event.collection.query_variables){

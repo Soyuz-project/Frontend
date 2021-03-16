@@ -15,6 +15,7 @@
       }" 
       :urlQuery="{query:$route.query, params:{slug:'right-panel'}}">    
     </DataFrame>
+    <AppLoader/>
   </div>
 </template>
 <script>
@@ -22,6 +23,7 @@
   	name: 'Layout',
   	components: {
 			DataFrame: () => import('~/modules/soyuz-core/DataFrame.js'),
+      AppLoader: () => import('~/modules/soyuz-core/AppLoader'),
 		},
   }
 </script>

@@ -35,7 +35,7 @@ export const s_p_v = (o, v, p) => {
 export const transformer = (o, d, b = null) =>
   Object.entries(o).reduce((acc, [k, v]) => {
     if (v && typeof v === 'object') acc[k] = transformer(v, d, b);
-    else acc[k] = replace(k, g_p_v(d, v, b)) || replace(k, v, b);
+    else acc[k] = replace(k, g_p_v(d, v), b) || replace(k, v, b);
     return acc;
   }, {});
 
@@ -43,33 +43,22 @@ export const transformer = (o, d, b = null) =>
   soyuz shorthands replacer 
 */
 export const replace = (k, v, b) => {
-
-  if(typeof v !== 'string'){
+  
+  if(typeof v !== 'string' || v === ""){
     return v
   }
+  v = v.replace(/{[^{}]+}/g, function(key){
+    const s = key.replace(/[{}]+/g, "").split('.')
+     
+    if(s[0] == 'router'){
+      s.shift();
+      return store['soyuz_router']?.[s[0]]?.[s[1]] || ""
+    }
+    if(s[0] == 'collection'){
+      s.shift();
+      return S.get({source:`${b.collection_source}.${b.collection_index}.${s[0]}`}) || ""
+    }   
+  });
 
-  const split = v.split('.');
-  // if (split[0] == "^blockAttrs") {
-  //   split.shift();
-  //   v = g_p_v(targetAttrs, split.join('.'))
-  // }
-  // if (split[0] == "^action") {
-  //   split.shift();
-  //   v = g_p_v(actionsOutput, split.join('.'))
-  // }
-  // if (split[0] == "^store") {
-  //   split.shift();
-  //   v = S.getDeep({ nq: split[0], path: split[1] })
-  // }
-
-  if (split[0] == '^collection') {
-    split.shift();
-    return S.get({source:`${b.collection_source}.${b.collection_index}.${split[0]}`})
-  }
-
-  if (split[0] == '^router') {
-    split.shift();
-    return store['soyuz_router']?.[split[0]]?.[split[1]];
-  }
   return v;
 };

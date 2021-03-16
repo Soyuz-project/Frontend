@@ -12,10 +12,10 @@ export default {
   },
   computed: {
     attrs() { 
-      if(this.blockAttrs.collection_map){
+      if(this.blockAttrs.watch){
         /* Hack to run reactivity with store */
         this.blockAttrs.tick = tick.value
-        this.blockAttrs = Object.assign(this.blockAttrs, transformer(this.blockAttrs.collection_map,'', this.blockAttrs))
+        return Object.assign({}, transformer(this.blockAttrs,'', this.blockAttrs))
       }
       return this.blockAttrs;
     },

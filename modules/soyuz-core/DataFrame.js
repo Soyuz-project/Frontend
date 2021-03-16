@@ -23,7 +23,7 @@ export default {
         name: 'Pages',
         slug: 'pages',
         method: 'READ',
-        query_variables: { slug: '^router.params.slug' },
+        query_variables: { slug: '{router.params.slug}' },
         // responce_filters: [{ get: { source: 'pages.0' } }],
       })
     }
