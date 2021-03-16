@@ -18,10 +18,12 @@ export default {
       default: () => ({}),
     },
     /* nice to use only READ events */
+    /* default event read page (search with pages) by rouing param slug */
     event: {
       default: () => ({
         name: 'Pages',
-        slug: 'pages',
+        slug: 'initial-page',
+        source: 'pages',
         method: 'READ',
         query_variables: { slug: '{router.params.slug}' },
         // responce_filters: [{ get: { source: 'pages.0' } }],
@@ -56,9 +58,10 @@ export default {
     // 
 
     InitialStoreRouter(urlQuery)
-    
-    blockAttrs.initial_event ? event = blockAttrs.initial_event : null
-    const data = runEvent(event) || [];  
+
+    const activeEvent = blockAttrs.initial_event ? S.get({ source: 'events', query_variables: {slug:blockAttrs.initial_event} })[0] : event
+
+    const data = runEvent(activeEvent) || [];  
 
     const wrapperClass = blockAttrs.className ? `wrapper-${blockAttrs.className}` : ''
 

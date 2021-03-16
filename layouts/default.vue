@@ -15,23 +15,23 @@
       }" 
       :urlQuery="{query:$route.query, params:{slug:'right-panel'}}">    
     </DataFrame>
-    <AppLoader v-if="!register_events" />
+    <AppLoader  />
   </div>
 </template>
 <script>
+  import { S, store } from '~/plugins/soyuz-store-api';
 	export default {
   	name: 'Layout',
   	components: {
 			DataFrame: () => import('~/modules/soyuz-core/DataFrame.js'),
       AppLoader: () => import('~/modules/soyuz-core/AppLoader'),
 		},
-    computed: {
-      register_events() {
-        try {
-          return window.localStorage.getItem("sojuz_register_events") || false
-        } catch (error) {}
-      },
-    },
+    created: function () {
+      /* MOCKUP MODE, TODO - do plugable */
+      try {
+        return S.set({ source: 'events', value: JSON.parse(window.localStorage.getItem("soyuz_events")) });
+      } catch (error) {}
+    }
   }
 </script>
 

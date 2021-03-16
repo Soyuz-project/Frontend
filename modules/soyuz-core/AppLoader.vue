@@ -42,6 +42,7 @@ export default {
       try {
         var data = JSON.parse(lines);
         window.localStorage.setItem(`soyuz_pages`, JSON.stringify(data.pages));
+        window.localStorage.setItem(`soyuz_events`, JSON.stringify(data.events));
       } catch (err) {
         /* show message */
         this.message = 'Script fromat error. Please load atother file';

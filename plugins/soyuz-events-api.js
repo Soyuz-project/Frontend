@@ -23,11 +23,11 @@ const eventREAD = (event) => {
     /* 
       1. load data from localstorage by event-slug
     */
-      const localData = JSON.parse(window.localStorage.getItem(`soyuz_${event.slug}`));
+      const localData = JSON.parse(window.localStorage.getItem(`soyuz_${event.source}`));
     /* 
       2. and save to observable store (localStorage isnt data model for events)
     */
-      S.set({ source: event.slug, value: localData });
+      S.set({ source: event.source, value: localData });
     /* 
       3. now prepare query_variables to filters responce data
     */
@@ -35,7 +35,7 @@ const eventREAD = (event) => {
     /* 
       4. and get storage data and filter to responce
     */
-      output = S.get({ source: event.slug, query_variables: filters_qv });
+      output = S.get({ source: event.source, query_variables: filters_qv });
 
 
     /* 
