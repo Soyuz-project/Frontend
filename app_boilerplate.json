@@ -1,0 +1,83 @@
+/* 
+	APPLICATION TEMPLATE
+*/
+
+{
+  "application": "Application title",
+  "events":[
+	/* evens */
+  ],
+  "pages": [
+	/* pages */
+  ]
+}
+
+/* ----------------------------------------------------------------------------------- */
+/* PAGES */
+
+/* page template */
+
+{
+  "name": "Header",
+  "slug": "header",
+  "type": "page",
+  "blocks": [
+    /* block */
+  ]
+},
+
+/* block full template */
+
+{
+  "blockName": "core/button",
+  "attrs": {
+    "className": "",
+    "content": "Header",
+    "tagName": "h3", // for content blocks
+    "conditionalLogic":[], // rendering block conditions
+    "watch": false, // swith to observable
+    "actions": [
+    	{
+				"event": "" // "write" event ref by slug
+      },
+      {
+        "routerDelQuery": [
+          "editable"
+        ]
+      }
+    ]
+  },
+  "innerBlocks": []
+}
+
+/* observable block template (inside collection) */
+
+{
+  "blockName": "core/paragraph",
+  "attrs": {
+    "className": "",
+    "watch": true, // swith to observable
+    "content": "{collection.post_title}", // map collection title to paragraph content
+}
+
+/* observable block template (without collection) */
+
+{
+  "blockName": "core/paragraph",
+  "attrs": {
+    "className": "",
+    "watch": true, // swith to observable
+    "content": "{store.sotreName.key}", // map storage data to paragraph content
+}
+
+/* ----------------------------------------------------------------------------------- */
+/* EVENTS */
+
+/* default READ event */
+{
+  "name": "Pages",
+  "slug": "initial-page",
+  "source": "pages",
+  "method": "READ",
+  "query_variables": { "slug": "{router.params.slug}" }",
+}
