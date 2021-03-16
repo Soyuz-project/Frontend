@@ -31,18 +31,17 @@ const eventREAD = (event) => {
     /* 
       3. now prepare query_variables to filters responce data
     */
-      const filters_qv = transformer(event.query_variables, '')
+    
+      const filters_qv = transformer(event.query_variables)
     /* 
       4. and get storage data and filter to responce
     */
       output = S.get({ source: event.source, query_variables: filters_qv });
-
-
     /* 
       5. if output have COLLECTION condition then:
     */
     
-    if( event.collection && output.length <= 1){
+    if( output.length && event.collection && output.length <= 1){
       
       const collection_template = [];
       let collection_data;
@@ -80,7 +79,6 @@ const eventREAD = (event) => {
     }
 
     } catch (error) {}
-   
 
     return output;
   } else {

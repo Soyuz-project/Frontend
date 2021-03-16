@@ -58,8 +58,8 @@ export default {
     // 
 
     InitialStoreRouter(urlQuery)
-
-    const activeEvent = blockAttrs.initial_event ? S.get({ source: 'events', query_variables: {slug:blockAttrs.initial_event} })[0] : event
+    
+    const activeEvent = blockAttrs.initial_event ? S.get({ source: 'events', query_variables: {slug: blockAttrs.initial_event} })[0] : event
 
     const data = runEvent(activeEvent) || [];  
 
