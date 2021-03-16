@@ -26,39 +26,47 @@ export const s_p_v = (o, v, p) => {
   // Vue.set(o, e[i], v);
   o[e[i]] = v;
   return v;
-  
 };
 
 /* 
   search and replace soyuz shorthand with configs
 */
-export const transformer = (o, d, b = null) =>
-  Object.entries(o).reduce((acc, [k, v]) => {
-    if (v && typeof v === 'object') acc[k] = transformer(v, d, b);
-    else acc[k] = replace(k, g_p_v(d, v), b) || replace(k, v, b);
-    return acc;
-  }, {});
-
-/* 
-  soyuz shorthands replacer 
-*/
-export const replace = (k, v, b) => {
+export const transformer = (o) => {
+  const t = Object.assign({},o);
   
-  if(typeof v !== 'string' || v === ""){
-    return v
-  }
-  v = v.replace(/{[^{}]+}/g, function(key){
-    const s = key.replace(/[{}]+/g, "").split('.')
-     
-    if(s[0] == 'router'){
-      s.shift();
-      return store['soyuz_router']?.[s[0]]?.[s[1]] || ""
+  const w = (o) =>
+  Object.entries(o).reduce((acc, [k, v]) => {
+    if (v && typeof v === 'object') acc[k] = w(v);
+    else acc[k] = replace(k, v);
+    return acc;
+  }, Array.isArray(o)?[]:{});
+  
+  /* 
+    soyuz shorthands replacer 
+  */
+  const replace = (k, v) => {
+    
+    if(typeof v !== 'string' || v === ""){
+      return v
     }
-    if(s[0] == 'collection'){
-      s.shift();
-      return S.get({source:`${b.collection_source}.${b.collection_index}.${s[0]}`}) || ""
-    }   
-  });
+    v = v.replace(/{[^{}]+}/g, function(key){
+      const s = key.replace(/[{}]+/g, "").split('.')
+       
+      if(s[0] == 'router'){
+        s.shift();
+        return store['soyuz_router']?.[s[0]]?.[s[1]] || ""
+      }
+      if(s[0] == 'collection'){
+        s.shift();
 
-  return v;
-};
+        return S.get({source:`${t.collection_source}.${t.collection_index}.${s[0]}`}) || ""
+      }   
+    });
+
+    return v;
+  };
+  return  w(o)
+ 
+}
+
+

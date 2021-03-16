@@ -15,7 +15,7 @@
       }" 
       :urlQuery="{query:$route.query, params:{slug:'right-panel'}}">    
     </DataFrame>
-    <AppLoader/>
+    <AppLoader v-if="!register_events" />
   </div>
 </template>
 <script>
@@ -25,6 +25,13 @@
 			DataFrame: () => import('~/modules/soyuz-core/DataFrame.js'),
       AppLoader: () => import('~/modules/soyuz-core/AppLoader'),
 		},
+    computed: {
+      register_events() {
+        try {
+          return window.localStorage.getItem("sojuz_register_events") || false
+        } catch (error) {}
+      },
+    },
   }
 </script>
 

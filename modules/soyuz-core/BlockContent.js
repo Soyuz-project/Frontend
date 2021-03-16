@@ -15,7 +15,7 @@ export default {
       if(this.blockAttrs.watch){
         /* Hack to run reactivity with store */
         this.blockAttrs.tick = tick.value
-        return Object.assign({}, transformer(this.blockAttrs,'', this.blockAttrs))
+        return Object.assign({}, transformer(this.blockAttrs, this.blockAttrs))
       }
       return this.blockAttrs;
     },

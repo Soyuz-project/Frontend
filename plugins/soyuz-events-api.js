@@ -89,7 +89,15 @@ const eventREAD = (event) => {
   }
 };
 const eventWRITE = (event) => {
-  console.log('WRITE');
+  /* 
+    MOCKUPMODE update store from localStorage if exist
+  */
+  if (MOCKUPMODE) {
+    try {
+
+
+    } catch (error) {}
+  }
 };
 
 /* 

@@ -59,11 +59,6 @@ export default {
       // eg: ':key="key"' - vue throws error and sometimes duplicate render tree
       <template />
     );
-
-  
-
-  // console.log('compName', compName, urlQuery)
-
-    
+ 
   },
 };

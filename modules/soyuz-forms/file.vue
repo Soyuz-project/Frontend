@@ -35,7 +35,6 @@ export default {
       let lines = e.target.result;
       try {
         var data = JSON.parse(lines);
-        console.log('recive', data.pages);
         window.localStorage.setItem(`soyuz_pages`, JSON.stringify(data.pages));
       } catch (err) {
         /* show message */
