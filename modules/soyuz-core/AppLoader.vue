@@ -10,6 +10,11 @@
 </template>
 
 <script>
+/*
+  TODO 
+  Switched upload to add code as app or plugin
+  Thinkabout namespaces for pages slugs (plugins problem)
+*/
 export default {
   name: 'Input',
   props: {
