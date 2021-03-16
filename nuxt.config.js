@@ -75,7 +75,7 @@ export default {
           path: '/',
           component: PageComponent,
           children: modalRoute,
-          props: route => ({urlQuery: { params:route.params, query:route.query  }})
+          props: route => ({urlQuery: { params:{slug:'home'}, query:route.query  }})
         },
         {
           name: 'page',
