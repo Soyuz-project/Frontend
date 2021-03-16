@@ -1,6 +1,6 @@
 export const modules = {
 
-  /* CORE BLOCKS */
+  /* CORE BLOCKS - based on Gutenberg blocks */
   coredefault: () => import(/* webpackChunkName: "default" */ '~/modules/gutenberg-blocks/default'),
   coregroup: () => import(/* webpackChunkName: "group" */ '~/modules/gutenberg-blocks/Group.js'),
   corecolumns: () => import(/* webpackChunkName: "group" */ '~/modules/gutenberg-blocks/Group.js'),
@@ -8,8 +8,8 @@ export const modules = {
   coreparagraph: () => import(/* webpackChunkName: "content" */ '~/modules/soyuz-core/BlockContent.js'),
   coreheading: () => import(/* webpackChunkName: "content" */ '~/modules/soyuz-core/BlockContent.js'),
   coreimage: () => import(/* webpackChunkName: "default" */ '~/modules/soyuz-core/ResponsiveImg.js'),
-  coreseparator: () => import(/* webpackChunkName: "separator" */ '~/modules/gutenberg-blocks/Separator'),
-  corespacer: () => import(/* webpackChunkName: "separator" */ '~/modules/gutenberg-blocks/Spacer'),
+  coreseparator: () => import(/* webpackChunkName: "separator" */ '~/modules/gutenberg-blocks/Separator.js'),
+  corespacer: () => import(/* webpackChunkName: "separator" */ '~/modules/gutenberg-blocks/Spacer.js'),
   corebutton: () => import(/* webpackChunkName: "spacer" */ '~/modules/gutenberg-blocks/Button.js'),
   corebuttons: () => import(/* webpackChunkName: "group" */ '~/modules/gutenberg-blocks/Group.js'),
 

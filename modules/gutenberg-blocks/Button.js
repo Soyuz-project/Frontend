@@ -16,9 +16,8 @@ export default {
   computed: {
     attrs() { 
       if(this.blockAttrs.watch){
-        /* Hack to run reactivity with store */
+        /* DirtyHack to run reactivity with store */
         this.blockAttrs.tick = tick.value
-        console.log('button', transformer(this.blockAttrs,'', this.blockAttrs))
         return Object.assign({}, transformer(this.blockAttrs,'', this.blockAttrs))
       }
       return this.blockAttrs;

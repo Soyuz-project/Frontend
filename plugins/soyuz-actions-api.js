@@ -9,15 +9,13 @@ const RegActions = {...soyuzRouter}
 const actionsOutput = []
 
 export const runAction = (blockAttrs) => {
+  /*
+    TODO after transformation array change to object
+  */
+  // console.log(blockAttrs, typeof blockAttrs)
   blockAttrs.actions.map((el)=>{
-  	const key = Object.keys(el)[0];
-    
+  	const key = Object.keys(el)[0];    
     const value = el[key]
-
-    // use transformator
-    // const value = { ...w(el[key], '0') }
-    // console.log('act2', value)
-    
     const res = RegActions[key](value)
     actionsOutput.push(res);
   })
