@@ -25,7 +25,7 @@ const eventREAD = (event) => {
     */
       const localData = JSON.parse(window.localStorage.getItem(`soyuz_${event.slug}`));
     /* 
-      2. and save from observable store (localStorage isnt data model for events)
+      2. and save to observable store (localStorage isnt data model for events)
     */
       S.set({ source: event.slug, value: localData });
     /* 
