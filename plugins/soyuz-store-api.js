@@ -57,7 +57,7 @@ export const query_filters = (d, f) => {
   return d;
 };
 
-/* Hack to run reactivity with store */
+/* DirtyHack to run reactivity with store */
 export const setTick = () => tick.value++;
 
 Vue.prototype.$store = store;
