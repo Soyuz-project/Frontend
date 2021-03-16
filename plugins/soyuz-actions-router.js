@@ -11,11 +11,14 @@ export default function(context) {
 export const soyuzRouter = {
   routerPush(attrs) {
     router.push(attrs);
+    return attrs;
   },
   routerQuery(attrs) {
+    const target = Object.assign({}, this.getUrlQuery(), attrs);
     router.push({
-      query: Object.assign({}, this.getUrlQuery(), attrs),
+      query: target,
     });
+    return target;
   },
   routerDelQuery(attrs) {
     const params = this.getUrlQuery()
@@ -25,14 +28,6 @@ export const soyuzRouter = {
     router.push({
       query:params,
     });
-  },
-  routerRefreshEdit(attrs = {}) {
-    refreshBlockPaths();
-    // const stamp = Math.floor(Math.random() * 10000);
-    // router.replace({
-    //   force: true,
-    //   query: query,
-    // });
   },
   getUrlQuery(){
     const urlParams = new URLSearchParams(window.location.search);

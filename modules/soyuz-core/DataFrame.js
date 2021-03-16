@@ -31,7 +31,7 @@ export default {
     }
   },
   render(h, { props: {blockAttrs, urlQuery, event} }) {
-console.log(urlQuery)
+
     //  DATA MODEL
     //
 
