@@ -84,7 +84,7 @@ export default {
       </div>
     ): null;
 
-    // BLOCKS FRAME
+    // BLOCKS FRAME (TODO - add prop to turnon this)
     // return data ? (
     //   <div class="frame" style="border:1px solid red; padding:5px;">
     //       {/* Render blocks collection (like pages collection) */}
@@ -100,7 +100,7 @@ export default {
     //   </div>
     // ): null;
 
-    // ONE BLOCK FRAME
+    // ONE BLOCK FRAME (TODO - add prop to turnon this)
     // return (<div style="border:1px solid blue; padding:5px;">
     //       {          
     //            <inner-block  blocks={data}/>
