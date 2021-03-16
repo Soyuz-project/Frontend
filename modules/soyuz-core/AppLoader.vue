@@ -15,6 +15,7 @@
   Switched upload to add code as app or plugin
   Thinkabout namespaces for pages slugs (plugins problem)
 */
+
 export default {
   name: 'Input',
   props: {
@@ -43,7 +44,9 @@ export default {
         var data = JSON.parse(lines);
         window.localStorage.setItem(`soyuz_pages`, JSON.stringify(data.pages));
         window.localStorage.setItem(`soyuz_events`, JSON.stringify(data.events));
+        window.location.replace('/');
       } catch (err) {
+        console.log(err)
         /* show message */
         this.message = 'Script fromat error. Please load atother file';
       }
