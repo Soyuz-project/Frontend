@@ -16,7 +16,6 @@ export const checkDisplay = (data, attrs) => {
 		let guardian = true
 		attrs.conditionalLogic.map((el)=>{
 			const res = transformer(el,'');
-			console.log(res)
 			// // if defined key exist
 			if(res.value && res.key){
 				guardian = false
