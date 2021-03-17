@@ -10,6 +10,23 @@ export const action = (e, attrs) => {
 
 export const getClick = (e,attrs) =>{
 	setTick()
-	S.set({source:'click',value:{...attrs}})
+	const box = cumulativeOffset(e.target)
+	S.set({source:'native_click',value:{...attrs, box}})
 	console.log('store', store)
 }
+
+var cumulativeOffset = function(element) {
+	var rect = element.getBoundingClientRect();
+	var top = 0,left = 0;
+	do {
+		top += element.offsetTop || 0;
+		left += element.offsetLeft || 0;
+		element = element.offsetParent;
+	} while (element);
+	return {
+		top: top,
+		left: left,
+		w: rect.width,
+		h: rect.height,
+	};
+};

@@ -31,6 +31,7 @@ export default {
     '~/assets/css/modules/sliders/whiplash.css',
     '~/assets/css/modules/layout/masonry.css',
     '~/assets/css/modules/layout/scrollbar-thin.css',
+    '~/assets/css/modules/layout/targeter.css',
 
     '~/assets/css/fonts/roboto-condensed-all.css',
   ],
