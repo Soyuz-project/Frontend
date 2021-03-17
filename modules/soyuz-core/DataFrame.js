@@ -4,7 +4,7 @@
 /* data frame component start renderind app */
 /* blocks data frame default run `pages READ` event */
 import { runEvent } from '~/plugins/soyuz-events-api';
-import { S , store} from '~/plugins/soyuz-store-api';
+import { S } from '~/plugins/soyuz-store-api';
 import { InitialStoreRouter } from '~/plugins/soyuz-actions-router';
 import { action, getClick } from '~/plugins/soyuz-targeter';
 export default {
