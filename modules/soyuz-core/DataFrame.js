@@ -6,7 +6,9 @@
 import { runEvent } from '~/plugins/soyuz-events-api';
 import { S , store} from '~/plugins/soyuz-store-api';
 import { InitialStoreRouter } from '~/plugins/soyuz-actions-router';
+import { action, getClick } from '~/plugins/soyuz-targeter';
 export default {
+  functional: true,
   props: {
     blockAttrs: {
       type: Object,
@@ -29,7 +31,7 @@ export default {
       })
     }
   },
-  render(h) {
+  render(h, { props: {blockAttrs, urlQuery, event} }) {
 
     //  DATA MODEL
     //
@@ -56,24 +58,24 @@ export default {
     //  BLOCKS AGGREGATION  (list of this same blocks, cards, products, posts etc)
     // 
 
-    InitialStoreRouter(this.urlQuery)
+    InitialStoreRouter(urlQuery)
     
     /* 
       find storage event (defined in blockAttrs) or get default from props 
     */
-    const activeEvent = this.blockAttrs.initial_event ? S.get({ source: 'events', query_variables: {slug: this.blockAttrs.initial_event} })[0] : this.event
+    const activeEvent = blockAttrs.initial_event ? S.get({ source: 'events', query_variables: {slug: blockAttrs.initial_event} })[0] : event
 
     const data = runEvent(activeEvent) || [];  
 
-    const wrapperClass = this.blockAttrs.className ? `wrapper-${this.blockAttrs.className}` : ''
+    const wrapperClass = blockAttrs.className ? `wrapper-${blockAttrs.className}` : ''
 
 
     // BLOCKS COLLECTION 
     return  data ? (
-      <div class={`blocks-wrapper ${wrapperClass}`} style="border:1px dashed red; padding:2px; margin:2px">
+      <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper ${wrapperClass}`} style="border:1px dashed red; padding:2px; margin:2px">
           {/* Render blocks collection (like pages collection) */}
           {data?.map((entry, i) => {
-            return (<div class={this.blockAttrs.className}>
+            return (<div class={blockAttrs.className}>
               {
                 entry.blocks.map((block, j) => {
                   

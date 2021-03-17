@@ -9,13 +9,8 @@
       :blockAttrs="{className:'footer'}" 
       :urlQuery="{query:$route.query, params:{slug:'footer'}}">    
     </DataFrame>
-    <DataFrame 
-      :blockAttrs="{
-        className:'right-panel'
-      }" 
-      :urlQuery="{query:$route.query, params:{slug:'right-panel'}}">    
-    </DataFrame>
     <AppLoader  />
+    <Targeter/>
   </div>
 </template>
 <script>
@@ -25,6 +20,7 @@
   	components: {
 			DataFrame: () => import('~/modules/soyuz-core/DataFrame.js'),
       AppLoader: () => import('~/modules/soyuz-core/AppLoader'),
+      Targeter: () => import('~/modules/soyuz-core/Targeter'),
 		},
     created: function () {
       /* MOCKUP MODE, TODO - do plugable */

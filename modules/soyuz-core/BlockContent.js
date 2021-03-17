@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { S, store, tick } from '~/plugins/soyuz-store-api';
 import { transformer } from '~/plugins/soyuz-walker';
+import { action, getClick } from '~/plugins/soyuz-targeter';
 export default {
   name: 'Content',
   // functional: true,
@@ -26,7 +27,7 @@ export default {
     const Comp = this.attrs.tagName || 'p';
     return (
       <Comp
-        // onClick={(e) => eData(e, this.blockAttrs)}
+        onClick={(e) => action(e, this.attrs)}
         class={[this.attrs?.className]}
         domPropsInnerHTML={this.attrs?.content}></Comp>
     );
