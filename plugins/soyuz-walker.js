@@ -2,6 +2,8 @@
   Soyuz walker 
 */
 import { S } from '~/plugins/soyuz-store-api';
+// https://github.com/silentmatt/expr-eval/tree/master#evaluatevariables-object
+import { Parser } from 'expr-eval';
 
 /* 
   get value from object by path 
@@ -33,9 +35,10 @@ export const s_p_v = (o, v, p) => {
 /* 
   search and replace soyuz shorthand with configs
 */
-export const transformer = (o) => {
-  const t = Object.assign({},o);
+export const transformer = (o, a) => {
   
+  const t = Object.assign({}, o);
+
   const w = (o) =>
   Object.entries(o).reduce((acc, [k, v]) => {
     if (v && typeof v === 'object') acc[k] = w(v);
@@ -61,9 +64,22 @@ export const transformer = (o) => {
       if(s[0] == 'collection'){
         s.shift();
         return S.get({source:`${t.collection_source}.${t.collection_index}.${s[0]}`}) || ""
-      }   
+      }  
+      if(s[0] == 'math'){
+        s.shift();
+        let m = s.join('.')
+        m.match(/[^[\]]+(?=\])/g)?.forEach(i => {
+          const x = i.split('.')
+          if(x[0]=='this'){
+              x.shift();
+              const av = g_p_v(a, x);
+              m = m.replace(/\[.*?]/, parseInt(av) ? parseInt(av) : 1)
+          }
+        })
+        const p = new Parser();
+        return p.evaluate(m)
+      } 
     });
-
     return v;
   };
   return  w(o)

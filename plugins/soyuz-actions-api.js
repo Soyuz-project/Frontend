@@ -5,6 +5,7 @@
 import { S, store } from '~/plugins/soyuz-store-api';
 import { event } from '~/plugins/soyuz-events-api';
 import { soyuzRouter } from '~/plugins/soyuz-actions-router';
+import { transformer } from '~/plugins/soyuz-walker';
 
 /* 
   set store method on actions level works only localy
@@ -16,8 +17,8 @@ export const runActions = (actions) => {
   const actionsOutput = []
   actions.map((el)=>{
 
-  	const key = Object.keys(el)[0];    
-    const value = el[key]
+  	const key = Object.keys(el)[0];  
+    const value = transformer(el[key], actionsOutput)
     /*
       Launch action
     */

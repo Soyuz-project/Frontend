@@ -118,7 +118,7 @@ const eventPUSH = (event) => {
   if (MOCKUPMODE) {
     try {
       const res = runActions(event.actions)
-      S.push({source:event.source, value: res[res.length-1][0]})
+      S.push({source:event.source, value: Object.assign({},res[res.length-1][0]) } )
       return res
 
     } catch (error) {}
