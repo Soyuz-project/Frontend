@@ -39,6 +39,7 @@ export default {
         return S.get({ source: this.source })
       },
       set(value) {
+        console.log(store)
         setTick()
         return S.set({ source: this.source, value })
       },

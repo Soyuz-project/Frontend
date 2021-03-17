@@ -4,14 +4,23 @@
 */
 import { S, store } from '~/plugins/soyuz-store-api';
 import { transformer } from '~/plugins/soyuz-walker';
+import { runActions } from '~/plugins/soyuz-actions-api';
 
 const MOCKUPMODE = true;
 
 export const runEvent = (event) => {
-  return event.method == 'READ' ? eventREAD(event) : eventWRITE(event);
+  if( event.method == 'READ'){
+    return eventREAD(event)
+  }
+  if( event.method == 'WRITE'){
+    return eventWRITE(event)
+  }
+  if( event.method == 'PUSH'){
+    return eventPUSH(event)
+  }
 };
-const eventREAD = (event) => {
 
+const eventREAD = (event) => {
 
   let output;
   /* 
@@ -81,18 +90,36 @@ const eventREAD = (event) => {
     } catch (error) {}
 
     return output;
+
   } else {
+
     // RUN RESOLVER
     // default GQL query
   }
 };
+
 const eventWRITE = (event) => {
   /* 
     MOCKUPMODE update store from localStorage if exist
   */
   if (MOCKUPMODE) {
     try {
+      console.log('write event', event.actions)
+      runActions(event.actions)
 
+    } catch (error) {}
+  }
+};
+
+const eventPUSH = (event) => {
+  /* 
+    MOCKUPMODE update store from localStorage if exist
+  */
+  if (MOCKUPMODE) {
+    try {
+      const res = runActions(event.actions)
+      S.push({source:event.source, value: res[res.length-1][0]})
+      return res
 
     } catch (error) {}
   }
@@ -102,4 +129,10 @@ const eventWRITE = (event) => {
   HELPERS 
 */
 
+/*  prepare event to run by slug */
+    
+export const event = (eventSlug) =>{
+  // console.log('go go event', S.get({ source: 'events', query_variables: {slug: eventSlug} })[0])
+  return runEvent(S.get({ source: 'events', query_variables: {slug: eventSlug} })[0])
+}
 

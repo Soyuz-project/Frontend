@@ -1,9 +1,9 @@
 /* register action method */
 import { S, store, tick } from '~/plugins/soyuz-store-api';
 import { transformer } from '~/plugins/soyuz-walker';
-import { runAction } from '~/plugins/soyuz-actions-api';
+import { runActions } from '~/plugins/soyuz-actions-api';
 const action = (e, attrs) => {
-  runAction(attrs)
+  runActions(attrs.actions)
 };
 export default {
   // functional: true,

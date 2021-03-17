@@ -59,6 +59,9 @@ export default {
 
     InitialStoreRouter(urlQuery)
     
+    /* 
+      find storage event (defined in blockAttrs) or get default from props 
+    */
     const activeEvent = blockAttrs.initial_event ? S.get({ source: 'events', query_variables: {slug: blockAttrs.initial_event} })[0] : event
 
     const data = runEvent(activeEvent) || [];  

@@ -42,6 +42,10 @@ export const S = {
   set(attrs) {
     return s_p_v(store, attrs.value, `${_p}${attrs.source}`);
   },
+  push(attrs) {
+    const r = store[`${_p}${attrs.source}`];
+    return r ? r.push(attrs.value) : store[`${_p}${attrs.source}`] = [attrs.value], attrs;
+  },
 };
 
 

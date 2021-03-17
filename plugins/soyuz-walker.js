@@ -1,7 +1,7 @@
 /* 
   Soyuz walker 
 */
-import { S, store } from '~/plugins/soyuz-store-api';
+import { S } from '~/plugins/soyuz-store-api';
 
 /* 
   get value from object by path 
@@ -20,11 +20,13 @@ export const g_p_v = (o, p) => {
   set value from object by path 
 */
 export const s_p_v = (o, v, p) => {
-  let e = Array.isArray(p) ? p : p.split('.'),
+  try{
+    let e = Array.isArray(p) ? p : p.split('.'),
     i;
-  for (i = 0; i < e.length - 1; i++) o = o[e[i]];
-  // Vue.set(o, e[i], v);
-  o[e[i]] = v;
+    for (i = 0; i < e.length - 1; i++) o = o[e[i]];
+    o[e[i]] = v;
+  }catch(err){}
+  
   return v;
 };
 
@@ -54,11 +56,10 @@ export const transformer = (o) => {
        
       if(s[0] == 'router'){
         s.shift();
-        return store['soyuz_router']?.[s[0]]?.[s[1]] || ""
+        return S.get({source:'router'})?.[s[0]]?.[s[1]] || ""
       }
       if(s[0] == 'collection'){
         s.shift();
-
         return S.get({source:`${t.collection_source}.${t.collection_index}.${s[0]}`}) || ""
       }   
     });
@@ -68,5 +69,3 @@ export const transformer = (o) => {
   return  w(o)
  
 }
-
-

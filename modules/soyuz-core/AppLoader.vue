@@ -49,6 +49,7 @@ export default {
         console.log(err)
         /* show message */
         this.message = 'Script fromat error. Please load atother file';
+        this.fileinput = Object.assign({});
       }
     },
   },
