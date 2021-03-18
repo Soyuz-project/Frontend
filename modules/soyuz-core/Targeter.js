@@ -25,10 +25,10 @@ export default {
     },
   },
   render(h) {
+    const slots = this.$scopedSlots.default();
     return  (
        <div class="targeter">
-        <span>Targeter:{this.attrs?.line1}</span>
-        <div class="short-controlls" style={this.attrs.controlls}></div>
+        <div class={['short-controlls', this.attrs?.className]} style={this.attrs.controlls}>{slots}</div>
         <div class="target-line" style={this.attrs.line1}></div>
         <div class="target-line" style={this.attrs.line2}></div>
         <div class="target-line" style={this.attrs.line3}></div>

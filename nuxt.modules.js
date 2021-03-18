@@ -17,8 +17,9 @@ export const modules = {
   
   DataFrame: () => import(/* webpackChunkName: "default" */ '~/modules/soyuz-core/DataFrame.js'),
   BlockContent: () => import(/* webpackChunkName: "default" */ '~/modules/soyuz-core/BlockContent.js'),
+  Targeter: () => import(/* webpackChunkName: "targeter" */ '~/modules/soyuz-core/Targeter.js'),
 
-  input: () => import(/* webpackChunkName: "acf" */ '~/modules/soyuz-forms/input.vue'),
-  file: () => import(/* webpackChunkName: "acf" */ '~/modules/soyuz-forms/file'), 
+  input: () => import(/* webpackChunkName: "form" */ '~/modules/soyuz-forms/input.js'),
+  file: () => import(/* webpackChunkName: "form" */ '~/modules/soyuz-forms/file'), 
 
 };

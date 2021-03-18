@@ -21,13 +21,17 @@ export default {
     const slots = scopedSlots ? scopedSlots?.default() : [];
     const compName = props.blockAttrs.componentName;
     const Block = compName ? modules[compName] : null;
-    return compName || !slots?.length ? (
-      <Block blockAttrs={props.blockAttrs}> {slots}</Block>
-    ) : (
-      <div onClick={(e) => action(e, props.blockAttrs)} class={[props.blockAttrs.className]}>
-        {slots}
-      </div>
-    );
+    return <div onClick={(e) => action(e, props.blockAttrs)} class={[props.blockAttrs.className]}>{slots}</div>
+     
+    
   
   },
 };
+
+// return compName || !slots?.length ? (
+//       <Block blockAttrs={props.blockAttrs}> {slots}</Block>
+//     ) : (
+//       <div onClick={(e) => action(e, props.blockAttrs)} class={[props.blockAttrs.className]}>
+//         {slots}
+//       </div>
+//     );

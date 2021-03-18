@@ -8,13 +8,7 @@
   z-index: 600;
   pointer-events: none;
 }
-.targeter .short-controlls{
-  display:flex;
-  box-shadow: 0 0 4px #0000002e;
-  border-radius: 0px 4px 0px 0px;
-  background-color: #fff;
-  padding: 1px;
-  height: 30px;      
+.targeter .short-controlls{    
   position: absolute;
   width: auto,
 }

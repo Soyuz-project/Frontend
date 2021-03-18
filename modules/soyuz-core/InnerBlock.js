@@ -31,8 +31,8 @@ export default {
    
     const compName = blockName.replace(/[\/-]/g, '');
     const Block = modules[compName];
-    const Attrs = Object.assign({}, attrs, attrs.componentAttrs, { compName });
-    delete Attrs.componentAttrs;
+    const Attrs = Object.assign({}, attrs,  { compName });
+
 
 
     const Tpl = checkDisplay(
@@ -41,10 +41,17 @@ export default {
         scopedSlots={{
           default: innerBlocks 
             ? () =>
-                innerBlocks.map((block, i) => (
+                innerBlocks.map((block, i) => console.log(Attrs, block) || (
                   <InnerBlock 
                     key={i} 
-                    blocks={{ ...block, attrs: { ...block.attrs } }} 
+                    blocks={{ 
+                      ...block, 
+                      attrs: { 
+                        ...block.attrs, 
+                        source_slug:Attrs.source_slug, 
+                        collection_slug:Attrs.collection_slug, 
+                        collection_index:Attrs.collection_index 
+                      } }} 
                   />
                 ))
             : null,

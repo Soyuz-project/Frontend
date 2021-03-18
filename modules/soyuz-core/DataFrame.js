@@ -67,17 +67,19 @@ export default {
 
     const data = runEvent(activeEvent) || [];  
 
-    const wrapperClass = blockAttrs.className ? `wrapper-${blockAttrs.className}` : ''
+   
 
 
     // BLOCKS COLLECTION 
     return  data ? (
-      <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper ${wrapperClass}`} style="border:1px dashed red; padding:2px; margin:2px">
+      <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper`} style="border:1px dashed red; padding:2px; margin:2px">
           {/* Render blocks collection (like pages collection) */}
           {data?.map((entry, i) => {
             return (<div class={blockAttrs.className}>
               {
                 entry.blocks.map((block, j) => {
+
+  
                   
                   /* add collection handler if exist */
                   entry.slug != undefined ? block.attrs.source_slug = entry.slug : null

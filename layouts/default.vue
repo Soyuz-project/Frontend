@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-layout">
   	<DataFrame 
       :blockAttrs="{tagName:'header', className:'header'}" 
       :urlQuery="{query:$route.query, params:{slug:'header'}}">    
@@ -10,7 +10,6 @@
       :urlQuery="{query:$route.query, params:{slug:'footer'}}">    
     </DataFrame>
     <AppLoader  />
-    <Targeter/>
   </div>
 </template>
 <script>
@@ -20,7 +19,6 @@
   	components: {
 			DataFrame: () => import('~/modules/soyuz-core/DataFrame.js'),
       AppLoader: () => import('~/modules/soyuz-core/AppLoader'),
-      Targeter: () => import('~/modules/soyuz-core/Targeter.js'),
 		},
     created: function () {
       /* MOCKUP MODE, TODO - do plugable */

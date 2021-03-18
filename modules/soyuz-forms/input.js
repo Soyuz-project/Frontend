@@ -1,14 +1,6 @@
-<template>
-  <div :class="[blockAttrs.className]">
-    <label>{{ blockAttrs.label }}</label>
-    <input v-if="tagName == 'input'" v-model="value" :class="inputClass" />
-    <textarea :rows="rows" v-if="tagName == 'textarea'" v-model="value" :class="inputClass"></textarea>
-  </div>
-</template>
 
-<script>
+import { action, getClick } from '~/plugins/soyuz-targeter';
 import { S, store, setTick } from '~/plugins/soyuz-store-api';
-import Vue from 'vue';
 export default {
   name: 'Input',
   props: {
@@ -45,11 +37,20 @@ export default {
       },
     },
   },
+  render(h) {
+    return  (
+      <div onClick={(e) => action(e, this.blockAttrs)} class={[this.blockAttrs?.className]}>
+        <label>{ this.blockAttrs.label }</label>
+        <input v-model={this.value} />
+      </div>
+    );
+  },
 };
-</script>
-<style scoped>
-textarea {
-  width: 100%;
-  display: block;
-}
-</style>
+
+// <template>
+//   <div :class="[blockAttrs.className]">
+//     <label>{{ blockAttrs.label }}</label>
+//     <input v-if="tagName == 'input'" v-model="value" :class="inputClass" />
+//     <textarea :rows="rows" v-if="tagName == 'textarea'" v-model="value" :class="inputClass"></textarea>
+//   </div>
+// </template>

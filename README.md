@@ -1,6 +1,6 @@
 # Soyuz-project Frontend application
 
-Next generation tool, sharpen to build bussinness focused applications.
+Next generation frontend engine, sharpen to driven bussinness focused applications.
 
 Sojuz project is technological 
 alliance between backends services, sourcing design, and nice to have frontend implementation.
