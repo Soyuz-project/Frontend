@@ -28,7 +28,6 @@ export const s_p_v = (o, v, p) => {
     for (i = 0; i < e.length - 1; i++) o = o[e[i]];
     o[e[i]] = v;
   }catch(err){}
-  
   return v;
 };
 

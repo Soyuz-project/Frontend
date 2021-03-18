@@ -80,6 +80,7 @@ export default {
                 entry.blocks.map((block, j) => {
                   
                   /* add collection handler if exist */
+                  entry.slug != undefined ? block.attrs.source_slug = entry.slug : null
                   entry.collection_source != undefined ? block.attrs.collection_source = entry.collection_source : null
                   entry.collection_index != undefined  ? block.attrs.collection_index = entry.collection_index : null
                   /* render block */

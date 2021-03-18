@@ -10,6 +10,7 @@ export const action = (e, attrs) => {
 
 export const getClick = (e,attrs) =>{
 	setTick()
+	refreshBlockPaths(attrs);
 	const box = cumulativeOffset(e.target)
 	S.set({source:'native_click',value:{...attrs, box}})
 	console.log('store', store)
@@ -29,4 +30,30 @@ var cumulativeOffset = function(element) {
 		w: rect.width,
 		h: rect.height,
 	};
+};
+
+/* refreshBlockPaths block path properties */
+export const refreshBlockPaths = (attrs) => {
+	const p = S.get({source:'pages',query_variables:{slug:attrs.source_slug}})[0]
+	p.blocks = p.blocks.map((b, i) => genBlockPath(b, [i]))
+	S.push({source:'pages',query_variables:{slug:attrs.source_slug}, value:p})
+};
+
+/* generate block path properties */
+export const genBlockPath = (block, __blockPath = []) => {
+  return {
+    ...block,
+    attrs: { ...block?.attrs, __blockPath },
+    ...(block.innerBlocks && { innerBlocks: block.innerBlocks.map((b, i) => genBlockPath(b, [...__blockPath, i])) })
+
+  }
+};
+
+/* sync path to gutenberg model */
+export const fixPath = (p) => {
+  return p
+    .flatMap((el) => {
+      return [el, 'innerBlocks'];
+    })
+    .slice(0, -1);
 };
