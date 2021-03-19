@@ -20,7 +20,7 @@
 	.-min{
 		max-width:min-content;
 	}
-	.-default, .-wide, .-min{
+	.-default, .-wide, .-min, .-tight{
 		margin-left:auto;
 		margin-right:auto;
 	}
@@ -54,4 +54,26 @@
 		height:80vh;
 		top:10vh;
 		bottom:10vh;
+	}
+
+/* 
+	_  _ ____ ___  _ _    ____
+	|\/| |  | |__] | |    |___
+	|  | |__| |__] | |___ |___
+	---------------------------------------------------------------------------------------
+	MOBILE      
+*/
+
+	/* only mobile */
+	@media only screen and (max-width: 768px) {
+		.-wide,.-default{
+			max-width:95vw;
+			width:100%;
+		}
+		
+		.-tight{
+			max-width: calc(65vw - 15px);
+			width:100%;
+		}
+
 	}

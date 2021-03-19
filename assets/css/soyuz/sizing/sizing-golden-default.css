@@ -73,6 +73,21 @@
 		padding-left:3.05vw;
 		padding-right:3.05vw;
 	}
+	
+	/* margin  */
+	.-mar-s, .-td-mar-s > * {
+		margin:1vw;
+		margin:1vw;
+	}
+	.-mar-m, .-td-mar-m > * {
+		margin:1.95vw;
+		margin:1.95vw;
+	}
+	.-mar-l, .-td-mar-l > * {
+		margin:3.05vw;
+		margin:3.05vw;
+	}
+
 	/* margin vertical */
 	.-mar-v-s, .-td-mar-v-s > * {
 		margin-top:1vw;
@@ -122,11 +137,11 @@
 */
 	h1{
 		font-size: calc(30.5px + 0.45vw);
-		line-height: 150%;
+		line-height: 125%;
 	}
 	h2{
 		font-size: calc(24.4px + 0.45vw);
-		line-height: 150%;
+		line-height: 125%;
 	}
 	h3, .-large, .-large a, a.-large{
 		font-size: calc(19.5px + 0.45vw);

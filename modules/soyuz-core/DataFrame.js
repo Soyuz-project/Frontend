@@ -72,7 +72,7 @@ export default {
 
     // BLOCKS COLLECTION 
     return  data ? (
-      <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper`} style="border:1px dashed red; padding:2px; margin:2px">
+      <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper`} style="border:1px dashed #eee; padding:3px; margin:5px">
           {/* Render blocks collection (like pages collection) */}
           {data?.map((entry, i) => {
             return (<div class={blockAttrs.className}>

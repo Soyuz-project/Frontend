@@ -40,6 +40,9 @@
 	code, figure, a{
 		display: inline-block;
 	}
+	svg{
+		display: block;
+	}
 	ul{
 		list-style: none;
 	}

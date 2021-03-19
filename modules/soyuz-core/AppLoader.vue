@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <hr>
-    <div>Soyuz app loader (JSON app file)</div>
-    <form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="post">
-      <input @change="processFile($event)" type="file" />
+  
+    
+    <label for="file" class="-b -b-light-gray -pad-s -hvr-invert">
+      <span>Load App</span>
+      <input id="file" @change="processFile($event)" type="file" class="file" />
       <div v-if="message" class="field-message">{{ message }}</div>
-    </form>
-  </div>
+    </label>
+   
+  
 </template>
 
 <script>
@@ -40,6 +41,7 @@ export default {
     },
     receivedText(e) {
       let lines = e.target.result;
+      let ref_message = e.target.result;
       try {
         var data = JSON.parse(lines);
         window.localStorage.setItem(`soyuz_pages`, JSON.stringify(data.pages));

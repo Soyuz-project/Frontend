@@ -1,8 +1,9 @@
 <template>
   <div :class="[blockAttrs.className]">
     <form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="post">
-      <label>loadfile</label>
-      <input @change="processFile($event)" type="file" />
+      
+      <input id="file" @change="processFile($event)" type="file" class="file" />
+      <label for="file">loadfile</label>
       <div v-if="message" class="field-message">{{ message }}</div>
     </form>
   </div>
@@ -25,10 +26,9 @@ export default {
   },
   methods: {
     processFile(event) {
-      let file = event.target.files[0];
       const fr = new FileReader();
       fr.onload = this.receivedText;
-      fr.readAsText(file);
+      fr.readAsText(event.target.files[0]);
       let ref_message = this.message;
     },
     receivedText(e) {

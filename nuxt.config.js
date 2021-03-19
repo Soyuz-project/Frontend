@@ -27,9 +27,11 @@ export default {
     '~/assets/css/soyuz/sizing/sizing-golden-default.css',
 
     '~/assets/css/soyuz-forms/checkbox-default.css',
+    '~/assets/css/soyuz-forms/file-default.css',
 
-    '~/assets/css/modules/sliders/whiplash.css',
-    '~/assets/css/modules/layout/masonry.css',
+    // '~/assets/css/modules/sliders/whiplash.css',
+    // '~/assets/css/modules/layout/masonry.css',
+    '~/assets/css/modules/layout/full-height.css',
     '~/assets/css/modules/layout/scrollbar-thin.css',
     '~/assets/css/modules/layout/targeter.css',
 

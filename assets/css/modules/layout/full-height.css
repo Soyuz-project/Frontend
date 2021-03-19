@@ -1,0 +1,8 @@
+.app-layout{
+	flex-direction: column;
+    display: flex;
+    min-height: 100vh;
+}
+.app-layout .blocks-wrapper:nth-child(2){
+	flex:1;
+}
