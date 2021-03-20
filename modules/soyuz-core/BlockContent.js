@@ -13,14 +13,14 @@ export default {
   },
   computed: {
     attrs() { 
-      if(this.blockAttrs.watch){
+      const b = this.blockAttrs;
+      if(b.watch){
         /* Hack to run reactivity with store */
-        this.blockAttrs.tick = tick.value
-        return Object.assign({}, transformer(this.blockAttrs, this.blockAttrs))
+        this.b.tick = tick.value
+        return Object.assign({}, transformer(b, b))
       }
-      return this.blockAttrs;
+      return b;
     },
-    
   },
   // to switch into functional add:
   render(h) {

@@ -25,15 +25,15 @@ export const S = {
       },
     }
   */
-  get(attrs) {
+  get(a) {
     /* 
       sanit key to check is exist 
     */
-    const storeKey = attrs.source.split('.')[0];
+    const storeKey = a.source.split('.')[0];
     /* 
       and get value as output variable 
     */
-    let output = store[`${_p}${storeKey}`] ? g_p_v(store, `${_p}${attrs.source}`) : null;
+    let output = store[p(storeKey)] ? g_p_v(store, p(a.source)) : null;
     /* 
       now can process output data by event filters
       ...
@@ -42,26 +42,25 @@ export const S = {
     /* 
       and if see query_variables then finaly filter responce 
     */
-    attrs.query_variables && Object.keys(attrs.query_variables)
-      ? (output = query_filters(output, attrs.query_variables))
+    a.query_variables && Object.keys(a.query_variables) && store[p(storeKey)]
+      ? (output = query_filters(output, a.query_variables))
       : null;
     /* 
       ;)
     */
     return output;
   },
-  set(attrs) {
-    return s_p_v(store, attrs.value, `${_p}${attrs.source}`);
+  set(a) {
+    return s_p_v(store, a.value, p(a.source));
   },
-  push(attrs) {
-    const r = store[`${_p}${attrs.source}`];
-    const value = attrs.value;
-    if(attrs.query_variables && Object.keys(attrs.query_variables)){
-      let res = S.get({source:attrs.source, query_variables: attrs.query_variables})
-      res = value;
-      return res
+  push(a) {
+    const k = store[p(a.source)], v = a.value;
+    if(a.query_variables && Object.keys(a.query_variables) && store[p(a.source)]){
+      let r = S.get({source:a.source, query_variables: a.query_variables})
+      return r?.length ? r = v : k.push(v)
+    }else{
+      return k ? k.push(v) : store[p(a.source)] = [v];
     }
-    return r ? r.push(value) : store[`${_p}${attrs.source}`] = [value];
   }
 };
 export const query_filters = (d, f) => {
@@ -72,7 +71,9 @@ export const query_filters = (d, f) => {
     typeof s[k] === 'function' && s[k](a[k])
   )
   return d.filter(cn(f))
-
+}
+const p = (s) => {
+  return `${_p}${s}`
 }
 
 /* DirtyHack to run reactivity with store */

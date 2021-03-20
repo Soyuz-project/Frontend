@@ -22,7 +22,7 @@ export const runEvent = (event) => {
 
 const eventREAD = (event) => {
 
-  let output;
+  let out;
   /* 
     MOCKUPMODE update store from localStorage if exist
   */
@@ -36,32 +36,32 @@ const eventREAD = (event) => {
       S.set({ source: event.source, value: localData });
     
     /* 3. get storage data and filter it to responce */
-      output = S.get({ source: event.source, query_variables: transformer(event.query_variables) });
+      out = S.get({ source: event.source, query_variables: transformer(event.query_variables) });
     
     /* 4. if output have COLLECTION condition then: */
-      if( output.length && event.collection && output.length <= 1){
-        const collection_template = [];
-        let collection_data;
+      if( out.length && event.collection && out.length <= 1){
+        const col_tpl = [];
+        let col;
         if(event.collection.default_data){
-          collection_data = event.collection.default_data;
-          S.set({ source: event.collection.source, value: collection_data });
+          col = event.collection.default_data;
+          S.set({ source: event.collection.source, value: col });
         }else{
-          collection_data = S.get({ source: event.collection.source });
+          col = S.get({ source: event.collection.source });
         }
         
         // filter data
         if(event.collection.query_variables){
-          collection_data = S.get({ source: event.collection.source, query_variables: event.collection.query_variables });
+          col = S.get({ source: event.collection.source, query_variables: event.collection.query_variables });
         }
 
-        collection_data.map((el,i)=>{
-          const template = Object.assign({}, output[0]);
-          template.collection_source = event.collection.source;
-          template.collection_index = i;
-          collection_template.push(template)
+        col.map((el,i)=>{
+          const tpl = Object.assign({}, out[0]);
+          tpl.collection_source = event.collection.source;
+          tpl.collection_index = i;
+          col_tpl.push(tpl)
 
         })
-        output = collection_template;
+        out = col_tpl;
         // output = [{"blocks":[{
         //   "blockName": "core/paragraph",
         //   "attrs": {
@@ -70,7 +70,7 @@ const eventREAD = (event) => {
         // }]}]
       }
     } catch (error) {}
-    return output;
+    return out;
   } else {
     // RUN RESOLVER
     // default GQL query

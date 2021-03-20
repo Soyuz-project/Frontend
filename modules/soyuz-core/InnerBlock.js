@@ -28,13 +28,9 @@ export default {
       },
     }
   ) {
-   
     const compName = blockName.replace(/[\/-]/g, '');
     const Block = modules[compName];
     const Attrs = Object.assign({}, attrs,  { compName });
-
-
-
     const Tpl = checkDisplay(
       <Block
         blockAttrs={Attrs}
@@ -66,6 +62,5 @@ export default {
       // eg: ':key="key"' - vue throws error and sometimes duplicate render tree
       <template />
     );
- 
   },
 };

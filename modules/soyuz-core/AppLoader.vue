@@ -1,13 +1,9 @@
-<template>
-  
-    
+<template>   
     <label for="file" class="-b -b-light-gray -pad-s -hvr-invert">
       <span>Load App</span>
       <input id="file" @change="processFile($event)" type="file" class="file" />
-      <div v-if="message" class="field-message">{{ message }}</div>
-    </label>
-   
-  
+      <div v-if="error" class="-color-error">{{ error }}</div>
+    </label> 
 </template>
 
 <script>
@@ -16,7 +12,7 @@
   Switched upload to add code as app or plugin
   Thinkabout namespaces for pages slugs (plugins problem)
 */
-
+import { S, store } from '~/plugins/soyuz-store-api';
 export default {
   name: 'Input',
   props: {
@@ -28,7 +24,7 @@ export default {
   data: function() {
     return {
       fileinput: {},
-      message: false,
+      error: false,
     };
   },
   methods: {
@@ -44,13 +40,43 @@ export default {
       let ref_message = e.target.result;
       try {
         var data = JSON.parse(lines);
-        window.localStorage.setItem(`soyuz_pages`, JSON.stringify(data.pages));
-        window.localStorage.setItem(`soyuz_events`, JSON.stringify(data.events));
+ 
+        /* Set events */
+        if(data.events.length){
+          console.log('ev', data.events)
+        }
+
+        /* Set pages */
+        if(data.pages.length){
+          try {
+            data.pages.map((load_page)=>{
+              S.push({source:'pages', query_variables:{slug:load_page.slug}, value:load_page})
+            })
+           } catch (error) {}
+        }
+
+        /* Set blocks */
+        if(data.blocks.length){
+          console.log('b', data.blocks)
+        }
+
+        /* Set app */
+        const app = {name:data.name, slug:data.slug, version:data.version, dependencies: data.dependencies}
+        S.push({source:'apps', query_variables:{slug:app.slug}, value:app})
+
+
+
+        window.localStorage.setItem(`soyuz_pages`, JSON.stringify(S.get({source:'pages'})));
+        window.localStorage.setItem(`soyuz_apps`, JSON.stringify(S.get({source:'apps'})));
+
+
+        // window.localStorage.setItem(`soyuz_events`, JSON.stringify(data.events));
         window.location.replace('/');
+        
       } catch (err) {
         console.log(err)
         /* show message */
-        this.message = 'Script fromat error. Please load atother file';
+        this.error = 'Script fromat error. Please load atother file';
         this.fileinput = Object.assign({});
       }
     },

@@ -10,18 +10,18 @@ export default {
   },
   computed: {
     attrs() { 
+      const b = this.blockAttrs;
         /* DirtyHack to run reactivity with store */
-        this.blockAttrs.tick = tick.value
-        const click = S.get({source:'native_click'})
-        this.blockAttrs.click = click
-        const rect = click?.box;
-        this.blockAttrs.controlls = `top: ${rect?.top - 30}px; left: ${rect?.left - 1}px; border: 1px solid #668ec2;`;
-        this.blockAttrs.line1 = `top:${rect?.top - 1}px; left:${rect?.left-20}px; width: ${rect?.w+40}px; height: 1px; border-top: 1px solid #668ec2;`;
-        this.blockAttrs.line2 = `top: ${rect?.top+rect?.h}px; left: ${rect?.left-20}px; width: ${rect?.w+40}px; height: 1px; borderTop: 1px solid #668ec2;`;  
-        this.blockAttrs.line3 = `left: ${rect?.left - 1}px; top: ${rect?.top-20}px; width: 1px; height: ${rect?.h+40}px; borderLeft: 1px solid #668ec2;`;
-        this.blockAttrs.line4 = `left: ${rect?.left+rect?.w}px; top: ${rect?.top-20}px; width: 1px; height: ${rect?.h+40}px; borderLeft: 1px solid #668ec2;`;
-
-        return Object.assign({}, this.blockAttrs)
+        b.tick = tick.value
+        const c = S.get({source:'native_click'})
+        b.click = c
+        const rect = c?.box;
+        b.controlls = `top: ${rect?.top - 30}px; left: ${rect?.left - 1}px; border: 1px solid #668ec2;`;
+        b.line1 = `top:${rect?.top - 1}px; left:${rect?.left-20}px; width: ${rect?.w+40}px; height: 1px; border-top: 1px solid #668ec2;`;
+        b.line2 = `top: ${rect?.top+rect?.h}px; left: ${rect?.left-20}px; width: ${rect?.w+40}px; height: 1px; borderTop: 1px solid #668ec2;`;  
+        b.line3 = `left: ${rect?.left - 1}px; top: ${rect?.top-20}px; width: 1px; height: ${rect?.h+40}px; borderLeft: 1px solid #668ec2;`;
+        b.line4 = `left: ${rect?.left+rect?.w}px; top: ${rect?.top-20}px; width: 1px; height: ${rect?.h+40}px; borderLeft: 1px solid #668ec2;`;
+        return Object.assign({}, b)
     },
   },
   render(h) {

@@ -13,16 +13,11 @@ export default {
       full: this.blockAttrs.full || false,
     };
   },
-
   computed: {
-    attrs() {
-      // return parser(this.blockAttrs, this);
-    },
     id() {
       return this.blockAttrs?.id || this.attrs?.id;
     },
   },
-  
   render(h) {
     return (
       <figure>
