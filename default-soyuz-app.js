@@ -39,7 +39,7 @@ export const default_app_pages =
       "attrs": {
         "tagName":"h2",
         "className": "-tight -left -middle",
-        "content": "Engine sandbox of Soyuz project"
+        "content": "Nocode sandbox of Soyuz project"
       }
     },
     {
