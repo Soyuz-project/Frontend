@@ -57,7 +57,6 @@ export const S = {
   push(a) {
     const k = store[p(a.source)], v = a.value;
     if(a.query_variables && Object.keys(a.query_variables) && store[p(a.source)]){
-      // let r = S.get({source:a.source, query_variables: a.query_variables})
       let r = S.get({source:a.source, query_variables: a.query_variables, withPath: true})
       if(r?.length){
         // r[0] = v
@@ -69,6 +68,12 @@ export const S = {
     }else{
       return k ? k.push(v) : store[p(a.source)] = [v];
     }
+  },
+  push_collection(a) {
+    // console.log('push_collection', a);
+     S.get({source:a.value}).map((el)=>{
+      S.push({source:a.source, value:el})
+     })
   }
 };
 export const query_filters = (d, f) => {

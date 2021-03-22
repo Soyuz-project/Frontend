@@ -86,8 +86,7 @@ const eventWRITE = (event) => {
   */
   if (MOCKUPMODE) {
     try {
-      console.log('write event', event.actions)
-      runActions(event.actions)
+      runActions(event)
     } catch (error) {}
   }
 };
@@ -98,7 +97,7 @@ const eventPUSH = (event) => {
   */
   if (MOCKUPMODE) {
     try {
-      const res = runActions(event.actions)
+      const res = runActions(event)
       S.push({source:event.source, value: Object.assign({},res[res.length-1][0]) } )
       return res
     } catch (error) {
@@ -113,8 +112,11 @@ const eventPUSH = (event) => {
 
 /*  prepare event to run by slug */
     
-export const event = (eventSlug) =>{
-  // console.log('go go event', S.get({ source: 'events', query_variables: {slug: eventSlug} })[0])
-  return runEvent(S.get({ source: 'events', query_variables: {slug: eventSlug} })[0])
+export const event = (event) =>{
+  const output = Object.assign(event, S.get({ source: 'events', query_variables: {slug: event.event} })[0] )
+  
+
+
+  return runEvent(output)
 }
 

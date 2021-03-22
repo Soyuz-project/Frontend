@@ -9,7 +9,7 @@ export const action = (e, attrs) => {
 		e.preventDefault();
   		e.stopPropagation();
   		// getClick(e, attrs)
-  		attrs.actions ? runActions(attrs.actions) : null
+  		attrs.actions ? runActions(attrs) : null
 	}
 };
 

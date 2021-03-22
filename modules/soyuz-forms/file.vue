@@ -32,7 +32,7 @@ export default {
     receivedText(e) {
       let lines = e.target.result;
       try {
-        var data = JSON.parse(lines);
+        this.blockAttrs.data = JSON.parse(lines)
         this.blockAttrs.actions ?  action(e, this.blockAttrs) : null
       } catch (err) {
         /* show message */

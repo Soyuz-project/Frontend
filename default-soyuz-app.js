@@ -15,7 +15,9 @@ export const default_app_events = [
       "plugin":'soyuz-app-loader',
       "method": "WRITE",
       "actions":[
-        {"foo":"bar"}
+        {"set":{"source":"app_loader","value":"{this.data}"}},
+        {"push_collection":{"source":"pages","value":"app_loader.pages"}},
+        {"push_collection":{"source":"events","value":"app_loader.events"}}
       ]
     }
 ]
@@ -103,11 +105,15 @@ export const default_app_pages =
   "type": "page",
   "blocks": [
     {
-      "blockName": "AppLoader",
+      "blockName": "form/file",
       "plugin":'soyuz-app-loader',
       "attrs": {
-        "className": "-left -mar-s"
+        "className": "-left -mar-s",
+        "actions":[
+          {"event": "soyuz-app-loader-process-event"}
+        ]
       }
+      
     },
     {
       "blockName": "core/button",

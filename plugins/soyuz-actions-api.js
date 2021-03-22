@@ -5,27 +5,27 @@
 import { S, store } from '~/plugins/soyuz-store-api';
 import { event } from '~/plugins/soyuz-events-api';
 import { soyuzRouter } from '~/plugins/soyuz-actions-router';
-import { transformer } from '~/plugins/soyuz-walker';
+import { transformer,iterate } from '~/plugins/soyuz-walker';
 /* 
   set store method on actions level works only localy
   to write set data use WRITE event
 */
-export const runActions = (actions) => {
+export const runActions = (attrs) => {
   const RegAct = {...soyuzRouter, ...S, event}
   const ActOut = []
-  actions.map((el)=>{
+  attrs.actions.map((el)=>{
 
   	const k = Object.keys(el)[0];  
-    // TODO actions transform
-    const v = transformer(el[k], ActOut)
-
+    const v = k == "event" ? Object.assign( iterate( el , attrs), attrs ) : iterate( el[k] , attrs)
+    
     /*
       Launch action
     */
     try {
-
+      // console.log('lanch action',k, v)
       const res = RegAct[k](v)
       ActOut.push(res);
+      console.log(store)
     } catch (err) {
       /* 
         TODO add errors maitenance

@@ -61,8 +61,8 @@ export const transformer = (o, a) => {
       return v
     }
 
-
-    v = v.replace(/{[^{}]+}/g, function(key){
+   
+    v = v.replace(/{[^{}]+}/g, function(key, o){
       const s = key.replace(/[{}]+/g, "").split('.')
        
       if(s[0] == 'router'){
@@ -72,6 +72,10 @@ export const transformer = (o, a) => {
       if(s[0] == 'collection'){
         s.shift();
         return S.get({source:`${t.collection_source}.${t.collection_index}.${s[0]}`}) || ""
+      }  
+      if(s[0] == 'this'){
+        s.shift();
+        return `|${s[0]}`
       }  
       if(s[0] == 'math'){
         s.shift();
@@ -88,5 +92,27 @@ export const transformer = (o, a) => {
         return p.evaluate(m)
       } 
     });
+    // replace to object
+    if(v.charAt(0) == "|"){
+      v = t[v.substring(1)]
+    }
+    
+ 
     return v;
   };
+
+
+export const iterate  = (obj, t) => {
+    for (var property in obj) {
+        if (obj.hasOwnProperty(property)) {
+            if (typeof obj[property] == "object") {
+                iterate(obj[property],t);
+            }
+            else {
+              
+                obj[property] = replace(obj[property], t)
+            }
+        }
+    }
+    return obj
+}
