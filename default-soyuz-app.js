@@ -17,7 +17,8 @@ export const default_app_events = [
       "actions":[
         {"set":{"source":"app_loader","value":"{this.data}"}},
         {"push_collection":{"source":"pages","value":"app_loader.pages"}},
-        {"push_collection":{"source":"events","value":"app_loader.events"}}
+        {"push_collection":{"source":"events","value":"app_loader.events"}},
+        {"save":{"store":["pages","events"]}}
       ]
     }
 ]

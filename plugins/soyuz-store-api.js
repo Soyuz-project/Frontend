@@ -70,11 +70,21 @@ export const S = {
     }
   },
   push_collection(a) {
-    // console.log('push_collection', a);
      S.get({source:a.value}).map((el)=>{
       S.push({source:a.source, value:el})
      })
+  },
+  save(a){
+    a.store.map((el)=>{
+      console.log(el);
+      try {
+        window.localStorage.setItem(`soyuz_${el}`, JSON.stringify(S.get({source:el})));
+      } catch (error) {
+        console.log(error)
+      }
+    })
   }
+
 };
 export const query_filters = (d, f) => {
   const cn = s => (a, index) => {
