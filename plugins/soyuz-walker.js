@@ -35,24 +35,33 @@ export const s_p_v = (o, v, p) => {
   search and replace soyuz shorthand with configs
 */
 export const transformer = (o, a) => {
-  
+  if (typeof o === 'string') return o
+
   const t = Object.assign({}, o);
 
   const w = (o) =>
   Object.entries(o).reduce((acc, [k, v]) => {
     if (v && typeof v === 'object') acc[k] = w(v);
-    else acc[k] = replace(k, v);
+    else acc[k] = replace(v,t);
     return acc;
   }, Array.isArray(o)?[]:{});
   
   /* 
     soyuz shorthands replacer 
   */
-  const replace = (k, v) => {
-    
+
+
+  return  w(o)
+ 
+}
+
+  const replace = (v, t) => {
+   
     if(typeof v !== 'string' || v === ""){
       return v
     }
+
+
     v = v.replace(/{[^{}]+}/g, function(key){
       const s = key.replace(/[{}]+/g, "").split('.')
        
@@ -81,6 +90,3 @@ export const transformer = (o, a) => {
     });
     return v;
   };
-  return  w(o)
- 
-}

@@ -1,13 +1,22 @@
 export const default_app_events = [
     {
-      "name": "Show aplication loader page with controlls",
-      "slug": "soyuz-app-loader-event",
+      "name": "Init app loader bar",
+      "slug": "soyuz-app-loader-init-event",
       "plugin":'soyuz-app-loader',
       "source": "pages",
       "method": "READ",
       "query_variables": {
         "slug": "soyuz-app-loader"
       }
+    },
+    {
+      "name": "Load app",
+      "slug": "soyuz-app-loader-process-event",
+      "plugin":'soyuz-app-loader',
+      "method": "WRITE",
+      "actions":[
+        {"foo":"bar"}
+      ]
     }
 ]
 export const default_app_pages = 
@@ -83,7 +92,7 @@ export const default_app_pages =
       "plugin":'soyuz-app-loader',
       "attrs": {
         "className": "tr -gap-s -left",
-        "initial_event": "soyuz-app-loader-event"
+        "initial_event": "soyuz-app-loader-init-event"
       }
     }
   ]
@@ -97,7 +106,7 @@ export const default_app_pages =
       "blockName": "AppLoader",
       "plugin":'soyuz-app-loader',
       "attrs": {
-        "className": "-left -mar-s",
+        "className": "-left -mar-s"
       }
     },
     {

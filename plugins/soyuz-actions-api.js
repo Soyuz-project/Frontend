@@ -12,16 +12,18 @@ import { transformer } from '~/plugins/soyuz-walker';
 */
 export const runActions = (actions) => {
   const RegAct = {...soyuzRouter, ...S, event}
-  
   const ActOut = []
   actions.map((el)=>{
 
   	const k = Object.keys(el)[0];  
-    const v = transformer(el[k], ActOutt)
+    // TODO actions transform
+    const v = transformer(el[k], ActOut)
+
     /*
       Launch action
     */
     try {
+
       const res = RegAct[k](v)
       ActOut.push(res);
     } catch (err) {

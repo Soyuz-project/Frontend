@@ -1,15 +1,13 @@
 <template>
   <div :class="[blockAttrs.className]">
-    <form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="post">
-      
       <input id="file" @change="processFile($event)" type="file" class="file" />
       <label for="file">loadfile</label>
       <div v-if="message" class="field-message">{{ message }}</div>
-    </form>
   </div>
 </template>
 
 <script>
+import { action, getClick } from '~/plugins/soyuz-targeter';
 export default {
   name: 'Input',
   props: {
@@ -35,9 +33,10 @@ export default {
       let lines = e.target.result;
       try {
         var data = JSON.parse(lines);
-        window.localStorage.setItem(`soyuz_pages`, JSON.stringify(data.pages));
+        this.blockAttrs.actions ?  action(e, this.blockAttrs) : null
       } catch (err) {
         /* show message */
+        console.log(err)
         this.message = 'Script fromat error. Please load atother file';
       }
     },

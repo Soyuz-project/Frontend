@@ -16,7 +16,7 @@ export default {
       const b = this.blockAttrs;
       if(b.watch){
         /* Hack to run reactivity with store */
-        this.b.tick = tick.value
+        b.tick = tick.value
         return Object.assign({}, transformer(b, b))
       }
       return b;

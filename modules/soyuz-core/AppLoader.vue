@@ -43,7 +43,14 @@ export default {
  
         /* Set events */
         if(data.events.length){
-          console.log('ev', data.events)
+          try {
+            data.events.map((load_event)=>{
+              S.push({source:'events', query_variables:{slug:load_event.slug}, value:load_event})
+              console.log('push event', load_event)
+            })
+           } catch (error) {
+            console.log(error)
+           }
         }
 
         /* Set pages */
@@ -52,12 +59,21 @@ export default {
             data.pages.map((load_page)=>{
               S.push({source:'pages', query_variables:{slug:load_page.slug}, value:load_page})
             })
-           } catch (error) {}
+           } catch (error) {
+            console.log(error)
+           }
         }
 
         /* Set blocks */
         if(data.blocks.length){
-          console.log('b', data.blocks)
+          try {
+            data.pages.map((load_block)=>{
+              const target = (S.get({source:'pages', query_variables:{slug:'footer'}}));
+              S.push({source:'pages', query_variables:{slug:load_page.slug}, value:load_page})
+            })
+           } catch (error) {
+            console.log(error)
+           }
         }
 
         /* Set app */
@@ -65,13 +81,13 @@ export default {
         S.push({source:'apps', query_variables:{slug:app.slug}, value:app})
 
 
-
+        window.localStorage.setItem(`soyuz_events`, JSON.stringify(S.get({source:'events'})));
         window.localStorage.setItem(`soyuz_pages`, JSON.stringify(S.get({source:'pages'})));
         window.localStorage.setItem(`soyuz_apps`, JSON.stringify(S.get({source:'apps'})));
 
 
         // window.localStorage.setItem(`soyuz_events`, JSON.stringify(data.events));
-        window.location.replace('/');
+        // window.location.replace('/');
         
       } catch (err) {
         console.log(err)

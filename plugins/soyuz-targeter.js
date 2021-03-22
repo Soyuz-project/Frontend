@@ -8,7 +8,7 @@ export const action = (e, attrs) => {
 	if(attrs.actions){
 		e.preventDefault();
   		e.stopPropagation();
-  		getClick(e, attrs)
+  		// getClick(e, attrs)
   		attrs.actions ? runActions(attrs.actions) : null
 	}
 };

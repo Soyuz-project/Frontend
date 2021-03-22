@@ -37,9 +37,12 @@ const eventREAD = (event) => {
     
     /* 3. get storage data and filter it to responce */
       out = S.get({ source: event.source, query_variables: transformer(event.query_variables) });
+     
+     // console.log('eventREAD w collection',event.slug, store )
     
     /* 4. if output have COLLECTION condition then: */
       if( out.length && event.collection && out.length <= 1){
+
         const col_tpl = [];
         let col;
         if(event.collection.default_data){
@@ -98,7 +101,9 @@ const eventPUSH = (event) => {
       const res = runActions(event.actions)
       S.push({source:event.source, value: Object.assign({},res[res.length-1][0]) } )
       return res
-    } catch (error) {}
+    } catch (error) {
+       console.log('event error:', error)
+    }
   }
 };
 

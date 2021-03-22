@@ -1,6 +1,7 @@
 
 import { action, getClick } from '~/plugins/soyuz-targeter';
 import { S, store, setTick } from '~/plugins/soyuz-store-api';
+import { replace } from '~/plugins/soyuz-walker';
 export default {
   name: 'Input',
   props: {
@@ -19,6 +20,7 @@ export default {
   },
   data() {
     return {
+      initvalue: this.blockAttrs.value || '',
       tagName: this.blockAttrs.tagName || 'input',
       rows: this.blockAttrs.rows || 4,
       inputClass: 'td -pad-s -b -b-light-gray',

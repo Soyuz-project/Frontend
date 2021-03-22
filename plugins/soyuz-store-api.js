@@ -42,13 +42,14 @@ export const S = {
     /* 
       and if see query_variables then finaly filter responce 
     */
-    a.query_variables && Object.keys(a.query_variables) && store[p(storeKey)]
-      ? (output = query_filters(output, a.query_variables))
-      : null;
-    /* 
-      ;)
-    */
-    return output;
+
+    if (a.query_variables && Object.keys(a.query_variables) && store[p(storeKey)]) {
+
+      const result = query_filters(output, a.query_variables)
+      output = a.withPath ? result.map(el => [el[0], `${storeKey}.${el[1]}`]) : result.map(el => el[0]);
+    }
+
+    return output
   },
   set(a) {
     return s_p_v(store, a.value, p(a.source));
@@ -56,21 +57,31 @@ export const S = {
   push(a) {
     const k = store[p(a.source)], v = a.value;
     if(a.query_variables && Object.keys(a.query_variables) && store[p(a.source)]){
-      let r = S.get({source:a.source, query_variables: a.query_variables})
-      return r?.length ? r = v : k.push(v)
+      // let r = S.get({source:a.source, query_variables: a.query_variables})
+      let r = S.get({source:a.source, query_variables: a.query_variables, withPath: true})
+      if(r?.length){
+        // r[0] = v
+        S.set({ value: v, source: r[0][1] })
+      }else{
+        k.push(v)
+      }
+    return v
     }else{
       return k ? k.push(v) : store[p(a.source)] = [v];
     }
   }
 };
 export const query_filters = (d, f) => {
-  const cn = s => a => Object.keys(s).every(k => 
-    a[k] === s[k] ||
-    Array.isArray(s[k]) && s[k].includes(a[k]) ||
-    typeof s[k] === 'object' && +s[k].min <= a[k] &&  a[k] <= +s[k].max ||
-    typeof s[k] === 'function' && s[k](a[k])
+  const cn = s => (a, index) => {
+    const condition = Object.keys(s).every((k) => 
+       a[k] === s[k] ||
+      Array.isArray(s[k]) && s[k].includes(a[k]) ||
+      typeof s[k] === 'object' && +s[k].min <= a[k] &&  a[k] <= +s[k].max ||
+      typeof s[k] === 'function' && s[k](a[k])
   )
-  return d.filter(cn(f))
+  return (condition) ? [[a, index]] : []
+  }
+  return d.flatMap(cn(f))
 }
 const p = (s) => {
   return `${_p}${s}`
