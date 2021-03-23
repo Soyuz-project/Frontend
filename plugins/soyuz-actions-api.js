@@ -22,15 +22,11 @@ export const runActions = (attrs) => {
       Launch action
     */
     try {
-      // console.log('lanch action',k, v)
       const res = RegAct[k](v)
       ActOut.push(res);
       console.log(store)
     } catch (err) {
-      /* 
-        TODO add errors maitenance
-      */
-      console.log(`key:${k}`,err)
+      S.set({ source: 'message', value: {message: `key:${k}:${err}`, type:'error'}})
     }
   })
   return ActOut

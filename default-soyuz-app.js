@@ -18,7 +18,7 @@ export const default_app_events = [
         {"set":{"source":"app_loader","value":"{this.data}"}},
         {"push_collection":{"source":"pages","value":"app_loader.pages"}},
         {"push_collection":{"source":"events","value":"app_loader.events"}},
-        {"save":{"store":["pages","events"]}}
+        {"save":{"store":["pages","events"],"success":"The application has been installed"}}
       ]
     }
 ]

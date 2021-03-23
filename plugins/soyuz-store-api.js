@@ -75,14 +75,14 @@ export const S = {
      })
   },
   save(a){
-    a.store.map((el)=>{
-      console.log(el);
-      try {
+    try {
+      a.store.map((el)=>{
         window.localStorage.setItem(`soyuz_${el}`, JSON.stringify(S.get({source:el})));
-      } catch (error) {
-        console.log(error)
-      }
-    })
+      })
+      S.set({ source: 'message', value: {message:a.success, type:'success'}})
+    } catch (error) {
+      S.set({ source: 'message', value: {message:error, type:'error'}})
+    }
   }
 
 };
