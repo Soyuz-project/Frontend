@@ -5,7 +5,7 @@
 import { S, store } from '~/plugins/soyuz-store-api';
 import { event } from '~/plugins/soyuz-events-api';
 import { soyuzRouter } from '~/plugins/soyuz-actions-router';
-import { transformer,iterate } from '~/plugins/soyuz-walker';
+import { iterate } from '~/plugins/soyuz-walker';
 /* 
   set store method on actions level works only localy
   to write set data use WRITE event

@@ -109,7 +109,7 @@ export const default_app_pages =
       "blockName": "form/file",
       "plugin":'soyuz-app-loader',
       "attrs": {
-        "className": "-left -mar-s",
+        "className": "-b -b-light-gray -pad-s -hvr-invert -rel -ov-h",
         "actions":[
           {"event": "soyuz-app-loader-process-event"}
         ]

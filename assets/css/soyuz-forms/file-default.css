@@ -1,14 +1,17 @@
 input.file{
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-
+	left: 0;
+    top: -50%;
+    width: 150%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
 }
-input.file < label {
-    cursor: pointer; /* "hand" cursor */
+input.file:hover{
+	cursor: pointer;
+}
+
+input.file + label {
+    
     display: block;
 }
 

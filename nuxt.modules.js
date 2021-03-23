@@ -21,9 +21,8 @@ export const modules = {
   DataFrame: () => import(/* webpackChunkName: "default" */ '~/modules/soyuz-core/DataFrame.js'),
   BlockContent: () => import(/* webpackChunkName: "default" */ '~/modules/soyuz-core/BlockContent.js'),
   Targeter: () => import(/* webpackChunkName: "targeter" */ '~/modules/soyuz-core/Targeter.js'),
-  AppLoader: () => import('~/modules/soyuz-core/AppLoader'),
 
-  input: () => import(/* webpackChunkName: "form" */ '~/modules/soyuz-forms/input.js'),
+  forminput: () => import(/* webpackChunkName: "form" */ '~/modules/soyuz-forms/input.js'),
   formfile: () => import(/* webpackChunkName: "form" */ '~/modules/soyuz-forms/file'), 
 
 };
