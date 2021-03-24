@@ -12,34 +12,27 @@
   </div>
 </template>
 <script>
-  import { S, store } from '~/plugins/soyuz-store-api';
   import {default_app_pages, default_app_events} from '~/default-soyuz-app';
+  import { local_get, local_set, store } from '~/plugins/soyuz-store-api';
 	export default {
   	name: 'Layout',
   	components: {
 			DataFrame: () => import('~/modules/soyuz-core/DataFrame.js'),
 		},
     created: function () {
-      /* MOCKUP MODE, Initial data */
-      try {
+      /* 
+        MOCKUP MODE, Initial data 
+      */
 
-        /* check default events or register stored events */
-        const ev = JSON.parse(window.localStorage.getItem("soyuz_events"))
-        if(ev){
-          return S.set({ source: 'events', value: ev });
-        }else{
-          window.localStorage.setItem("soyuz_events", JSON.stringify(default_app_events))
-          location.reload();
-        }
-
-        /* check default pages */
-        const pg = JSON.parse(window.localStorage.getItem("soyuz_pages"))
-        if(!pg){
-          window.localStorage.setItem("soyuz_pages", JSON.stringify(default_app_pages))
-
-        }
-        
-      } catch (error) {}
+      /* check default events or register stored events */ 
+      if(!local_get({source:"events"})){
+        local_set({source:"events", value: default_app_events})
+      }
+      /* check default pages */
+      if(!local_get({source:"pages"})){
+        local_set({source:"pages", value: default_app_pages})
+      }
+      console.log('store---->',store)
     }
   }
 </script>

@@ -14,28 +14,28 @@ export const soyuzRouter = {
     return attrs;
   },
   routerQuery(attrs) {
-    const target = Object.assign({}, this.getUrlQuery(), attrs);
+    const t = Object.assign({}, this.getUrlQuery(), attrs);
     router.push({
-      query: target,
+      query: t,
     });
-    return target;
+    return t;
   },
   routerDelQuery(attrs) {
-    const params = this.getUrlQuery()
+    const q = this.getUrlQuery()
     Object.values(attrs).map((el) => {
-      delete params[el];
+      delete q[el];
     });
     router.push({
-      query:params,
+      query:q,
     });
   },
   getUrlQuery(){
-    const urlParams = new URLSearchParams(window.location.search);
-    return Object.fromEntries(urlParams); 
+    const p = new URLSearchParams(window.location.search);
+    return Object.fromEntries(p); 
   }
 };
 
-export const InitialStoreRouter = (urlQuery) => {
-  /* TODO - error if first init dont have urlQuery. Then get it form context */ 
-  Object.keys(urlQuery).length === 0 ? null : S.set({ source:'router', value: urlQuery })  
+export const storeRouter = (q) => {
+  /* TODO - error if first init dont have q. Then get it form context */ 
+  Object.keys(q).length === 0 ? null : S.set({ source:'router', value: q })  
 }

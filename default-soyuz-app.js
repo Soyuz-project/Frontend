@@ -1,5 +1,14 @@
 export const default_app_events = [
     {
+      "name": "Defaul data query",
+      "slug": "initial-defaut-page",
+      "source": "pages",
+      "method": "READ",
+      "query_variables": { 
+        "slug": "{router.params.slug}"
+      }
+    },
+    {
       "name": "Init app loader bar",
       "slug": "soyuz-app-loader-init-event",
       "plugin":'soyuz-app-loader',
@@ -15,10 +24,10 @@ export const default_app_events = [
       "plugin":'soyuz-app-loader',
       "method": "WRITE",
       "actions":[
-        {"set":{"source":"app_loader","value":"{this.data}"}},
-        {"push_collection":{"source":"pages","value":"app_loader.pages"}},
-        {"push_collection":{"source":"events","value":"app_loader.events"}},
-        {"save":{"store":["pages","events"],"success":"The application has been installed"}}
+        {"push_collection":{"source":"events","value":"{this.parent.data.events}"}},
+        {"push_collection":{"source":"pages","value":"{this.parent.data.pages}"}},
+        {"set_blocks":{"value":"{this.parent.data.blocks}"}},
+        {"mutation":{"store":["pages","events"],"success":"The application has been installed"}}
       ]
     }
 ]
@@ -95,7 +104,7 @@ export const default_app_pages =
       "plugin":'soyuz-app-loader',
       "attrs": {
         "className": "tr -gap-s -left",
-        "initial_event": "soyuz-app-loader-init-event"
+        "event": "soyuz-app-loader-init-event"
       }
     }
   ]
@@ -111,7 +120,7 @@ export const default_app_pages =
       "attrs": {
         "className": "-b -b-light-gray -pad-s -hvr-invert -rel -ov-h",
         "actions":[
-          {"event": "soyuz-app-loader-process-event"}
+          {"runEvent": "soyuz-app-loader-process-event"}
         ]
       }
       

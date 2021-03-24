@@ -21,12 +21,19 @@ export const g_p_v = (o, p) => {
 /* 
   set value from object by path 
 */
-export const s_p_v = (o, v, p) => {
+export const s_p_v = (o, v, p, insertLastArray) => {
   try{
     let e = Array.isArray(p) ? p : p.split('.'),
     i;
     for (i = 0; i < e.length - 1; i++) o = o[e[i]];
-    o[e[i]] = v;
+
+    // if (insertLastArray) {
+    //   // o[e[i]] 
+    //   o[e[i]].splice(2, 0, "Lene");
+    // } else {
+    o[ e[i]] = v;
+
+    // }
   }catch(err){}
   return v;
 };
@@ -34,26 +41,40 @@ export const s_p_v = (o, v, p) => {
 /* 
   search and replace soyuz shorthand with configs
 */
-export const transformer = (o, a) => {
-  if (typeof o === 'string') return o
-
-  const t = Object.assign({}, o);
-
-  const w = (o) =>
-  Object.entries(o).reduce((acc, [k, v]) => {
-    if (v && typeof v === 'object') acc[k] = w(v);
-    else acc[k] = replace(v,t);
-    return acc;
-  }, Array.isArray(o)?[]:{});
+// export const transformer = (o, a) => {
+//   if (typeof o === 'string') return o
+//   const type = 'trans'
+//   const t = Object.assign({}, o);
+//   const w = (o) =>
+//   Object.entries(o).reduce((acc, [k, v]) => {
+//     if (v && typeof v === 'object') acc[k] = w(v);
+//     else acc[k] = replace(v, t, type);
+//     return acc;
+//   }, Array.isArray(o)?[]:{});
   
-  /* 
-    soyuz shorthands replacer 
-  */
-
-
-  return  w(o)
+//   /* 
+//     soyuz shorthands replacer 
+//   */
+//   return  w(o)
  
+// }
+
+export const transformer  = (obj, _t) => {
+    const t = Object.assign({}, _t);
+    for (var property in obj) {
+        if (obj.hasOwnProperty(property)) {
+            if (typeof obj[property] == "object") {
+                transformer(obj[property], t);
+            }
+            else {
+              obj[property] = replace(obj[property], t)
+            }
+        }
+    }
+    return obj
 }
+
+
 
   const replace = (v, t) => {
    
@@ -61,7 +82,6 @@ export const transformer = (o, a) => {
       return v
     }
 
-   
     v = v.replace(/{[^{}]+}/g, function(key, o){
       const s = key.replace(/[{}]+/g, "").split('.')
        
@@ -75,8 +95,8 @@ export const transformer = (o, a) => {
       }  
       if(s[0] == 'this'){
         s.shift();
-        return `|${s[0]}`
-      }  
+        return `|${s.join('.')}`
+      }   
       if(s[0] == 'math'){
         s.shift();
         let m = s.join('.')
@@ -84,7 +104,7 @@ export const transformer = (o, a) => {
           const x = i.split('.')
           if(x[0]=='this'){
               x.shift();
-              const av = g_p_v(a, x);
+              const av = g_p_v(t, x);
               m = m.replace(/\[.*?]/, parseInt(av) ? parseInt(av) : 1)
           }
         })
@@ -92,27 +112,15 @@ export const transformer = (o, a) => {
         return p.evaluate(m)
       } 
     });
+
+
     // replace to object
     if(v.charAt(0) == "|"){
-      v = t[v.substring(1)]
+      v = g_p_v(t, v.substring(1))
     }
-    
- 
     return v;
   };
 
 
-export const iterate  = (obj, t) => {
-    for (var property in obj) {
-        if (obj.hasOwnProperty(property)) {
-            if (typeof obj[property] == "object") {
-                iterate(obj[property],t);
-            }
-            else {
-              
-                obj[property] = replace(obj[property], t)
-            }
-        }
-    }
-    return obj
-}
+
+

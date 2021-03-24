@@ -1,5 +1,5 @@
 /* register action method */
-import { S, store, tick } from '~/plugins/soyuz-store-api';
+import { tick } from '~/plugins/soyuz-store-api';
 import { transformer } from '~/plugins/soyuz-walker';
 import { action, getClick } from '~/plugins/soyuz-targeter';
 

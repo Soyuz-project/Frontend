@@ -3,9 +3,8 @@
 
 /* data frame component start renderind app */
 /* blocks data frame default run `pages READ` event */
-import { runEvent } from '~/plugins/soyuz-events-api';
-import { S } from '~/plugins/soyuz-store-api';
-import { InitialStoreRouter } from '~/plugins/soyuz-actions-router';
+import { initFrameEvent, runEvent } from '~/plugins/soyuz-events-api';
+import { storeRouter } from '~/plugins/soyuz-actions-router';
 import { action, getClick } from '~/plugins/soyuz-targeter';
 export default {
   functional: true,
@@ -17,54 +16,15 @@ export default {
     urlQuery: {
       type: Object,
       default: () => ({}),
-    },
-    /* nice to use only READ events */
-    /* default event read page (search with pages) by rouing param slug */
-    event: {
-      default: () => ({
-        name: 'Pages',
-        slug: 'initial-page',
-        source: 'pages',
-        method: 'READ',
-        query_variables: { slug: '{router.params.slug}' },
-      })
     }
   },
-  render(h, { props: {blockAttrs, urlQuery, event} }) {
+  render(h, { props: {blockAttrs, urlQuery} }) {
 
-    //  DATA MODEL
-    //
+    storeRouter(urlQuery)
 
-    //  BLOCKS COLLECTION (pages list, sliders, etc)
-    //  [ 
-    //    {
-    //      "blocks":
-    //      second level - blocks
-    //      [
-    //        {
-    //        //gitengerg block
-    //        }
-    //      ]
-    //    }
-    //  ]
+    const event = blockAttrs.event || 'initial-defaut-page';
+    const data = runEvent({ slug: event }) || []; 
 
-    //  BLOCKS FRAME (one page, one slide, group of elements, etc) 
-    // 
-
-    //  ONE BLOCK FRAME (icon, button, content, etc) 
-    //
-
-    //  BLOCKS AGGREGATION  (list of this same blocks, cards, products, posts etc)
-    // 
-
-    InitialStoreRouter(urlQuery)
-    
-    /* 
-      find storage event (defined in blockAttrs) or get default from props 
-    */
-    const activeEvent = blockAttrs.initial_event ? S.get({ source: 'events', query_variables: {slug: blockAttrs.initial_event} })[0] : event
-
-    const data = runEvent(activeEvent) || [];  
 
     // BLOCKS COLLECTION 
     return  data ? (
@@ -87,28 +47,5 @@ export default {
           })}
       </div>
     ): null;
-
-    // BLOCKS FRAME (TODO - add prop to turnon this)
-    // return data ? (
-    //   <div class="frame" style="border:1px solid red; padding:5px;">
-    //       {/* Render blocks collection (like pages collection) */}
-    //       {data?.map((entry, i) => {
-    //         return (<div style="border:1px solid blue; padding:5px;">
-    //           {
-               
-    //                <inner-block key={i} blocks={entry}/>
-                
-    //           }
-    //         </div>)
-    //       })}
-    //   </div>
-    // ): null;
-
-    // ONE BLOCK FRAME (TODO - add prop to turnon this)
-    // return (<div style="border:1px solid blue; padding:5px;">
-    //       {          
-    //            <inner-block  blocks={data}/>
-    //       }
-    // </div>)
   },
 };

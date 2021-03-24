@@ -26,7 +26,7 @@ export const checkDisplay = (data, attrs) => {
 			return ''
 		}
 	}
-	return data;
+	return data();
 }
 
 

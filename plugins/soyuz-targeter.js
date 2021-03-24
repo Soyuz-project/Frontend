@@ -13,28 +13,25 @@ export const action = (e, attrs) => {
 	}
 };
 
+/* capture every click */
 export const getClick = (e,attrs) =>{
 	setTick()
 	refreshBlockPaths(attrs);
-	const box = cumulativeOffset(e.target)
+	const box = calcOffset(e.target)
 	S.set({source:'native_click',value:{...attrs, box}})
 	console.log('store', store)
 }
 
-var cumulativeOffset = function(element) {
-	var rect = element.getBoundingClientRect();
-	var top = 0,left = 0;
+/* don't run it too often */
+const calcOffset = (el) => {
+	const rect = el.getBoundingClientRect();
+	let top = 0, left = 0;
 	do {
-		top += element.offsetTop || 0;
-		left += element.offsetLeft || 0;
-		element = element.offsetParent;
-	} while (element);
-	return {
-		top: top,
-		left: left,
-		w: rect.width,
-		h: rect.height,
-	};
+		top += el.offsetTop || 0;
+		left += el.offsetLeft || 0;
+		el = el.offsetParent;
+	} while (el);
+	return { top: top, left: left, w: rect.width, h: rect.height };
 };
 
 /* refreshBlockPaths block path properties */
@@ -50,7 +47,6 @@ export const genBlockPath = (block, __blockPath = []) => {
     ...block,
     attrs: { ...block?.attrs, __blockPath },
     ...(block.innerBlocks && { innerBlocks: block.innerBlocks.map((b, i) => genBlockPath(b, [...__blockPath, i])) })
-
   }
 };
 
