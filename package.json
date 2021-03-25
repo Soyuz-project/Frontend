@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start -c nuxt.config-from-anywhere.js",
+    "start": "nuxt start -c nuxt.config-production.js",
     "generate": "nuxt generate"
   },
   "dependencies": {
