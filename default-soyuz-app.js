@@ -1,31 +1,5 @@
 export const default_app_events = [
     {
-      "name": "Get Tasks list",
-      "slug": "tasks-list-event",
-      "source": "pages",
-      "method": "READ",
-      "query_variables": {
-        "slug": "task-card"
-      },
-      "collection": {
-        "source": "tasks",
-        "default_data": [
-          {
-            "id": "",
-            "slug": "",
-            "name": "First default task",
-            "description": "First task desription"
-          },
-          {
-            "id": "",
-            "slug": "",
-            "name": "Secind default task",
-            "description": "Secind  task desription"
-          }
-        ]
-      }
-    },
-    {
       "name": "Init app loader bar",
       "slug": "soyuz-app-loader-init-event",
       "plugin":'soyuz-app-loader',
@@ -94,13 +68,6 @@ export const default_app_pages =
         "className": "-tight -left -middle",
         "content": "To start work with Sojuz project engine load some examples from: <a href='https://github.com/Soyuz-project/App-templates'>https://github.com/Soyuz-project/App-templates</a>"
       }
-    },
-    {
-      "blockName": "DataFrame",
-      "attrs": {
-        "className": "tr -t12d",
-        "event": "tasks-list-event"
-      }
     }
   ]
 },
@@ -158,23 +125,7 @@ export const default_app_pages =
       }
     }
   ]
-},
-
-    {
-      "name": "Task card",
-      "slug": "task-card",
-      "type": "page",
-      "blocks": [
-        {
-          "blockName": "core/paragraph",
-          "attrs": {
-            "className": "-left -mar-s",
-            "content": "aaaa"
-          }
-        }
-      ]
-    }
-
+}
 ] 
 
  
