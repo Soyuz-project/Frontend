@@ -35,7 +35,7 @@ export default {
         scopedSlots={{
           default: innerBlocks 
             ? () =>
-                innerBlocks.map((block, i) => console.log(attrs, block) || (
+                innerBlocks.map((block, i) =>  (
                   <InnerBlock 
                     key={i} 
                     blocks={{ 

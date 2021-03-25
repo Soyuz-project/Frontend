@@ -11,10 +11,11 @@ import { soyuzRouter } from '~/plugins/soyuz-actions-router';
   to write set data use WRITE event
 */
 export const runActions = (attrs) => {
+
   const RegAct = {...soyuzRouter, ...S, runEvent}
   attrs.output = [];
   attrs.actions.map((el)=>{
-  	const k = Object.keys(el)[0];  
+  	const k = Object.keys(el)[0];
     const v = k == "runEvent" ?  
       {slug:el['runEvent'], parent:attrs} : 
       transformer( el[k] , attrs)

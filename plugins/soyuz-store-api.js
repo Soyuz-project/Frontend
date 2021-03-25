@@ -28,11 +28,13 @@ export const S = {
   	} else {
   		store[p(a.source)] = [a.value];
   	}
+    return a.value
   },
   push_collection(a) {
-    return a.value?.map((el)=>{
-      S.push({source:a.source, value:el})
+    const out = a.value?.map((el)=>{
+      return S.push({source:a.source, value:el})
     })
+    return out
   },
   set_blocks(a){
     return a.value?.forEach((el)=>{
@@ -43,8 +45,8 @@ export const S = {
   },
   query(a){
     const res = local_get({source:a.source, query_variables:a.query_variables});
-    S.push_collection({source:a.source, value:res})
-    return res;
+    const out = S.push_collection({source:a.source, value:res})
+    return out;
   },
   mutation(a){
     try {

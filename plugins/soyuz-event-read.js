@@ -9,40 +9,31 @@ export const eventREAD = (event) => {
   */
   if (MOCKUPMODE) {
     
-     /* load pages: */
-      const res = S.query({source:event.source, query_variables: event.query_variables});
+    /* load pages: */
+      let page = S.query({source:event.source, query_variables: event.query_variables});
 
-    /* if output have COLLECTION condition then: */
-      
-      // if( res && res.length && event.collection && res.length <= 1){
-
-      //   const col_tpl = [];
-      //   let col;
-      //   if(event.collection.default_data){
-      //     col = event.collection.default_data;
-      //     S.set({ source: event.collection.source, value: col });
-      //   }else{
-      //     col = S.get({ source: event.collection.source });
-      //   }
+    /* if output have COLLECTION condition then: */  
+      if( page && page.length && event.collection && page.length <= 1){
         
-      //   // filter data
-      //   if(event.collection.query_variables){
-      //     col = S.get({ source: event.collection.source, query_variables: event.collection.query_variables });
-      //   }
+        const collection = {tpl:[],collectionData:[]}
+        if(event.collection.default_data){
+          collection.collectionData = S.set({ source: event.collection.source, value: event.collection.default_data });
+        }else{
+          collection.collectionData = S.query({source:event.collection.source, query_variables: event.collection.query_variables});
+        }
+        page[0].collection_source = event.collection.source;
+        collection.collectionData.map((el,i)=>{
+          collection.tpl.push({...JSON.parse(JSON.stringify(page[0])), collection_index:i })
+        })
 
-      //   col.map((el,i)=>{
-      //     const tpl = Object.assign({}, res[0]);
-      //     tpl.collection_source = event.collection.source;
-      //     tpl.collection_index = i;
-      //     col_tpl.push(tpl)
-
-      //   })
-      //   res = col_tpl;
+        console.log(collection.tpl)
         
-       
-      // }
-      // console.log(store)
-    return res;
+        page = collection.tpl;   
+
+      }
+              
+    return page;
+
   } else {
     // RUN RESOLVER
     // default GQL query
