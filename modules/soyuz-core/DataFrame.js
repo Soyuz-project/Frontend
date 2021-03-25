@@ -22,8 +22,8 @@ export default {
 
     storeRouter(urlQuery)
 
-    const event = blockAttrs.event || 'initial-defaut-page';
-    const data = runEvent({ slug: event }) || []; 
+    const event_slug = blockAttrs.event || 'router';
+    const data = runEvent({ slug: event_slug }) || []; 
 
 
     // BLOCKS COLLECTION 
@@ -36,9 +36,9 @@ export default {
                 entry.blocks.map((block, j) => {
 
                   /* add collection handler if exist */
-                  entry.slug != undefined ? block.attrs.source_slug = entry.slug : null
-                  entry.collection_source != undefined ? block.attrs.collection_source = entry.collection_source : null
-                  entry.collection_index != undefined  ? block.attrs.collection_index = entry.collection_index : null
+                  // entry.slug != undefined ? block.attrs.source_slug = entry.slug : null
+                  // entry.collection_source != undefined ? block.attrs.collection_source = entry.collection_source : null
+                  // entry.collection_index != undefined  ? block.attrs.collection_index = entry.collection_index : null
                   /* render block */
                   return <inner-block key={i+j} blocks={block} />
                 })

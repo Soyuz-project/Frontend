@@ -43,6 +43,7 @@ export const S = {
   },
   query(a){
     const res = local_get({source:a.source, query_variables:a.query_variables});
+    S.push_collection({source:a.source, value:res})
     return res;
   },
   mutation(a){
@@ -61,9 +62,9 @@ export const S = {
   HELPERS
 */
 export const query_filters = (d, f) => {
-  return d.filter(function(item) {
-    for (var key in f) {
-      if (item[key] === undefined || item[key] != f[key])
+  return d.filter(function(el) {
+    for (var k in f) {
+      if (el[k] === undefined || el[k] != f[k])
         return false;
     }
     return true;
@@ -88,12 +89,8 @@ export const local_get = (a) => {
     if (res && a.query_variables) {
       res = query_filters(res, a.query_variables)
     }
-    S.push_collection({source:a.source, value:res})
-    
     return res
-  } catch (error) {
-    // console.log(error)
-  }
+  } catch (error) {}
 }
 
 const p = (s) => {

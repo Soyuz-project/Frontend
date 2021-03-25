@@ -10,7 +10,13 @@ export const MOCKUPMODE = true;
 export const runEvent = (event) => {
   
   /* load event */
-  const e = first(S.query({source:'events', query_variables: {slug: event.slug} }));
+  const e = event.slug != 'router' ? 
+    first(S.query({source:'events', query_variables: {slug: event.slug} })) :
+    { 
+      method:'READ',
+      source:'pages',
+      query_variables:{slug: store.soyuz_router.params.slug}
+    }
 
   if( e?.method == 'READ'){
     return eventREAD(e)

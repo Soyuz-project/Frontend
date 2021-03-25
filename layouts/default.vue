@@ -1,11 +1,11 @@
 <template>
-  <div class="app-layout">
-  	<DataFrame 
+  <div  class="app-layout">
+  	<DataFrame
       :blockAttrs="{tagName:'header'}" 
       :urlQuery="{query:$route.query, params:{slug:'header'}}">    
     </DataFrame>
-    <Nuxt />
-  	<DataFrame 
+    <Nuxt/>
+  	<DataFrame
       :blockAttrs="{}" 
       :urlQuery="{query:$route.query, params:{slug:'footer'}}">    
     </DataFrame>
@@ -19,7 +19,7 @@
   	components: {
 			DataFrame: () => import('~/modules/soyuz-core/DataFrame.js'),
 		},
-    created: function () {
+    mounted: function () {
       /* 
         MOCKUP MODE, Initial data 
       */
@@ -32,7 +32,9 @@
       if(!local_get({source:"pages"})){
         local_set({source:"pages", value: default_app_pages})
       }
-      console.log('store---->',store)
+
+     
+
     }
   }
 </script>

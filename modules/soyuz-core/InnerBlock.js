@@ -29,8 +29,6 @@ export default {
   ) {
     const compName = blockName.replace(/[\/-]/g, '');
     const Block = modules[compName];
-    // console.log(compName)
-    // const Attrs = Object.assign({}, attrs,  { compName });
     return Block ? checkDisplay(() =>
       <Block
         blockAttrs={attrs}

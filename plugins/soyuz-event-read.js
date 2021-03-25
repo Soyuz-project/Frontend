@@ -1,9 +1,8 @@
 
 import { MOCKUPMODE } from '~/plugins/soyuz-events-api'
 import { S, store } from '~/plugins/soyuz-store-api';
-import { transformer } from '~/plugins/soyuz-walker';
-export const eventREAD = (event) => {
 
+export const eventREAD = (event) => {
 
   /* 
     MOCKUPMODE update store from localStorage if exist
@@ -11,11 +10,7 @@ export const eventREAD = (event) => {
   if (MOCKUPMODE) {
     
      /* load pages: */
-     /* dirty hack to destruct event ref :( */
-      const cloneEvent = JSON.parse(JSON.stringify(event))
-      cloneEvent.queryVariables = transformer(cloneEvent.query_variables,'')
-      const res = S.query({source:cloneEvent.source, query_variables: cloneEvent.query_variables});
-     
+      const res = S.query({source:event.source, query_variables: event.query_variables});
 
     /* if output have COLLECTION condition then: */
       
