@@ -33,7 +33,6 @@ export default {
         return S.get({ source: this.source })
       },
       set(value) {
-        console.log(store)
         setTick()
         return S.set({ source: this.source, value })
       },
@@ -49,10 +48,3 @@ export default {
   },
 };
 
-// <template>
-//   <div :class="[blockAttrs.className]">
-//     <label>{{ blockAttrs.label }}</label>
-//     <input v-if="tagName == 'input'" v-model="value" :class="inputClass" />
-//     <textarea :rows="rows" v-if="tagName == 'textarea'" v-model="value" :class="inputClass"></textarea>
-//   </div>
-// </template>

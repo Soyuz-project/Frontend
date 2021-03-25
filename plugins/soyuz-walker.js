@@ -43,7 +43,7 @@ export const transformer = (obj, attrs) => {
     if (v && typeof v === 'object') acc[k] = transformer(v, attrs);
     else acc[k] = replace(v, attrs);
     return acc;
-  }, {});
+  }, Array.isArray(obj)?[]:{});
 }
 
 const replace = (v, t) => {

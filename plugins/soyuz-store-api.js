@@ -31,6 +31,7 @@ export const S = {
     return a.value
   },
   push_collection(a) {
+      console.log('pc', a)
     const out = a.value?.map((el)=>{
       return S.push({source:a.source, value:el})
     })
@@ -49,8 +50,10 @@ export const S = {
     return out;
   },
   mutation(a){
+    
     try {
-      a.store.map((el)=>{
+      a?.store.forEach((el)=>{
+        console.log('each mutation', el);
         window.localStorage.setItem(`soyuz_${el}`, JSON.stringify(S.get({source:el})));
       })
       S.set({ source: 'message', value: {message:a.success, type:'success'}})

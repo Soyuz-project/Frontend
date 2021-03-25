@@ -24,10 +24,7 @@ export const eventREAD = (event) => {
         page[0].collection_source = event.collection.source;
         collection.collectionData.map((el,i)=>{
           collection.tpl.push({...JSON.parse(JSON.stringify(page[0])), collection_index:i })
-        })
-
-        console.log(collection.tpl)
-        
+        })        
         page = collection.tpl;   
 
       }

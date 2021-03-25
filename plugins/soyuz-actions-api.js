@@ -23,6 +23,7 @@ export const runActions = (attrs) => {
       Launch action
     */
     try {
+       console.log(k, v)
       attrs.output.push(RegAct[k](v));
     } catch (err) {
       S.set({ source: 'message', value: {message: `key:${k}:${err}`, type:'error'}})

@@ -25,6 +25,7 @@ export default {
     const event_slug = blockAttrs.event || 'router';
     const data = runEvent({ slug: event_slug }) || []; 
 
+
     // BLOCKS COLLECTION 
     return  data ? (
       <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper`} style="border:1px dashed #eee; padding:3px; margin:5px">
@@ -34,9 +35,9 @@ export default {
               {
                 entry.blocks.map((block, j) => {
                   /* add collection handler if exist */
-                  entry.slug != undefined ? block.attrs.source_slug = entry.slug : null
-                  entry.collection_source != undefined ? block.attrs.collection_source = entry.collection_source : null
-                  entry.collection_index != undefined  ? block.attrs.collection_index = entry.collection_index : null
+                  block.attrs.source_slug = entry.slug
+                  block.attrs.collection_source = entry.collection_source 
+                  block.attrs.collection_index = entry.collection_index 
                   /* render block */
                   return <inner-block key={i+j} blocks={block} />
                 })
