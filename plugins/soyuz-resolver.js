@@ -17,15 +17,16 @@ export const read = (event_slug) => {
 	/*
 		update store
 	*/
-	store.soyuz_events ? null : store['soyuz_events'] = {}
-	store.soyuz_events[event_slug] = res.event
+	//store.soyuz_events ? null : store['soyuz_events'] = {}
+	// store.soyuz_events[event_slug] = res.event
+	S.push_collection({source:'events', value:[res.event]})
 	S.push_collection({source:'pages', value:res.template})
 
 	return res.event
 }
 
 export const write = (event_slug) => {
-	return store.soyuz_events[event_slug] = first(local_get({source:'events', query_variables:{slug: event_slug}}))
+	return local_get({source:'events', query_variables:{slug: event_slug}})
 }
 export const resolve_mutation = (attrs) => {
 	
@@ -34,9 +35,9 @@ export const resolve_mutation = (attrs) => {
 	  	if(k == 'push_collection'){
 	  		if(attrs.output[i] && attrs.output[i].length){
 	  			attrs.output[i].map((el)=>{
-	  				/*
-						mutation to local starage
-					*/
+	  				
+					// mutation to local starage
+					
 			  		local_push({value:el, source:action[k].source})
 			  	})
 	  		}

@@ -3,7 +3,7 @@
   process list of events and methods (events aggregation)
 */
 import { transformer } from '~/plugins/soyuz-walker';
-import { S, store } from '~/plugins/soyuz-store-api';
+import { S, store,first } from '~/plugins/soyuz-store-api';
 import { soyuzRouter } from '~/plugins/soyuz-actions-router';
 import { resolve_mutation, write } from '~/plugins/soyuz-resolver';
 
@@ -37,7 +37,7 @@ export const runActions = (attrs) => {
 };
 
 const run_event = (action) => {
-   const event = write(action.slug)
+   const event = first(write(action.slug))
    runActions({...event, parent: action.parent})
 };
 
