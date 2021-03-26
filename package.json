@@ -6,12 +6,15 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start -c nuxt.config-production.js",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "gh-pages": "nuxt generate -c nuxt.config-ghpages; gh-pages -t -d dist"
   },
   "dependencies": {
     "core-js": "^3.8.3",
     "expr-eval": "^2.0.2",
     "nuxt": "^2.14.12"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
+  }
 }
