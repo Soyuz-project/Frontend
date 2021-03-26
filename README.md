@@ -23,3 +23,13 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## Hosting on GithUb Pages
+
+To host this on `gh-pages` run following command:
+
+```bash
+yarn gh-pages
+```
+
+This will generate static version of Soyuz Frontend with router base set to: `/Frontend` which should be changed inside `nuxt.config-ghpages.js` file if using custom domain, or different repository name.
