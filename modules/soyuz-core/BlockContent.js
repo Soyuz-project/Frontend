@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { tick } from '~/plugins/soyuz-store-api';
+import { tick, store } from '~/plugins/soyuz-store-api';
 import { transformer } from '~/plugins/soyuz-walker';
 import { action, getClick } from '~/plugins/soyuz-targeter';
 export default {

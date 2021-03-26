@@ -38,27 +38,19 @@ export const s_p_v = (o, v, p, insertLastArray) => {
 /* 
   search and replace soyuz shorthand with configs
 */
-
-export const transformer  = (o, _t) => {
-  const t = Object.assign({}, _t);
-  for (var prop in o) {
-    if (o.hasOwnProperty(prop)) {
-      if (typeof o[prop] == "object") {
-        transformer(o[prop], t);
-      }
-      else {
-        o[prop] = replace(o[prop], t)
-      }
-    }
-  }
-  return o
+export const transformer = (obj, attrs) => {
+  return Object.entries(obj).reduce((acc, [k, v]) => {
+    if (v && typeof v === 'object') acc[k] = transformer(v, attrs);
+    else acc[k] = replace(v, attrs);
+    return acc;
+  }, Array.isArray(obj)?[]:{});
 }
 
 const replace = (v, t) => {
- 
   if(typeof v !== 'string' || v === ""){
     return v
   }
+
   v = v.replace(/{[^{}]+}/g, function(key, o){
     const s = key.replace(/[{}]+/g, "").split('.')
      

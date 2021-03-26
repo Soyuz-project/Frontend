@@ -23,7 +23,8 @@ export const default_app_events = [
         {"push_collection":{"source":"events","value":"{this.parent.data.events}"}},
         {"push_collection":{"source":"pages","value":"{this.parent.data.pages}"}},
         {"set_blocks":{"value":"{this.parent.data.blocks}"}},
-        {"mutation":{"store":["pages","events"],"success":"The application has been installed"}}
+        {"mutation":{"store":["pages","events"],"success":"The application has been installed"}},
+        {"routerQuery": {"tick": "{math.random(10)}"}}
       ]
     }
 ]

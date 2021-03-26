@@ -8,10 +8,11 @@ import { soyuzRouter } from '~/plugins/soyuz-actions-router';
 import { write } from '~/plugins/soyuz-resolver';
 
 export const runActions = (attrs) => {
+
   const RegAct = {...soyuzRouter, ...S, runEvent}
   attrs.output = [];
   attrs.actions.map((el)=>{
-  	const k = Object.keys(el)[0];  
+  	const k = Object.keys(el)[0];
     const v = k == "runEvent" ?  
       {slug:el['runEvent'], parent: attrs} : 
       transformer( el[k] , attrs)
@@ -19,6 +20,7 @@ export const runActions = (attrs) => {
       Launch action
     */
     try {
+       console.log(k, v)
       attrs.output.push(RegAct[k](v));
     } catch (err) {
       S.set({ source: 'message', value: {message: `key:${k}:${err}`, type:'error'}})

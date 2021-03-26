@@ -34,11 +34,10 @@ export default {
             return (<div class={blockAttrs.className}>
               {
                 entry.blocks.map((block, j) => {
-
                   /* add collection handler if exist */
-                  // entry.slug != undefined ? block.attrs.source_slug = entry.slug : null
-                  // entry.collection_source != undefined ? block.attrs.collection_source = entry.collection_source : null
-                  // entry.collection_index != undefined  ? block.attrs.collection_index = entry.collection_index : null
+                  block.attrs.source_slug = entry.slug
+                  block.attrs.collection_source = entry.collection_source 
+                  block.attrs.collection_index = entry.collection_index 
                   /* render block */
                   return <inner-block key={i+j} blocks={block} />
                 })
