@@ -44,53 +44,56 @@ export default {
     { src: '~/plugins/soyuz-actions-router', },
   ],
   router: {
-  prefetchLinks: false,
-  extendRoutes(routes, resolve) {
-    /*
-     *  always app init from components/Page.vue
-     */
-    const PageComponent = resolve(__dirname, '~/modules/soyuz-core/DataFrame.js');
-    /*
-     *  to show any routing content with popup
-     */
-    const modalRoute = [
-      {
-        path: 'modal/:modalSlug',
-      },
-      {
-        path: 'modal/:modalSlug/:post_name',
-      },
-      {
-        path: 'menu/:menuItem',
-      },
-      {
-        path: 'menu/:menuItem/:menuTarget',
-      },
-    ];
-    routes.push(
-      ...[
-        /*
-         *  custom routes
-         *  TODO - rename 'profile' route as 'panel'
-         */
+    prefetchLinks: false,
+    extendRoutes(routes, resolve) {
+      /*
+       *  always app init from components/Page.vue
+       */
+      const PageComponent = resolve(__dirname, '~/modules/soyuz-core/DataFrame.js');
+      /*
+       *  to show any routing content with popup
+       */
+      const modalRoute = [
         {
-          name: 'home',
-          path: '/',
-          component: PageComponent,
-          children: modalRoute,
-          props: route => ({urlQuery: { params:{slug:'home'}, query:route.query  }})
+          path: 'modal/:modalSlug',
         },
         {
-          name: 'page',
-          path: '/:slug',
-          component: PageComponent,
-          children: modalRoute,
-          props: route => ({urlQuery: { params:route.params, query:route.query }})
+          path: 'modal/:modalSlug/:post_name',
         },
-      ]
-    );
+        {
+          path: 'menu/:menuItem',
+        },
+        {
+          path: 'menu/:menuItem/:menuTarget',
+        },
+      ];
+      routes.push(
+        ...[
+          /*
+           *  custom routes
+           *  TODO - rename 'profile' route as 'panel'
+           */
+          {
+            name: 'home',
+            path: '/',
+            component: PageComponent,
+            children: modalRoute,
+            props: route => ({urlQuery: { params:{slug:'home'}, query:route.query  }, blockAttrs:{}})
+          },
+          {
+            name: 'page',
+            path: '/:slug',
+            component: PageComponent,
+            children: modalRoute,
+            props: route => ({urlQuery: { params:route.params, query:route.query }, blockAttrs:{}})
+          },
+        ]
+      );
+    },
+
   },
-},
+
+  ssr: false, // Disable Server Side rendering
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

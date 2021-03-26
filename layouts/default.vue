@@ -13,7 +13,7 @@
 </template>
 <script>
   import {default_app_pages, default_app_events} from '~/default-soyuz-app';
-  import { local_get, local_set, store } from '~/plugins/soyuz-store-api';
+  import { local_get, local_set} from '~/plugins/soyuz-resolver';
 	export default {
   	name: 'Layout',
   	components: {
