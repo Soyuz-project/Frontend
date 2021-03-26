@@ -23,8 +23,7 @@ export const default_app_events = [
         {"push_collection":{"source":"events","value":"{this.parent.data.events}"}},
         {"push_collection":{"source":"pages","value":"{this.parent.data.pages}"}},
         {"set_blocks":{"value":"{this.parent.data.blocks}"}},
-        {"mutation":{"store":["pages","events"],"success":"The application has been installed"}},
-        {"routerQuery": {"tick": "{math.random(10)}"}}
+        {"resolve_mutation":{"success":"The application has been installed"}}
       ]
     }
 ]
@@ -117,7 +116,7 @@ export const default_app_pages =
       "attrs": {
         "className": "-b -b-light-gray -pad-s -hvr-invert -rel -ov-h",
         "actions":[
-          {"runEvent": "soyuz-app-loader-process-event"}
+          {"run_event": "soyuz-app-loader-process-event"}
         ]
       }
       

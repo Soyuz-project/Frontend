@@ -4,6 +4,7 @@
 
 import Vue from 'vue';
 import { g_p_v, s_p_v } from '~/plugins/soyuz-walker';
+import { resolve_mutation } from '~/plugins/soyuz-resolver';
 export const store = Vue.observable({});
 export const tick = Vue.observable({
   value:0
@@ -19,7 +20,7 @@ export const S = {
     return s_p_v(store, a.value, p(a.source));
   },
   push(a){
-  	const res = S.get({source: a.source});
+  	const res = a.res ? a.res : S.get({source: a.source});
   	if (res) {
   		const duplicateIndex = res.findIndex((el) => el.slug === a.value.slug);
   		if (duplicateIndex === -1) res.push(a.value);
@@ -35,7 +36,6 @@ export const S = {
       store[p(a.source)]
   },
   push_collection(a) {
-      console.log('pc', a)
     const out = a.value?.map((el)=>{
       return S.push({source:a.source, value:el})
     })
@@ -48,23 +48,9 @@ export const S = {
       s_p_v(res[index], el, el.attrs.source_path)
     })
   },
-
-
-  // query(a){
-  //   const res = local_get({source:a.source, query_variables:a.query_variables});
-  //   S.push_collection({source:a.source, value:res})
-  //   return res;
-  // },
-  // mutation(a){
-  //   try {
-  //     a.store.map((el)=>{
-  //       window.localStorage.setItem(`soyuz_${el}`, JSON.stringify(S.get({source:el})));
-  //     })
-  //     S.set({ source: 'message', value: {message:a.success, type:'success'}})
-  //   } catch (error) {
-  //     S.set({ source: 'message', value: {message:error, type:'error'}})
-  //   }
-  // }
+  mutation(a){
+    resolve_mutation(a)
+  }
 
 };
 
