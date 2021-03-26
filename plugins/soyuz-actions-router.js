@@ -9,31 +9,33 @@ export default function(context) {
 }
 
 export const soyuzRouter = {
-  routerPush(attrs) {
-    router.push(attrs);
-    return attrs;
+  routerPush(atr) {
+    router.push(atr);
+    return atr;
   },
-  routerQuery(attrs) {
-    const t = Object.assign({}, this.getUrlQuery(), attrs);
+  routerQuery(atr) {
+    const t = Object.assign({}, getUrlQuery(), atr);
     router.push({
       query: t,
     });
     return t;
   },
-  routerDelQuery(attrs) {
-    const q = this.getUrlQuery()
-    Object.values(attrs).map((el) => {
+  routerDelQuery(atr) {
+    const q = getUrlQuery()
+    Object.values(atr).map((el) => {
       delete q[el];
     });
     router.push({
       query:q,
     });
   },
-  getUrlQuery(){
-    const p = new URLSearchParams(window.location.search);
-    return Object.fromEntries(p); 
-  }
+  
 };
+
+const getUrlQuery = () => {
+  const p = new URLSearchParams(window.location.search);
+  return Object.fromEntries(p); 
+}
 
 export const storeRouter = (q) => {
   /* TODO - error if first init dont have q. Then get it form context */ 

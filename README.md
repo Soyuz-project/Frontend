@@ -5,6 +5,8 @@ Next generation frontend engine, sharpen to driven bussinness focused applicatio
 Sojuz project is technological 
 alliance between backends services, sourcing design, and nice to have frontend implementation.
 
+Extremely light, engine core below 10kb
+
 ## Build Setup
 
 ```bash

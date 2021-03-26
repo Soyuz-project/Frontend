@@ -1,5 +1,10 @@
 export const default_app_events = [
     {
+      slug:'default-page',
+      source:'pages', 
+      query_variables:{slug: '{router.params.slug}'}
+    },
+    {
       "name": "Init app loader bar",
       "slug": "soyuz-app-loader-init-event",
       "plugin":'soyuz-app-loader',
