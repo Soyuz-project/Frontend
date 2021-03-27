@@ -24,28 +24,22 @@ export default {
 
     storeRouter(urlQuery)
     const res = read(blockAttrs.event || 'default-page')
-    const data = S.get_collection(res.event)
 
-    console.log('data', res)
-    // BLOCKS COLLECTION 
-    return  data && data.length ? (
-      <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper`} style="border:1px dashed #eee; padding:3px; margin:5px">
-          {/* Render blocks collection (like pages collection) */}
-          {data?.map((entry, i) => {
-            return (<div class={blockAttrs.className}>
-              {
-                entry.blocks.map((block, j) => {
-                  /* add collection handler if exist */
-                  block.attrs.source_slug = res.event.slug
-                  block.attrs.collection_source = res.event.collection ? res.event.collection.source : null 
-                  block.attrs.collection_index = i
-                  /* render block */
-                  return <inner-block key={i+j} blocks={block} />
-                })
-              }
-            </div>)
-          })}
-      </div>
-    ): null;
+    return <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper`} style="border:1px dashed #eee; padding:3px; margin:5px">
+      {res.collection.map((collection_unit, i) => {
+        return (<div class={blockAttrs.className}>
+          {
+            res.template[0].blocks.map((block, j) => {
+              block.attrs.collection_source = res.event.collection ? res.event.collection.source : null 
+              block.attrs = {...block.attrs, collection_index: i}
+              /* render block */
+              return <inner-block key={i+j} blocks={block} />
+            })
+          }
+        </div>)
+      })}
+    </div>
+
+    
   },
 };

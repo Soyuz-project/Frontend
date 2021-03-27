@@ -20,8 +20,8 @@ export const default_app_events = [
       "plugin":'soyuz-app-loader',
       "method": "WRITE",
       "actions":[
-        {"push_collection":{"source":"events","value":"{this.parent.data.events}"}},
-        {"push_collection":{"source":"pages","value":"{this.parent.data.pages}"}},
+        {"push_collection":{"source":"events","value":"{this.parent.data.events}","unique":"slug"}},
+        {"push_collection":{"source":"pages","value":"{this.parent.data.pages}","unique":"slug"}},
         {"set_blocks":{"value":"{this.parent.data.blocks}"}},
         {"resolve_mutation":{"success":"The application has been installed"}}
       ]

@@ -33,6 +33,7 @@ export const runActions = (attrs) => {
       S.set({ source: 'message', value: {message: `key:${k}:${err}`, type:'error'}})
     }
   })
+  console.log('store', store)
   return attrs.output
 };
 

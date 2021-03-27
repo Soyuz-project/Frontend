@@ -12,20 +12,20 @@ const condition = (v1, v2, c) => {
 };
 
 export const checkDisplay = (data, attrs) => {
-	// if(attrs.conditionalLogic && attrs.conditionalLogic.length){
-	// 	let guardian = true
-	// 	attrs.conditionalLogic.map((el)=>{
-	// 		const res = transformer(el,'');
-	// 		// // if defined key exist
-	// 		if(res.value && res.key){
-	// 			guardian = false
-	// 		}
-	// 		// guardian != res.value && res.key
-	// 	})
-	// 	if(guardian){
-	// 		return ''
-	// 	}
-	// }
+	if(attrs.conditionalLogic && attrs.conditionalLogic.length){
+		let guardian = true
+		attrs.conditionalLogic.map((el)=>{
+			const res = transformer(el,'');
+			// // if defined key exist
+			if(res.value && res.key){
+				guardian = false
+			}
+			// guardian != res.value && res.key
+		})
+		if(guardian){
+			return ''
+		}
+	}
 	return data();
 
 }

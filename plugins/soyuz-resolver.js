@@ -8,27 +8,26 @@ export const read = (event_slug) => {
 	const res = {
 		event: {},
 		template: [],
-		collection:[]
+		collection:[{}]
 	}
 	res.event = first(local_get({source:'events', query_variables:{slug: event_slug}}))
 	res.event.query_variables = transformer(res.event.query_variables, '')
 	res.template = local_get(res.event)
 	/*
+		update store
+	*/
+	S.push_collection({source:'events', value:[res.event], unique:'slug'})
+	S.push_collection({source:'pages', value:res.template, unique:'slug'})
+
+	/*
 		get collection
 	*/
 	if(res.event.collection){
-		// res.template?.attrs.collection_index = 0
+		res.collection = []
 		res.collection = res.event.collection.default_data;
-		S.push_collection({source:res.event.collection.source, value:res.collection})
-		
+		S.push_collection({source:res.event.collection.source, value:res.collection, unique:'slug'})
 	}	
-	/*
-		update store
-	*/
-	//store.soyuz_events ? null : store['soyuz_events'] = {}
-	// store.soyuz_events[event_slug] = res.event
-	S.push_collection({source:'events', value:[res.event], unique:'slug'})
-	S.push_collection({source:'pages', value:res.template, unique:'slug'})
+	
 
 	return res
 }
@@ -77,7 +76,7 @@ export const local_set = (a) => {
 export const local_push = (a) => {
 	try {
 		const res = JSON.parse(window.localStorage.getItem(p(a.source)))
-		S.push({value:a.value, res:res})
+		S.push({value:a.value, res:res, unique:'slug'})
 		window.localStorage.setItem(p(a.source), JSON.stringify(res));
 	} catch (error) {}
 }
