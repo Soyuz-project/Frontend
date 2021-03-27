@@ -80,7 +80,6 @@ export const local_push = (a) => {
 		if(res){
 			S.push({value:a.value, res:res , unique:'slug'})
 		}else{
-			
 			res = [a.value]
 		}
 		window.localStorage.setItem(p(a.source), JSON.stringify(res));
