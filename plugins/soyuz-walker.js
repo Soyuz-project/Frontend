@@ -18,20 +18,20 @@ export const g_p_v = (o, p) => {
 /* 
   set value from object by path 
 */
+// spv({arr: [1,2,3,4]},1, 'arr.3', true)
 export const s_p_v = (o, v, p, insertLastArray) => {
-  try{
-    let e = Array.isArray(p) ? p : p.split('.'),
-    i;
+  try {
+    let e = Array.isArray(p) ? p : p.split("."),
+      i;
     for (i = 0; i < e.length - 1; i++) o = o[e[i]];
 
-    // if (insertLastArray) {
-    //   // o[e[i]] 
-    //   o[e[i]].splice(2, 0, "Lene");
-    // } else {
-    o[ e[i]] = v;
-
-    // }
-  }catch(err){}
+    if (i === e.length - 1 && !isNaN(e[i])) {
+      if (insertLastArray) o[e[i - 1]].splice(e[i], 0, "Lene");
+      else o[e[i - 1]].push(v);
+    } else {
+      o[e[i]] = v;
+    }
+  } catch (err) {}
   return v;
 };
 
@@ -64,7 +64,11 @@ const replace = (v, t) => {
     }  
     if(s[0] == 'this'){
       s.shift();
-      return `|${s.join('.')}`
+      return `|t${s.join('.')}`
+    } 
+    if(s[0] == 'store'){
+      s.shift();
+      return `|s${s.join('.')}`
     }   
     if(s[0] == 'math'){
       s.shift();
@@ -84,7 +88,12 @@ const replace = (v, t) => {
   });
   // replace to object
   if(v.charAt(0) == "|"){
-    v = g_p_v(t, v.substring(1))
+    if(v.charAt(1) == "t"){
+      v = g_p_v(t, v.substring(2))
+    }else
+    if(v.charAt(1) == "s"){
+      v = S.get({source: v.substring(2)})
+    }
   }
   return v;
 };
