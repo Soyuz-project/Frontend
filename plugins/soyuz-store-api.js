@@ -22,9 +22,13 @@ export const S = {
   push(a){
   	const res = a.res ? a.res : S.get({source: a.source});
   	if (res) {
-  		const duplicateIndex = res.findIndex((el) => el.slug === a.value.slug);
-  		if (duplicateIndex === -1) res.push(a.value);
-  		else res[duplicateIndex] = a.value;
+      if(a.unique){
+        const duplicateIndex = res.findIndex((el) => el.slug === a.value.slug);
+        if (duplicateIndex === -1) res.push(a.value);
+        else res[duplicateIndex] = a.value;
+      }else{
+        res.push(a.value);
+      }
   	} else {
   		store[p(a.source)] = [a.value];
   	}
@@ -37,7 +41,7 @@ export const S = {
   },
   push_collection(a) {
     const out = a.value?.map((el)=>{
-      return S.push({source:a.source, value:el})
+      return S.push({source:a.source, value:el, unique:a.unique || null })
     })
     return out
   },
