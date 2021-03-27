@@ -92,6 +92,7 @@ const replace = (v, t) => {
       v = g_p_v(t, v.substring(2))
     }else
     if(v.charAt(1) == "s"){
+      console.log('get store', S.get({source: v.substring(2)}))
       v = S.get({source: v.substring(2)})
     }
   }

@@ -32,10 +32,6 @@
       if(!local_get({source:"pages"})){
         local_set({source:"pages", value: default_app_pages})
       }
-      
-
-     
-
     }
   }
 </script>

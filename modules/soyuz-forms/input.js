@@ -34,6 +34,7 @@ export default {
       },
       set(value) {
         setTick()
+        console.log('store', store)
         return S.set({ source: this.source, value })
       },
     },

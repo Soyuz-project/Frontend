@@ -74,9 +74,15 @@ export const local_set = (a) => {
   } catch (error) {}
 }
 export const local_push = (a) => {
+	
 	try {
-		const res = JSON.parse(window.localStorage.getItem(p(a.source)))
-		S.push({value:a.value, res:res, unique:'slug'})
+		let res = JSON.parse(window.localStorage.getItem(p(a.source)))
+		if(res){
+			S.push({value:a.value, res:res , unique:'slug'})
+		}else{
+			
+			res = [a.value]
+		}
 		window.localStorage.setItem(p(a.source), JSON.stringify(res));
 	} catch (error) {}
 }
