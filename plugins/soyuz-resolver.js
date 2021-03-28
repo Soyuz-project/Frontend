@@ -24,11 +24,14 @@ export const read = (event_slug) => {
 	*/
 	if(res.event.collection){
 		res.collection = []
-		res.collection = res.event.collection.default_data;
+		const from_server = local_get({source:res.event.collection.source})
+		if(from_server){
+			res.collection = from_server;
+		}else{
+			res.event.collection.default_data ? res.collection = res.event.collection.default_data: null
+		}
 		S.push_collection({source:res.event.collection.source, value:res.collection, unique:'slug'})
 	}	
-	
-
 	return res
 }
 
