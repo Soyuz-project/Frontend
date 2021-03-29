@@ -24,27 +24,34 @@ export default {
       initvalue: this.blockAttrs.value || '',
       tagName: this.blockAttrs.tagName || 'input',
       rows: this.blockAttrs.rows || 4,
-      inputClass: 'td -pad-s -b -b-light-gray',
-      source: this.blockAttrs.collection_source ? this.by_colection() : this.by_path()
+      inputClass: 'td -pad-s -b -b-light-gray'
     };
   },
   computed: {
     value: {
       get() {
-        return S.get({ source: this.source })
+        const source = this.get_source(this.blockAttrs?.source_map)
+        return S.get({ source: source })
       },
       set(value) {
         setTick()
-        return S.set({ source: this.source, value })
+        const source = this.get_source(this.blockAttrs?.source_map)
+        return S.set({ source: source, value })
       },
     },
   },
   methods: {
-    by_colection: function () {
-      return `${this.blockAttrs.collection_source}.${this.blockAttrs.collection_index}.${this.blockAttrs.collection_map}`
-    },
-    by_path: function () {
-      return `${this.blockAttrs.source_map.source}.${this.blockAttrs.source_map.source_slug}.${this.blockAttrs.source_map.source_path}.${this.blockAttrs.source_map.rest_path}`
+    get_source: function (source_map) {
+      if(source_map.collection){
+        return `${this.blockAttrs.collection_source}.${this.blockAttrs.collection_index}.${this.blockAttrs.source_map.collection}`
+      }
+      if(source_map.source_path){
+        return `${this.blockAttrs.source_map.source}.${this.blockAttrs.source_map.source_slug}.${this.blockAttrs.source_map.source_path}.${this.blockAttrs.source_map.rest_path}`
+      }
+      if(source_map.rest_path){
+       //  console.log('by click', store)
+        return `${this.blockAttrs.source_map.source}.${this.blockAttrs.source_map.source_slug}.${this.blockAttrs.source_map.source_path}.${this.blockAttrs.source_map.rest_path}`
+      }
     }
   },
   render(h) {

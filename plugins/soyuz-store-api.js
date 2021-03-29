@@ -47,10 +47,9 @@ export const S = {
   },
   set_blocks(a){
     return a.value?.map((el)=>{
-      const target = S.get_collection({source:el.attrs.source, query_variables:{slug:el.attrs.source_slug}})
-      s_p_v(target[0], el, el.attrs.source_path, true)
-      console.log(target[0].blocks)
-      return target[0]
+      const target = first(S.get_collection({source:el.attrs.source, query_variables:{slug:el.attrs.source_slug}}))
+      s_p_v(target, el, el.attrs.source_path, true)
+      return target
     })
   },
   mutation(a){

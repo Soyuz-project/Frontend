@@ -18,13 +18,12 @@ export const g_p_v = (o, p) => {
 /* 
   set value from object by path 
 */
-// spv({arr: [1,2,3,4]},1, 'arr.3', true)
 export const s_p_v = (o, v, p, insertLastArray) => {
+  // collection splice example: s_p_v([1,2,3,4], 'inject', 'arr.3', true)
   try {
     let e = Array.isArray(p) ? p : p.split("."),
       i;
     for (i = 0; i < e.length - 1; i++) o = o[e[i]];
-debugger
     if (Array.isArray(o) || (i === e.length - 1 && !isNaN(e[i]))) {
       if (insertLastArray && i < e.length) o.splice(e[i], 0, v);
       else o[e[i - 1]].push(v);
@@ -36,7 +35,7 @@ debugger
 };
 
 /* 
-  search and replace soyuz shorthand with configs
+  search and replace soyuz shorthands
 */
 export const transformer = (obj, attrs) => {
   return Object.entries(obj).reduce((acc, [k, v]) => {
@@ -45,15 +44,14 @@ export const transformer = (obj, attrs) => {
     return acc;
   }, Array.isArray(obj)?[]:{});
 }
-
+// TODO - refactor this concept
 const replace = (v, t) => {
-  if(typeof v !== 'string' || v === ""){
-    return v
-  }
-
+  if(typeof v !== 'string' || v === "") return v
   v = v.replace(/{[^{}]+}/g, function(key, o){
     const s = key.replace(/[{}]+/g, "").split('.')
-     
+    /* 
+     avilable shorthands
+    */ 
     if(s[0] == 'router'){
       s.shift();
       return S.get({source:'router'})?.[s[0]]?.[s[1]] || ""
@@ -84,7 +82,6 @@ const replace = (v, t) => {
       const p = new Parser();
       return p.evaluate(m)
     } 
-    // return key
   });
   // replace to object
   if(v.charAt(0) == "|"){

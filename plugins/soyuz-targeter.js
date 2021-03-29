@@ -6,7 +6,6 @@ import { S, store, setTick } from '~/plugins/soyuz-store-api';
 import { soyuzRouter } from '~/plugins/soyuz-actions-router';
 
 export const action = (e, attrs) => {
-
 	if(attrs.targetable && store.soyuz_targeter){
 		e.preventDefault();
   		e.stopPropagation();
@@ -14,9 +13,10 @@ export const action = (e, attrs) => {
 	}else{
 		if(attrs.actions){
   			attrs.actions ? runActions(attrs) : null
-  			setTick()
+  			
 		}
 	}
+	setTick()
 	// e.preventDefault();
  	// e.stopPropagation();
 
@@ -24,18 +24,9 @@ export const action = (e, attrs) => {
 
 /* capture every click */
 export const getClick = (e, attrs) =>{
-	
-
-	
-	refreshBlockPaths(attrs);
-	
+	console.log(attrs)
 	const box = calcOffset(e.target)
 	S.set({source:'native_click',value:{...attrs, box}})
-	soyuzRouter.routerQuery({'tick':Math.random(10)})
-
-	console.log('click', store)
-	// setTick()
-	// console.log('store', store)
 }
 
 /* don't run it too often */
@@ -68,7 +59,7 @@ export const genBlockPath = (block, __blockPath = []) => {
 
 /* sync path to gutenberg model */
 export const fixPath = (p) => {
-  return p
+  return 'blocks.'+p
     .flatMap((el) => {
       return [el, 'innerBlocks'];
     })

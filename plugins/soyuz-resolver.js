@@ -1,6 +1,7 @@
 import { S, store, first, query_filters, p } from '~/plugins/soyuz-store-api';
 import { transformer } from '~/plugins/soyuz-walker';
 import { soyuzRouter } from '~/plugins/soyuz-actions-router';
+import { refreshBlockPaths } from '~/plugins/soyuz-targeter';
 export const read = (event_slug, optimistic = false) => {
 	/*
 		Local storage query
@@ -15,6 +16,7 @@ export const read = (event_slug, optimistic = false) => {
 	// TODO this is not ready (now render template only from store)
 	if(optimistic){
 		res.template = S.get_collection({source:res.event.source, query_variables:res.event.query_variables})
+		refreshBlockPaths(res.template);
 	}else{
 		res.template = local_get(res.event)
 	}

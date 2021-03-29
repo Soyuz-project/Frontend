@@ -25,7 +25,6 @@ export default {
     storeRouter(urlQuery)
     const optimistic = store.soyuz_editable ? true : false
     const res = read(blockAttrs.event || 'default-page', optimistic)
-
     return <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper`} style="border:1px dashed #eee; padding:3px; margin:5px">
       {res.collection.map((collection_unit, i) => {
         return (<div class={blockAttrs.className}>
@@ -36,7 +35,8 @@ export default {
                 ...block.attrs, 
                 collection_index: i, 
                 targetable:blockAttrs.targetable,
-                source_slug: res.template[0].slug
+                source_slug: res.template[0].slug,
+                source:res.event.source
               }
 
               /* render block */
