@@ -2,13 +2,13 @@
   <div  class="app-layout">
   	<DataFrame
       :blockAttrs="{tagName:'header'}" 
-      :urlQuery="{query:$route.query, params:{slug:'header'}}">    
-    </DataFrame>
+      :urlQuery="{query:$route.query, params:{slug:'header'}}"
+    />    
     <Nuxt/>
   	<DataFrame
       :blockAttrs="{}" 
-      :urlQuery="{query:$route.query, params:{slug:'footer'}}">    
-    </DataFrame>
+      :urlQuery="{query:$route.query, params:{slug:'footer'}}"
+    />    
   </div>
 </template>
 <script>

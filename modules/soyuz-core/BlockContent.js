@@ -14,7 +14,7 @@ export default {
   computed: {
     attrs() { 
       const b = this.blockAttrs;
-      if(b.watch){
+      if(b.watch || store.soyuz_editable){
         /* Hack to run reactivity with store */
         b.tick = tick.value
         return Object.assign({}, transformer(b, b))
@@ -27,7 +27,7 @@ export default {
     const Comp = this.attrs.tagName || 'p';
     return (
       <Comp
-        onClick={(e) => action(e, this.attrs)}
+        onClick={(e) =>  action(e, this.attrs)}
         class={[this.attrs?.className]}
         domPropsInnerHTML={this.attrs?.content}></Comp>
     );

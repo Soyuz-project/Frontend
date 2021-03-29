@@ -46,10 +46,11 @@ export const S = {
     return out
   },
   set_blocks(a){
-    return a.value?.forEach((el)=>{
-      const res = S.get({source: el.attrs.source});
-      const index = res?.findIndex((e) => e.slug === el.attrs.source_slug);
-      s_p_v(res[index], el, el.attrs.source_path)
+    return a.value?.map((el)=>{
+      const target = S.get_collection({source:el.attrs.source, query_variables:{slug:el.attrs.source_slug}})
+      s_p_v(target[0], el, el.attrs.source_path, true)
+      console.log(target[0].blocks)
+      return target[0]
     })
   },
   mutation(a){

@@ -78,14 +78,14 @@ export default {
             path: '/',
             component: PageComponent,
             children: modalRoute,
-            props: route => ({urlQuery: { params:{slug:'home'}, query:route.query  }, blockAttrs:{}})
+            props: route => ({urlQuery: { params:{slug:'home'}, query:route.query  }, blockAttrs:{targetable:true}})
           },
           {
             name: 'page',
             path: '/:slug',
             component: PageComponent,
             children: modalRoute,
-            props: route => ({urlQuery: { params:route.params, query:route.query }, blockAttrs:{}})
+            props: route => ({urlQuery: { params:route.params, query:route.query }, blockAttrs:{targetable:true}})
           },
         ]
       );

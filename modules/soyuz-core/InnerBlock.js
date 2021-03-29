@@ -42,6 +42,7 @@ export default {
                       ...block, 
                       attrs: { 
                         ...block.attrs, 
+                        targetable: attrs.targetable,
                         source_slug:attrs.source_slug, 
                         collection_slug:attrs.collection_slug, 
                         collection_index:attrs.collection_index 

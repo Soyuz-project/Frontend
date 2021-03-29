@@ -1,7 +1,7 @@
 import { S, store, first, query_filters, p } from '~/plugins/soyuz-store-api';
 import { transformer } from '~/plugins/soyuz-walker';
 import { soyuzRouter } from '~/plugins/soyuz-actions-router';
-export const read = (event_slug) => {
+export const read = (event_slug, optimistic = false) => {
 	/*
 		Local storage query
 	*/
@@ -12,7 +12,12 @@ export const read = (event_slug) => {
 	}
 	res.event = first(local_get({source:'events', query_variables:{slug: event_slug}}))
 	res.event.query_variables = transformer(res.event.query_variables, '')
-	res.template = local_get(res.event)
+	// TODO this is not ready (now render template only from store)
+	if(optimistic){
+		res.template = S.get_collection({source:res.event.source, query_variables:res.event.query_variables})
+	}else{
+		res.template = local_get(res.event)
+	}
 	/*
 		update store
 	*/
@@ -42,18 +47,30 @@ export const resolve_mutation = (attrs) => {
 	
 	attrs.actions.map((action,i)=>{ 
 		const k = Object.keys(action)[0]
-	  	if(k == 'push_collection'){
+	  	if(k == 'push_collection' ){
+	  		if(attrs.output[i] && attrs.output[i].length){
+	  			attrs.output[i].map((el)=>{
+	  				console.log('mutation', {value:el, action:action, k:k, attrs:attrs})
+	  				
+					// mutation to local starage
+			  		local_push({value:el, source:action[k].source})
+			  	})
+	  		}
+	  	} else if (k =='set_blocks') {
 	  		if(attrs.output[i] && attrs.output[i].length){
 	  			attrs.output[i].map((el)=>{
 	  				
 					// mutation to local starage
-					
-			  		local_push({value:el, source:action[k].source})
+			  		local_push({value:el, source:'pages'})
 			  	})
 	  		}
 	  	}
 	}) 
+	/*
+		refresh frontend
+	*/
 	soyuzRouter.routerQuery({'tick':Math.random(10)})
+	
 	// try {
 	//      S.set({ source: 'message', value: {message:a.success, type:'success'}})
 	//    } catch (error) {
@@ -81,6 +98,7 @@ export const local_push = (a) => {
 	try {
 		let res = JSON.parse(window.localStorage.getItem(p(a.source)))
 		if(res){
+			// res props send data to push, source find data in store
 			S.push({value:a.value, res:res , unique:'slug'})
 		}else{
 			res = [a.value]

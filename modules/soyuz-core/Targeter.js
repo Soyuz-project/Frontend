@@ -23,10 +23,14 @@ export default {
         b.line4 = `left: ${rect?.left+rect?.w}px; top: ${rect?.top-20}px; width: 1px; height: ${rect?.h+40}px; borderLeft: 1px solid #668ec2;`;
         return Object.assign({}, b)
     },
+    render(){
+      this.blockAttrs.tick = tick.value
+      return store.soyuz_targeter ? true : false
+    }
   },
   render(h) {
     const slots = this.$scopedSlots.default();
-    return  (
+    return  this.render ? (
        <div class="targeter">
         <div class={['short-controlls', this.attrs?.className]} style={this.attrs.controlls}>{slots}</div>
         <div class="target-line" style={this.attrs.line1}></div>
@@ -34,7 +38,7 @@ export default {
         <div class="target-line" style={this.attrs.line3}></div>
         <div class="target-line" style={this.attrs.line4}></div>
       </div>
-    );
+    ) : <div></div>;
   },
 };
 

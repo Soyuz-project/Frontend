@@ -10,5 +10,5 @@
 }
 .targeter .short-controlls{    
   position: absolute;
-  width: auto,
+  width: max-content;
 }

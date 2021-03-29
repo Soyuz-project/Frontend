@@ -23,7 +23,8 @@ export default {
   render(h, { props: {blockAttrs, urlQuery} }) {
 
     storeRouter(urlQuery)
-    const res = read(blockAttrs.event || 'default-page')
+    const optimistic = store.soyuz_editable ? true : false
+    const res = read(blockAttrs.event || 'default-page', optimistic)
 
     return <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper`} style="border:1px dashed #eee; padding:3px; margin:5px">
       {res.collection.map((collection_unit, i) => {
@@ -31,7 +32,13 @@ export default {
           {
             res.template[0].blocks.map((block, j) => {
               block.attrs.collection_source = res.event.collection ? res.event.collection.source : null 
-              block.attrs = {...block.attrs, collection_index: i}
+              block.attrs = {
+                ...block.attrs, 
+                collection_index: i, 
+                targetable:blockAttrs.targetable,
+                source_slug: res.template[0].slug
+              }
+
               /* render block */
               return <inner-block key={i+j} blocks={block} />
             })

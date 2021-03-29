@@ -24,9 +24,9 @@ export const s_p_v = (o, v, p, insertLastArray) => {
     let e = Array.isArray(p) ? p : p.split("."),
       i;
     for (i = 0; i < e.length - 1; i++) o = o[e[i]];
-
-    if (i === e.length - 1 && !isNaN(e[i])) {
-      if (insertLastArray) o[e[i - 1]].splice(e[i], 0, "Lene");
+debugger
+    if (Array.isArray(o) || (i === e.length - 1 && !isNaN(e[i]))) {
+      if (insertLastArray && i < e.length) o.splice(e[i], 0, v);
       else o[e[i - 1]].push(v);
     } else {
       o[e[i]] = v;

@@ -1,6 +1,7 @@
 
 import { action, getClick } from '~/plugins/soyuz-targeter';
 import { S, store, setTick } from '~/plugins/soyuz-store-api';
+import { soyuzRouter } from '~/plugins/soyuz-actions-router';
 import { replace } from '~/plugins/soyuz-walker';
 export default {
   name: 'Input',
@@ -24,7 +25,7 @@ export default {
       tagName: this.blockAttrs.tagName || 'input',
       rows: this.blockAttrs.rows || 4,
       inputClass: 'td -pad-s -b -b-light-gray',
-      source: `${this.blockAttrs.collection_source}.${this.blockAttrs.collection_index}.${this.blockAttrs.collection_map.value}`
+      source: this.blockAttrs.collection_source ? this.by_colection() : this.by_path()
     };
   },
   computed: {
@@ -34,10 +35,17 @@ export default {
       },
       set(value) {
         setTick()
-        console.log('store', store)
         return S.set({ source: this.source, value })
       },
     },
+  },
+  methods: {
+    by_colection: function () {
+      return `${this.blockAttrs.collection_source}.${this.blockAttrs.collection_index}.${this.blockAttrs.collection_map}`
+    },
+    by_path: function () {
+      return `${this.blockAttrs.source_map.source}.${this.blockAttrs.source_map.source_slug}.${this.blockAttrs.source_map.source_path}.${this.blockAttrs.source_map.rest_path}`
+    }
   },
   render(h) {
     return  (
