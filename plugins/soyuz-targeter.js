@@ -3,7 +3,7 @@
 */
 import { runActions } from '~/plugins/soyuz-actions-api';
 import { S, store, setTick } from '~/plugins/soyuz-store-api';
-import { soyuzRouter } from '~/plugins/soyuz-actions-router';
+
 
 export const action = (e, attrs) => {
 	if(attrs.targetable && store.soyuz_targeter){
@@ -13,18 +13,15 @@ export const action = (e, attrs) => {
 	}else{
 		if(attrs.actions){
   			attrs.actions ? runActions(attrs) : null
-  			
 		}
 	}
 	setTick()
 	// e.preventDefault();
- 	// e.stopPropagation();
-
+  	e.stopPropagation();
 };
 
 /* capture every click */
 export const getClick = (e, attrs) =>{
-	console.log(attrs)
 	const box = calcOffset(e.target)
 	S.set({source:'native_click',value:{...attrs, box}})
 }

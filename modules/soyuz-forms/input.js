@@ -1,8 +1,6 @@
 
-import { action, getClick } from '~/plugins/soyuz-targeter';
-import { S, store, setTick } from '~/plugins/soyuz-store-api';
-import { soyuzRouter } from '~/plugins/soyuz-actions-router';
-import { replace } from '~/plugins/soyuz-walker';
+import { action } from '~/plugins/soyuz-targeter';
+import { modelProcess } from '~/plugins/postprocess-data';
 export default {
   name: 'Input',
   props: {
@@ -30,29 +28,12 @@ export default {
   computed: {
     value: {
       get() {
-        const source = this.get_source(this.blockAttrs?.source_map)
-        return S.get({ source: source })
+        return modelProcess(this.blockAttrs, 'get')
       },
       set(value) {
-        setTick()
-        const source = this.get_source(this.blockAttrs?.source_map)
-        return S.set({ source: source, value })
+        return modelProcess(this.blockAttrs, 'set', value)
       },
     },
-  },
-  methods: {
-    get_source: function (source_map) {
-      if(source_map.collection){
-        return `${this.blockAttrs.collection_source}.${this.blockAttrs.collection_index}.${this.blockAttrs.source_map.collection}`
-      }
-      if(source_map.source_path){
-        return `${this.blockAttrs.source_map.source}.${this.blockAttrs.source_map.source_slug}.${this.blockAttrs.source_map.source_path}.${this.blockAttrs.source_map.rest_path}`
-      }
-      if(source_map.rest_path){
-       //  console.log('by click', store)
-        return `${this.blockAttrs.source_map.source}.${this.blockAttrs.source_map.source_slug}.${this.blockAttrs.source_map.source_path}.${this.blockAttrs.source_map.rest_path}`
-      }
-    }
   },
   render(h) {
     return  (

@@ -135,10 +135,7 @@ export const default_app_pages =
         "className": "-d10",
         "label": "Content",
         "source_map": {
-          "source":"pages",
-          "source_slug": "0",
-          "source_path": "blocks.2",
-          "rest_path": "attrs.content",
+          "source_path": "pages.0.blocks.2.attrs.content",
         }
       }
     } 
