@@ -52,8 +52,6 @@ export const resolve_mutation = (attrs) => {
 	  	if(k == 'push_collection' ){
 	  		if(attrs.output[i] && attrs.output[i].length){
 	  			attrs.output[i].map((el)=>{
-	  				console.log('mutation', {value:el, action:action, k:k, attrs:attrs})
-	  				
 					// mutation to local starage
 			  		local_push({value:el, source:action[k].source})
 			  	})
