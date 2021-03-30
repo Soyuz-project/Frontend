@@ -140,6 +140,13 @@ export const default_app_pages =
       }
     } 
   ]
+},
+{
+  "name": "App loader info",
+  "slug": "soyuz-app-loader-info",
+  "plugin":'soyuz-app-loader',
+  "type": "page",
+  "blocks": []
 }
 ] 
 

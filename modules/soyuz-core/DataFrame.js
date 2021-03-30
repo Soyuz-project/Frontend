@@ -25,7 +25,7 @@ export default {
     storeRouter(urlQuery)
     const optimistic = store.soyuz_editable ? true : false
     const res = read(blockAttrs.event || 'default-page', optimistic)
-    return <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper`}>
+    return res.template.length ? <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper`}>
       {res.collection.map((collection_unit, i) => {
         return (<div class={blockAttrs.className}>
           {
@@ -45,7 +45,7 @@ export default {
           }
         </div>)
       })}
-    </div>
+    </div> : <div>Page not found</div>
 
     
   },

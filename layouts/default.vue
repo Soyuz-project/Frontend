@@ -12,8 +12,8 @@
   </div>
 </template>
 <script>
-  import {default_app_pages, default_app_events} from '~/default-soyuz-app';
-  import { local_get, local_set} from '~/plugins/soyuz-resolver';
+  import { default_app_pages, default_app_events } from '~/default-soyuz-app';
+  import { local_get, local_set } from '~/plugins/soyuz-resolver';
 	export default {
   	name: 'Layout',
   	components: {
@@ -23,14 +23,19 @@
       /* 
         MOCKUP MODE, Initial data 
       */
-
+      let counter = 0
       /* check default events or register stored events */ 
       if(!local_get({source:"events"})){
         local_set({source:"events", value: default_app_events})
+        counter++;
       }
       /* check default pages */
       if(!local_get({source:"pages"})){
         local_set({source:"pages", value: default_app_pages})
+        counter++;
+      }
+      if(counter == 2){
+        location.reload()
       }
     }
   }

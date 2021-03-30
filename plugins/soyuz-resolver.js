@@ -3,6 +3,7 @@ import { transformer } from '~/plugins/soyuz-walker';
 import { soyuzRouter } from '~/plugins/soyuz-actions-router';
 import { refreshBlockPaths } from '~/plugins/soyuz-targeter';
 export const read = (event_slug, optimistic = false) => {
+
 	/*
 		Local storage query
 	*/
@@ -12,6 +13,10 @@ export const read = (event_slug, optimistic = false) => {
 		collection:[{}]
 	}
 	res.event = first(local_get({source:'events', query_variables:{slug: event_slug}}))
+	// if readevent dont have query
+	if(!res.event?.query_variables){
+		return res
+	} 
 	res.event.query_variables = transformer(res.event.query_variables, '')
 	// TODO this is not ready (now render template only from store)
 	if(optimistic){
