@@ -217,8 +217,8 @@
 	.-td-center > *,
 	.-td-middle > * {
 		justify-content: center;
-		align-items: center;
-		text-align: center;
+		/*align-items: center;
+		text-align: center;*/
 	}
 	.-right,
 	.-td-right .td,
