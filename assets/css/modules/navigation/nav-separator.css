@@ -1,0 +1,23 @@
+/* navbar separate by #ccc lines */
+.-nav-h-separator,
+.-td-nav-h-separator > *{
+	position: relative;
+}
+.-nav-h-separator:first-of-type::before,
+.-td-nav-h-separator > *:first-of-type::before{
+	content: initial;
+}
+.-nav-h-separator::before,
+.-td-nav-h-separator > *::before{
+	content: '';
+	position: absolute;
+	width: 1px;
+	height: 100%;
+	background-color: #ccc;
+	z-index: 1;
+	top:0;
+}
+.-nav-v-separator,
+.-td-nav-v-separator > *{
+	border-bottom: 1px solid #ccc;
+}

@@ -1,15 +1,18 @@
 .targeter{
-  position: absolute;
-  top:0;
-  left:0;
+	position: absolute;
+	top:0;
+	left:0;
 }
 .targeter .target-line{
-  position: absolute;
-  z-index: 600;
-  pointer-events: none;
+	position: absolute;
+	z-index: 600;
+	pointer-events: none;
 }
 .targeter .short-controlls{    
-  position: absolute;
-  width: max-content;
-  z-index: 700;
+	position: absolute;
+	width: max-content;
+	z-index: 700;
+}
+.targetable{
+	outline:1px dashed #00000044;
 }

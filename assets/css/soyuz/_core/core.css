@@ -73,7 +73,8 @@
 		clear:both;
 	}
 	input{
-		width:100%
+		width:100%;
+		height: 2.3vw;
 	}
 
 /*
@@ -217,8 +218,9 @@
 	.-td-center > *,
 	.-td-middle > * {
 		justify-content: center;
+		text-align: center
 		/*align-items: center;
-		text-align: center;*/
+		*/
 	}
 	.-right,
 	.-td-right .td,

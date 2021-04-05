@@ -16,6 +16,9 @@
 
 body,
 button,
-input,select,textarea {
+input,
+select,
+textarea,
+li {
   font-family: 'Roboto-Condensed', Arial, sans-serif;
 }

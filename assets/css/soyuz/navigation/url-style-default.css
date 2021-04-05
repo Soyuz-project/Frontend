@@ -23,16 +23,5 @@
 		text-decoration: none;
 	}
 
-	.-nav-separator > *:first-of-type::before{
-		content: initial;
-	}
-	.-nav-separator > *::before{
-		content: '';
-		position: absolute;
-		width: 1px;
-		height: 100%;
-		background-color: #ccc;
-		z-index: 1;
-		top:0;
-	}
+	
 	
