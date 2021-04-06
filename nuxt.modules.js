@@ -11,18 +11,14 @@ export const modules = {
   coreparagraph: () => import(/* webpackChunkName: "content" */ '~/modules/soyuz-core/BlockContent.js'),
   coreseparator: () => import(/* webpackChunkName: "separator" */ '~/modules/gutenberg-blocks/Separator.js'),
   corespacer: () => import(/* webpackChunkName: "separator" */ '~/modules/gutenberg-blocks/Spacer.js'),
-  /* Sojuz display blocks */
+  
+  /* Soyuz custom */
   coresvg: () => import(/* webpackChunkName: "image" */ '~/modules/image/soyuzSvg.js'),
-  
-
-  /* Render sojuz data */
-  
-  BlockContent: () => import(/* webpackChunkName: "default" */ '~/modules/soyuz-core/BlockContent.js'),
   DataFrame: () => import(/* webpackChunkName: "default" */ '~/modules/soyuz-core/DataFrame.js'),
   Targeter: () => import(/* webpackChunkName: "targeter" */ '~/modules/soyuz-core/Targeter.js'),
 
+  /* Soyuz forms */
   formfile: () => import(/* webpackChunkName: "form" */ '~/modules/soyuz-forms/file'), 
   forminput: () => import(/* webpackChunkName: "form" */ '~/modules/soyuz-forms/input.js'),
   formselectclass: () => import(/* webpackChunkName: "form" */ '~/modules/soyuz-forms/select-class.js'),
-
 };

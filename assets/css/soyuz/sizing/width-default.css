@@ -40,11 +40,17 @@
 	.-fix{
 		position:fixed;
 	}
+	.-abs{
+		position:absolute;
+	}
 	.-abs-right{
 		right:0;
 	}
 	.-abs-left{
 		left:0;
+	}
+	.-abs-bottom{
+		bottom:0;
 	}
 	.-h-full{
 		height:100%;

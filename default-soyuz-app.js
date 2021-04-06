@@ -56,7 +56,7 @@ export const default_app_pages =
       "attrs": {
         "tagName":"h2",
         "className": "-tight -left -middle",
-        "content": "Nocode sandbox of Soyuz project"
+        "content": "Nocode sandbox of Soyuz project!"
       }
     },
     {
@@ -99,7 +99,7 @@ export const default_app_pages =
       "blockName": "DataFrame",
       "plugin":'soyuz-app-loader',
       "attrs": {
-        "className": "tr -gap-s -left",
+        "className": "tr -gap-s -left -pad-s",
         "event": "soyuz-app-loader-init-event"
       }
     }
@@ -114,7 +114,7 @@ export const default_app_pages =
       "blockName": "form/file",
       "plugin":'soyuz-app-loader',
       "attrs": {
-        "className": "-b -b-light-gray -pad-s -hvr-invert -rel -ov-h",
+        "className": "-btn-bg -b -b-light-gray -pad-s -hvr-invert -rel -ov-h",
         "actions":[
           {"run_event": "soyuz-app-loader-process-event"}
         ]
@@ -125,8 +125,8 @@ export const default_app_pages =
       "blockName": "core/button",
       "plugin":'soyuz-app-loader',
       "attrs": {
-        "className": "-left -b -b-light-gray -pad-s -hvr-invert",
-        "content":"x"
+        "className": "-btn-bg -left -b -b-light-gray -pad-s -hvr-invert",
+        "content":"X"
       }
     },
     {

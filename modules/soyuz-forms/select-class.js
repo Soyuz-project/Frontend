@@ -54,6 +54,7 @@ export default {
         a.push(item.value)
         this.value = a.join(' ')
       }
+      store['soyuz_native_dropdown'] = null
     }
     const label = (ba) => {
       const s = selected(ba);

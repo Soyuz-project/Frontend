@@ -12,7 +12,7 @@
 
 	/* hover - inverse */
 	.-hvr-invert:hover, .-td-hvr-invert > *:hover {
-		filter: invert(.75);
+		filter: invert(.70);
 		cursor: pointer;
 		text-decoration: none;
 	}

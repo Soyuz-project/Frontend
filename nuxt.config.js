@@ -36,6 +36,8 @@ export default {
     '~/assets/css/modules/layout/scrollbar-thin.css',
     '~/assets/css/modules/layout/targeter.css',
     '~/assets/css/modules/navigation/nav-separator.css',
+    '~/assets/css/modules/navigation/btn-decorator-default.css',
+    
 
     '~/assets/css/fonts/roboto-condensed-all.css',
   ],
