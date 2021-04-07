@@ -72,12 +72,14 @@
 	.-clear, .td{
 		clear:both;
 	}
+/*
+	Forms
+*/
 	input{
 		width:auto;
-		height: 2.3vw;
 		box-sizing: initial;
 	}
-	input:focus{
+	input:focus, textarea:focus{
 		outline:1px solid #999;
 		border:1px solid #999;
 	}

@@ -20,5 +20,6 @@ export const modules = {
   /* Soyuz forms */
   formfile: () => import(/* webpackChunkName: "form" */ '~/modules/soyuz-forms/file'), 
   forminput: () => import(/* webpackChunkName: "form" */ '~/modules/soyuz-forms/input.js'),
-  formselectclass: () => import(/* webpackChunkName: "form" */ '~/modules/soyuz-forms/select-class.js'),
+  formtextarea: () => import(/* webpackChunkName: "form" */ '~/modules/soyuz-forms/textarea.js'),
+  formselectclass: () => import(/* webpackChunkName: "targeter" */ '~/modules/soyuz-forms/select-class.js'),
 };

@@ -151,7 +151,7 @@
 		font-size: calc(12.5px + 0.45vw);
 		line-height: 150%;
 	}
-	p, h5, .-default, a, span, code, li{
+	p, h5, .-default, a, span, code, li, label{
 		font-size: calc(8px + 0.45vw);
 		line-height: 150%;
 	}

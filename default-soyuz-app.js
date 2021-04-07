@@ -115,30 +115,13 @@ export const default_app_pages =
       "plugin":'soyuz-app-loader',
       "attrs": {
         "className": "-btn-bg -b -b-light-gray -pad-s -hvr-invert -rel -ov-h",
+        "content":"Load APP",
         "actions":[
           {"run_event": "soyuz-app-loader-process-event"}
         ]
       }
       
-    },
-    {
-      "blockName": "core/button",
-      "plugin":'soyuz-app-loader',
-      "attrs": {
-        "className": "-btn-bg -left -b -b-light-gray -pad-s -hvr-invert",
-        "content":"X"
-      }
-    },
-    {
-      "blockName": "form/input",
-      "attrs": {
-        "className": "-b -b-light-gray -pad-s",
-        "label": "Content",
-        "source_map": {
-          "source_path": "pages.0.blocks.2.attrs.content",
-        }
-      }
-    } 
+    }
   ]
 },
 {
