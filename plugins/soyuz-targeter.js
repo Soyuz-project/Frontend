@@ -3,19 +3,24 @@
 */
 import { runActions } from '~/plugins/soyuz-actions-api';
 import { S, store, setTick } from '~/plugins/soyuz-store-api';
-
+import { soyuzRouter } from '~/plugins/soyuz-actions-router';
 
 export const action = (e, attrs) => {
 	if(attrs.targetable && store.soyuz_targeter){
 		e.preventDefault();
   		e.stopPropagation();
 		getClick(e, attrs)
+		/*
+		refresh frontend
+		*/
+		soyuzRouter.routerQuery({'tick':Math.random(10)})
 	}else{
 		if(attrs.actions){
   			attrs.actions ? runActions(attrs) : null
 		}
+		setTick()
 	}
-	setTick()
+	
 	// e.preventDefault();
   	e.stopPropagation();
 };

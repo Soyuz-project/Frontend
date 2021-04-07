@@ -73,7 +73,7 @@
 		clear:both;
 	}
 	input{
-		width:100%;
+		width:auto;
 		height: 2.3vw;
 		box-sizing: initial;
 	}
