@@ -36,11 +36,7 @@ export default {
     },
   },
   render(h) {
-    return  (
-      <div onClick={(e) => action(e, this.blockAttrs)} class={[this.blockAttrs?.className]}>
-        <input v-model={this.value} />
-      </div>
-    );
+    return  <input v-model={this.value} onClick={(e) => action(e, this.blockAttrs)} class={[this.blockAttrs?.className]} />
   },
 };
 

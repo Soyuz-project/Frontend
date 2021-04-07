@@ -29,19 +29,25 @@ export default {
       {res.collection.map((collection_unit, i) => {
         return (<div class={blockAttrs.className}>
           {
-            res.template[0].blocks.map((block, j) => {
-              block.attrs.collection_source = res.event.collection ? res.event.collection.source : null 
-              block.attrs = {
-                ...block.attrs, 
-                collection_index: i, 
-                targetable:blockAttrs.targetable,
-                source_slug: res.template[0].slug,
-                source:res.event.source
-              }
+            res.template.map((tpl)=>{
 
-              /* render block */
-              return <inner-block key={i+j} blocks={block} />
+
+              return tpl.blocks.map((block, j) => {
+                block.attrs.collection_source = res.event.collection ? res.event.collection.source : null 
+                block.attrs = {
+                  ...block.attrs, 
+                  collection_index: i, 
+                  targetable:blockAttrs.targetable,
+                  source_slug: res.template[0].slug,
+                  source:res.event.source
+                }
+
+                /* render block */
+                return <inner-block key={i+j} blocks={block} />
+              })
+
             })
+
           }
         </div>)
       })}
