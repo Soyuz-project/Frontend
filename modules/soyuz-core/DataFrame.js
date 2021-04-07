@@ -29,9 +29,9 @@ export default {
     const optimistic = store.soyuz_editable ? true : false
     const res = read(blockAttrs.event || 'default-page', optimistic)
     return res.template.length ? <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper ${blockAttrs.targetable ? 'targetable' : null}`}>
-      
-      /* check collection */
-      {res.collection.map((collection_unit, i) => {
+      {
+        /* check collection */
+        res.collection.map((collection_unit, i) => {
         return (<div class={blockAttrs.className}>
           {
             res.template.map((tpl)=>{
