@@ -1,7 +1,7 @@
 <template>
   <div :class="[blockAttrs.className]">
       <input id="file" @change="processFile($event)" type="file" class="file" />
-      <label for="file">loadfile</label>
+      <label for="file">{{content}}</label>
       <div v-if="message" class="field-message">{{ message }}</div>
   </div>
 </template>
@@ -18,6 +18,7 @@ export default {
   },
   data: function() {
     return {
+      content: this.blockAttrs.content || "Load File",
       fileinput: {},
       message: false,
     };

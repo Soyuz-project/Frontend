@@ -9,6 +9,11 @@ export default {
       default: () => ({}),
     },
   },
+  data() {
+    return {
+      rows: this.blockAttrs.rows || 4,
+    };
+  },
   computed: {
     value: {
       get() {
@@ -20,7 +25,7 @@ export default {
     },
   },
   render(h) {
-    return  <input v-model={this.value} onClick={(e) => action(e, this.blockAttrs)} class={[this.blockAttrs?.className]} />
+    return  <textarea v-model={this.value} onClick={(e) => action(e, this.blockAttrs)} class={[this.blockAttrs?.className]} rows={this.rows} />
   },
 };
 

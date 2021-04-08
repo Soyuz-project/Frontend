@@ -12,15 +12,24 @@ export const read = (event_slug, optimistic = false) => {
 		template: [],
 		collection:[{}]
 	}
+
 	res.event = first(local_get({source:'events', query_variables:{slug: event_slug}}))
+
 	// if readevent dont have query
 	if(!res.event?.query_variables){
 		return res
 	} 
+
 	res.event.query_variables = transformer(res.event.query_variables, '')
+
 	// TODO this is not ready (now render template only from store)
+	// exerption1: optimistic is forced true when editable mode is true
 	if(optimistic){
 		res.template = S.get_collection({source:res.event.source, query_variables:res.event.query_variables})
+		// if optimistic have empty result try load data 
+		if(!res.template.length){
+			res.template = local_get(res.event)
+		}
 		refreshBlockPaths(res.template);
 	}else{
 		res.template = local_get(res.event)

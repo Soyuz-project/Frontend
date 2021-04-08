@@ -72,8 +72,16 @@
 	.-clear, .td{
 		clear:both;
 	}
+/*
+	Forms
+*/
 	input{
-		width:100%
+		width:auto;
+		box-sizing: initial;
+	}
+	input:focus, textarea:focus{
+		outline:1px solid #999;
+		border:1px solid #999;
 	}
 
 /*
@@ -217,8 +225,9 @@
 	.-td-center > *,
 	.-td-middle > * {
 		justify-content: center;
+		text-align: center
 		/*align-items: center;
-		text-align: center;*/
+		*/
 	}
 	.-right,
 	.-td-right .td,

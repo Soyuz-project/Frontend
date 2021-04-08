@@ -16,11 +16,11 @@ export default {
         const c = S.get({source:'native_click'})
         b.click = c
         const rect = c?.box;
-        b.controlls = `top: ${rect?.top + b.top || 0}px; left: ${rect?.left - 1}px; border: 1px solid #668ec2;`;
-        b.line1 = `top:${rect?.top - 1}px; left:${rect?.left-20}px; width: ${rect?.w+40}px; height: 1px; border-top: 1px solid #668ec2;`;
-        b.line2 = `top: ${rect?.top+rect?.h}px; left: ${rect?.left-20}px; width: ${rect?.w+40}px; height: 1px; borderTop: 1px solid #668ec2;`;  
-        b.line3 = `left: ${rect?.left - 1}px; top: ${rect?.top-20}px; width: 1px; height: ${rect?.h+40}px; borderLeft: 1px solid #668ec2;`;
-        b.line4 = `left: ${rect?.left+rect?.w}px; top: ${rect?.top-20}px; width: 1px; height: ${rect?.h+40}px; borderLeft: 1px solid #668ec2;`;
+        b.controlls = `top: ${rect?.top  || 0}px; left: ${rect?.left - 1}px;`;
+        b.line1 = `top:${rect?.top - 1}px; left:${rect?.left-20}px; width: ${rect?.w+40}px; height: 1px; border-top: 1px dashed #668ec2;`;
+        b.line2 = `top: ${rect?.top+rect?.h}px; left: ${rect?.left-20}px; width: ${rect?.w+40}px; height: 1px; borderTop: 1px dashed #668ec2;`;  
+        b.line3 = `left: ${rect?.left - 1}px; top: ${rect?.top-20}px; width: 1px; height: ${rect?.h+40}px; borderLeft: 1px dashed #668ec2;`;
+        b.line4 = `left: ${rect?.left+rect?.w}px; top: ${rect?.top-20}px; width: 1px; height: ${rect?.h+40}px; borderLeft: 1px dashed #668ec2;`;
         return Object.assign({}, b)
     },
     render(){

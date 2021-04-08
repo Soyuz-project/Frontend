@@ -18,35 +18,42 @@ export default {
     urlQuery: {
       type: Object,
       default: () => ({}),
-    }
+    },
   },
   render(h, { props: {blockAttrs, urlQuery} }) {
-
+    
+    /* update global router scope */
     storeRouter(urlQuery)
+
+    /* set forced optimistic responces if application is in editable mode */
     const optimistic = store.soyuz_editable ? true : false
     const res = read(blockAttrs.event || 'default-page', optimistic)
-    return res.template.length ? <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper`}>
-      {res.collection.map((collection_unit, i) => {
+    return res.template.length ? <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper ${blockAttrs.targetable ? 'targetable' : null}`}>
+      {
+        /* check collection */
+        res.collection.map((collection_unit, i) => {
         return (<div class={blockAttrs.className}>
           {
-            res.template[0].blocks.map((block, j) => {
-              block.attrs.collection_source = res.event.collection ? res.event.collection.source : null 
-              block.attrs = {
-                ...block.attrs, 
-                collection_index: i, 
-                targetable:blockAttrs.targetable,
-                source_slug: res.template[0].slug,
-                source:res.event.source
-              }
+            res.template.map((tpl)=>{
 
-              /* render block */
-              return <inner-block key={i+j} blocks={block} />
+              /* render template */
+              return tpl.blocks.map((block, j) => {
+                block.attrs.collection_source = res.event.collection ? res.event.collection.source : null 
+                block.attrs = {
+                  ...block.attrs, 
+                  collection_index: i, 
+                  targetable:blockAttrs.targetable,
+                  source_slug: res.template[0].slug,
+                  source:res.event.source
+                }
+
+                /* render block */
+                return <inner-block key={i+j} blocks={block} />
+              })
             })
           }
         </div>)
       })}
-    </div> : <div>Page not found</div>
-
-    
+    </div> : <h3 class="-pad-m">Page not found</h3> 
   },
 };
