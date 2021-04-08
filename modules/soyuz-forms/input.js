@@ -31,9 +31,7 @@ export default {
         return modelProcess(this.blockAttrs, 'get')
       },
       set(value) {
-        setTick()
-        console.log(store)
-        return S.set({ source: this.source, value })
+        return modelProcess(this.blockAttrs, 'set', value)
       },
     },
   },

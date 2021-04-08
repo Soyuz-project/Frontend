@@ -12,14 +12,16 @@ const condition = (v1, v2, c) => {
 };
 
 export const checkDisplay = (data, attrs) => {
-	if(attrs.conditionalLogic?.length){
-		let guardian = attrs.conditionalLogic.some((el)=>{
+	if(attrs.conditionalLogic && attrs.conditionalLogic.length){
+		let guardian = true
+		attrs.conditionalLogic.map((el)=>{
 			const res = transformer(el,'');
-			console.log(res)
 			// // if defined key exist
-	  	return res.value != res.key
+			if(res.value && res.key){
+				guardian = false
+			}
+			// guardian != res.value && res.key
 		})
-		console.log('t',guardian)
 		if(guardian){
 			return ''
 		}
