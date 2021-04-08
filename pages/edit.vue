@@ -78,7 +78,7 @@
                 class="-b -b-s -pad-s -hvr-brightness"
                 style="width: 100%; text-align: left;"
                 v-text="page.name"
-                @click="$router.push({name:'page',slug:page.slug})"
+                @click="$router.push({name:'page',params: {slug:page.slug}})"
               ></button>
               <div class="space -gap-s"></div>
             </div>
