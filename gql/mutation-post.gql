@@ -1,0 +1,9 @@
+mutation ($title: String!, $slug: String!, $user: ID, $blocks: JSON ) {
+  createPost(input: { data: { name: $title, slug: $slug, blocks: $blocks, user: $user } }) {
+    post {
+      id
+      name
+      blocks
+    }
+  }
+}

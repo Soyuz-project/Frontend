@@ -10,8 +10,10 @@
     "gh-pages": "nuxt generate -c nuxt.config-ghpages; gh-pages -t -d dist"
   },
   "dependencies": {
+    "@nuxtjs/apollo": "^4.0.1-rc.5",
     "core-js": "^3.8.3",
     "expr-eval": "^2.0.2",
+    "graphql-tag": "^2.11.0",
     "nuxt": "^2.14.12"
   },
   "devDependencies": {

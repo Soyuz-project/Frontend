@@ -1,0 +1,12 @@
+ query getPages($where: JSON) {
+   	pages(where: $where) {
+    	id
+    	name
+    	plugin
+			slug
+			blocks
+      user {
+        id
+      }
+  	}
+  }

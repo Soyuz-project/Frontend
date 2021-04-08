@@ -108,10 +108,22 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-  
+    '@nuxtjs/apollo',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  // apollo client
+  apollo: {
+    clientConfigs: {
+      // you can setup multiple clients with arbitrary names
+      default: {
+        // required
+        httpEndpoint: 'http://185.243.54.202:1337/graphql',
+
+      },
+    }
+  },
 }
