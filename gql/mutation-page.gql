@@ -1,0 +1,9 @@
+mutation ($title: String!, $slug: String!, $user: ID, $blocks: JSON ) {
+  createPage(input: { data: { name: $title, slug: $slug, blocks: $blocks, user: $user } }) {
+    page {
+      id
+      name
+      blocks
+    }
+  }
+}

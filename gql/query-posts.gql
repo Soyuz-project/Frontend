@@ -1,0 +1,10 @@
+query getPages($where: JSON) {
+  posts(where: $where) {
+    id
+    name
+    blocks
+    user {
+      id
+    }
+  }
+}
