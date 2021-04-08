@@ -31,7 +31,7 @@ export default {
     const Block = modules[compName];
     return Block ? checkDisplay(() =>
       <Block
-        blockAttrs={attrs}
+        blockAttrs={{...attrs,blockName}}
         scopedSlots={{
           default: innerBlocks 
             ? () =>

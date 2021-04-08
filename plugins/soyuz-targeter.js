@@ -47,24 +47,16 @@ const calcOffset = (el) => {
 /* refreshBlockPaths block path properties */
 export const refreshBlockPaths = (attrs) => {
 	const p = S.get({source:'pages',query_variables:{slug:attrs.source_slug}})[0]
-	p.blocks = p.blocks.map((b, i) => genBlockPath(b, [i]))
+	p.blocks = p.blocks.map((b, i) => genBlockPath(b, 'blocks.'+i))
 	S.push_collection({source:'pages', value:[p], unique:'slug'})
 };
 
 /* generate block path properties */
-export const genBlockPath = (block, __blockPath = []) => {
+export const genBlockPath = (block, __blockPath = 'blocks') => {
   return {
     ...block,
     attrs: { ...block?.attrs, __blockPath },
-    ...(block.innerBlocks && { innerBlocks: block.innerBlocks.map((b, i) => genBlockPath(b, [...__blockPath, i])) })
+    ...(block.innerBlocks && { innerBlocks: block.innerBlocks.map((b, i) => genBlockPath(b, __blockPath+'.innerBlocks.'+i)) })
   }
 };
 
-/* sync path to gutenberg model */
-export const fixPath = (p) => {
-  return 'blocks.'+p
-    .flatMap((el) => {
-      return [el, 'innerBlocks'];
-    })
-    .slice(0, -1);
-};

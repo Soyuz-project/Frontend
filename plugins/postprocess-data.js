@@ -11,8 +11,9 @@ export const modelProcess = (b, type, value) => {
     res.path = `${b.collection_source}.${b.collection_index}.${b.source_map.collection}`
   } else
   if(b?.source_map.click){
-   	res.target = store.soyuz_native_click ? first(S.get_collection({source:store.soyuz_native_click.source, query_variables:{slug:store.soyuz_native_click.source_slug}})) : {}
-	res.path = `${fixPath(store.soyuz_native_click?.__blockPath || [])}.attrs.${b?.source_map.click}`
+   	res.target = store.soyuz_native_click ? first(S.get_collection({source:store.soyuz_native_click.source, query_variables:{slug:store.soyuz_native_click.source_slug}})) : {};
+    res.path = `${store.soyuz_native_click?.__blockPath}.attrs.${b?.source_map.click}`;
+	// res.path = `${fixPath(store.soyuz_native_click?.__blockPath || [])}.attrs.${b?.source_map.click}`
   } else
    // map with strage by path
   if(b?.source_map.source_path){
