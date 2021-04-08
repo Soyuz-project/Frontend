@@ -22,9 +22,11 @@ export default {
     },
   },
   render(h) {
+    const slots = this.$scopedSlots.default();
     return  (
       <div onClick={(e) => action(e, this.attrs)} class={[this.attrs?.className]}>
-      	<span>{this.attrs?.content}</span>
+        {slots ? slots : null}
+      	{this.attrs?.content && <span>{this.attrs?.content}</span>}
       </div>
     );
   },

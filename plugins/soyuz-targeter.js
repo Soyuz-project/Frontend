@@ -17,13 +17,14 @@ export const action = (e, attrs) => {
 	}else{
 		if(attrs.actions){
   			attrs.actions ? runActions(attrs) : null
+  			e.stopPropagation();
 		}
 		setTick()
 	}
 	
-	// e.preventDefault();
-  	e.stopPropagation();
+
 };
+
 
 /* capture every click */
 export const getClick = (e, attrs) =>{
