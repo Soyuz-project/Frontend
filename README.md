@@ -35,3 +35,7 @@ yarn gh-pages
 ```
 
 This will generate static version of Soyuz Frontend with router base set to: `/Frontend` which should be changed inside `nuxt.config-ghpages.js` file if using custom domain, or different repository name.
+
+## Wiki
+
+[Wiki](https://github.com/Soyuz-project/Frontend/wiki)

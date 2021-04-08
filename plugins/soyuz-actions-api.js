@@ -27,7 +27,7 @@ export const runActions = (attrs) => {
     /*
       Launch action
     */
-    console.log(attrs)
+    console.log('action', k, attrs)
     try {
       attrs.output.push(RegAct[k](v));
     } catch (err) {
