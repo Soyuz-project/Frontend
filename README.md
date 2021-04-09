@@ -45,3 +45,21 @@ This will generate static version of Soyuz Frontend with router base set to: `/F
 ## Wiki
 
 [Wiki](https://github.com/Soyuz-project/Frontend/wiki)
+
+## Roadmap
+
+- [x] Soyuz project frontend engine 
+- [x] Apploader (Application)
+- [ ] GUI builder (Application)
+- [ ] Aplications manager (Application)
+- [ ] Events manager (Application)
+- [ ] Ecommerce module (Application)
+- [ ] STRAPI integration
+- [ ] Documentation
+- [ ] Ecommerce extended process, invoices, cash flow, store (Application)
+- [ ] Soyuz elasticsarch backend service
+- [ ] Soyuz elasticsarch backend integration 
+- [ ] Elasticsarch statement api
+- [ ] WordPerss integration
+- [ ] Woocommerce integration
+- [ ] Realse appscript with ver 2.0
