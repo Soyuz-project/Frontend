@@ -12,12 +12,15 @@ Extremely light, engine core below 10kb
 
 ![Image of Soyuz project frontend endgine](https://raw.githubusercontent.com/Soyuz-project/Frontend/main/main_shemat.png)
 
+```
 ╭──────────────────╮
 │               ○○○│
 ├──────────────────┤
 │                  │
 │                  │
 └──────────────────┘
+```
+
 ## Build Setup
 
 ```bash
