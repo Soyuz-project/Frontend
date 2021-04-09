@@ -13,12 +13,24 @@ Extremely light, engine core below 10kb
 ![Image of Soyuz project frontend endgine](https://raw.githubusercontent.com/Soyuz-project/Frontend/main/main_shemat.png)
 
 ```
-╭──────────────────╮
-│               ○○○│
-├──────────────────┤
-│                  │
-│                  │
-└──────────────────┘
+
+   SOYUZ
+   app mockup builder                      Based on GUTENBERG
+                                           blocks shema 
+ ┌─────────┐                               (called as appscript)
+ │         │
+ ├─────────┤
+ └─────────┘   ┌──┐ ┌──────────────╮       ╭───────────────────────────────╮
+               │  │ │           ○○○│       │                            ○○○│
+               ├──┤ ├──────────────┤       ├───────────────────────────────┤
+   ┌─────────┐ │  │ │              │       │ {                             │
+   │         │ └──┘ │              │       │    blockName: core/paragraph  │
+   │         │ ┌────┘              │       │    content: Hello world!      │
+   └─────────┘ │                   │       │    innerBlocks: [...]         │
+   ┌───────────┘                   │       │ }                             │
+   │                               │       │                               │
+   │                               │       │                               │
+   └───────────────────────────────┘       └───────────────────────────────┘
 ```
 
 ## Build Setup
