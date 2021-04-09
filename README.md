@@ -7,7 +7,7 @@ alliance between backends services, sourcing design, and nice to have frontend i
 
 Extremely light, engine core below 10kb
 
-![Image of Soyuz project frontend endgine](https://github.com/Soyuz-project/Frontend/blob/ca5bc9b1863f04544d1ad0f010d7ff39c9070a2d/main_shemat.png)
+![Image of Soyuz project frontend endgine](https://raw.githubusercontent.com/Soyuz-project/Frontend/main/main_shemat.png)
 
 ## Build Setup
 
