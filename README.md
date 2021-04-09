@@ -10,18 +10,16 @@ Extremely light, engine core below 10kb
 ## Project areas
 
 
-![Image of Soyuz project frontend endgine](https://raw.githubusercontent.com/Soyuz-project/Frontend/main/main_shemat.png)
-
 ```
 
-   SOYUZ
-   app mockup builder                      Based on GUTENBERG
-                                           blocks shema 
- ┌─────────┐                               (called as appscript)
+   
+   SOYUZ                                   Based on GUTENBERG
+   app mockup builder                      blocks shema 
+                                           (called as appscript)
+ ╭─────────┐ 
  │         │
- ├─────────┤
- └─────────┘   ┌──┐ ┌──────────────╮       ╭───────────────────────────────╮
-               │  │ │           ○○○│       │                            ○○○│
+ ├─────────┤   ┌──┐ ┌──────────────╮       ╭───────────────────────────────╮
+ └─────────┘   │  │ │           ○○○│       │                            ○○○│
                ├──┤ ├──────────────┤       ├───────────────────────────────┤
    ┌─────────┐ │  │ │              │       │ {                             │
    │         │ └──┘ │              │       │    blockName: core/paragraph  │
@@ -31,6 +29,24 @@ Extremely light, engine core below 10kb
    │                               │       │                               │
    │                               │       │                               │
    └───────────────────────────────┘       └───────────────────────────────┘
+
+
+
+   With frontend events triggered          And pluggable 
+   on the backend side                     shema parts (appscript)
+
+                                           ┌──────────────┐ ┌──────────────┐
+   Get          Add to    Process          │ Applications │ │ Ecommerce    │
+   products     cart      checkout         │ loader       │ │ module       │
+           ╲      │      ╱                 └──────────────┘ └──────────────┘
+             ◜─────────◝                   ┌──────────────┐ ┌──────────────┐  
+   Get   ─   │         │ ─ Create          │ Applications │ │ Events       │
+   page      │         │   invoice         │ builder      │ │ manager      │
+             ◟─────────◞                   └──────────────┘ └──────────────┘
+             ├─────────┤
+             ├─────────┤
+             └─────────┘
+
 ```
 
 ## Build Setup
