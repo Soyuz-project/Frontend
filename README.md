@@ -15,7 +15,7 @@ Extremely light, engine core below 10kb
    
    SOYUZ                                   Based on GUTENBERG
    app mockup builder                      blocks shema 
-   ══════════════════                      (called as [appscript](https://github.com/Soyuz-project/Frontend/wiki/Appscript))
+   ══════════════════                      (called as [wiki:appscript])
                                            ═════════════════════
  ╭─────────┐ 
  │         │
@@ -33,7 +33,7 @@ Extremely light, engine core below 10kb
 
 
    With frontend events triggered          And pluggable 
-   on the backend side                     shema parts (appscript)
+   on the backend side                     shema parts ([wiki:appscript])
    ══════════════════════════════          ═══════════════════════
 
                                            ┌──────────────┐ ┌──────────────┐
