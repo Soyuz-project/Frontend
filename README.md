@@ -15,7 +15,8 @@ Extremely light, engine core below 10kb
    
    SOYUZ                                   Based on GUTENBERG
    app mockup builder                      blocks shema 
-                                           (called as appscript)
+   ══════════════════                      (called as appscript)
+                                           ═════════════════════
  ╭─────────┐ 
  │         │
  ├─────────┤   ┌──┐ ┌──────────────╮       ╭───────────────────────────────╮
@@ -34,18 +35,19 @@ Extremely light, engine core below 10kb
 
    With frontend events triggered          And pluggable 
    on the backend side                     shema parts (appscript)
+   ══════════════════════════════          ═══════════════════════
 
                                            ┌──────────────┐ ┌──────────────┐
-   Get          Add to    Process          │ Applications │ │ Ecommerce    │
-   products     cart      checkout         │ loader       │ │ module       │
-           ╲      │      ╱                 └──────────────┘ └──────────────┘
-             ◜─────────◝                   ┌──────────────┐ ┌──────────────┐  
-   Get   ─   │         │ ─ Create          │ Applications │ │ Events       │
-   page      │         │   invoice         │ builder      │ │ manager      │
-             ◟─────────◞                   └──────────────┘ └──────────────┘
-             ├─────────┤
-             ├─────────┤
-             └─────────┘
+   Get          Add to     Process         │ Applications │ │ Ecommerce    │
+   products     cart       checkout        │ loader       │ │ module       │
+           ╲      │       ╱                └──────────────┘ └──────────────┘
+              ◜───────◝                    ┌──────────────┐ ┌──────────────┐  
+   Get   ─    │       │  ─ Create          │ Applications │ │ Events       │
+   page       │       │    invoice         │ builder      │ │ manager      │
+              ◟───────◞                    └──────────────┘ └──────────────┘
+              ├───────┤
+              ├───────┤
+              └───────┘
 
 ```
 
