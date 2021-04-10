@@ -28,7 +28,6 @@ Extremely light, engine core below 10kb
    └─────────┘ │                   │       │    innerBlocks: [...]         │
    ┌───────────┘                   │       │ }                             │
    │                               │       │                               │
-   │                               │       │                               │
    └───────────────────────────────┘       └───────────────────────────────┘
 
 
@@ -45,9 +44,9 @@ Extremely light, engine core below 10kb
    Get   ─    │       │  ─ Create          │ Applications │ │ Events       │
    page       │       │    invoice         │ builder      │ │ manager      │
               ◟───────◞                    └──────────────┘ └──────────────┘
-              ├───────┤
-              ├───────┤
-              └───────┘
+              ◟───────◞
+              ◟───────◞
+              ◟───────◞
 
 ```
 
