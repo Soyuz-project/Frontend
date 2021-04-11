@@ -7,15 +7,15 @@ alliance between backends services, sourcing design, and nice to have frontend i
 
 Extremely light, engine core below 10kb
 
-## Project areas
+## Project areas (sight of SoyuzShema)
 
 
 ```
 
    
-   SOYUZ                                   Based on GUTENBERG
-   app mockup builder                      blocks shema 
-   ══════════════════                      (called as [wiki:appscript])
+   SOYUZ                                   Extended GUTENBERG
+   app mockup builder                      blocks shema called
+   ══════════════════                      SoyuzShema
                                            ═════════════════════
  ╭─────────┐ 
  │         │
@@ -32,21 +32,21 @@ Extremely light, engine core below 10kb
 
 
 
-   With frontend events triggered          And pluggable 
-   on the backend side                     shema parts ([wiki:appscript])
+   With frontend events triggered          And pluggable parts
+   on the backend side                     working as applications
    ══════════════════════════════          ═══════════════════════
 
-                                           ┌──────────────┐ ┌──────────────┐
-   Get          Add to     Process         │ Applications │ │ Ecommerce    │
-   products     cart       checkout        │ loader       │ │ module       │
-           ╲      │       ╱                └──────────────┘ └──────────────┘
-              ◜───────◝                    ┌──────────────┐ ┌──────────────┐  
-   Get   ─    │       │  ─ Create          │ Applications │ │ Events       │
-   page       │       │    invoice         │ builder      │ │ manager      │
-              ◟───────◞                    └──────────────┘ └──────────────┘
-              ◟───────◞
-              ◟───────◞
-              ◟───────◞
+   Create    ◜־־־־־־־◝   Process           ┌──────────────┐ ┌──────────────┐
+   invoice   │       │  checkout           │ Applications │ │ Ecommerce    │
+   ───────── │       │ ─────────           │ loader       │ │ module       │
+             │       │                     └──────────────┘ └──────────────┘
+   Add to    ◟_______◞       Get           ┌──────────────┐ ┌──────────────┐  
+   cart      ◟_______◞  products           │ Applications │ │ Events       │
+   ───────── ◟_______◞ ─────────           │ builder      │ │ manager      │
+             ◟_______◞                     └──────────────┘ └──────────────┘
+                    
+            
+           
 
 ```
 
