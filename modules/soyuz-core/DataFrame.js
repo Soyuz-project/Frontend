@@ -28,6 +28,7 @@ export default {
     /* set forced optimistic responces if application is in editable mode */
     const optimistic = store.soyuz_editable ? true : false
     const res = read(blockAttrs.event || 'default-page', optimistic)
+
     return res.template.length ? <div onClick={(e) => action(e, blockAttrs)} class={`blocks-wrapper ${blockAttrs.targetable ? 'targetable' : null}`}>
       {
         /* check collection */

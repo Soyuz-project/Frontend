@@ -32,9 +32,9 @@ Extremely light, engine core below 10kb
 
 
 
-   With frontend events triggered          And pluggable parts
-   on the backend side                     working as applications
-   ══════════════════════════════          ═══════════════════════
+   With frontend events,                   And pluggable parts,
+   triggered on the backend side           working as applications
+   ═════════════════════════════           ═══════════════════════
 
    Create    ◜־־־־־־־◝   Process           ┌──────────────┐ ┌──────────────┐
    invoice   │       │  checkout           │ Applications │ │ Ecommerce    │
@@ -99,4 +99,4 @@ This will generate static version of Soyuz Frontend with router base set to: `/F
 - [ ] Elasticsarch statement api
 - [ ] WordPerss integration
 - [ ] Woocommerce integration
-- [ ] Realse appscript with ver 2.0
+- [ ] Realse SoyuzShema with ver 2.0

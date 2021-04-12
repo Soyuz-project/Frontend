@@ -46,7 +46,9 @@ const calcOffset = (el) => {
 
 /* refreshBlockPaths block path properties */
 export const refreshBlockPaths = (attrs) => {
-	const p = S.get({source:'pages',query_variables:{slug:attrs.source_slug}})[0]
+
+	const p = S.get({source:'pages', query_variables:{slug:attrs.source_slug}})[0]
+	console.log(store)
 	p.blocks = p.blocks.map((b, i) => genBlockPath(b, 'blocks.'+i))
 	S.push_collection({source:'pages', value:[p], unique:'slug'})
 };

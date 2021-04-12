@@ -13,7 +13,7 @@ export const read = (event_slug, optimistic = false) => {
 		collection:[{}]
 	}
 
-	res.event = first(local_get({source:'events', query_variables:{slug: event_slug}}))
+	res.event = first(local_get({source: 'events', query_variables:{slug: event_slug}}))
 
 	// if readevent dont have query
 	if(!res.event?.query_variables){
@@ -25,7 +25,7 @@ export const read = (event_slug, optimistic = false) => {
 	// TODO this is not ready (now render template only from store)
 	// exerption1: optimistic is forced true when editable mode is true
 	if(optimistic){
-		res.template = S.get_collection({source:res.event.source, query_variables:res.event.query_variables})
+		res.template = S.get_collection( {source:res.event.source, query_variables:res.event.query_variables})
 		// if optimistic have empty result try load data 
 		if(!res.template.length){
 			res.template = local_get(res.event)
@@ -34,11 +34,12 @@ export const read = (event_slug, optimistic = false) => {
 	}else{
 		res.template = local_get(res.event)
 	}
+	
 	/*
 		update store
 	*/
 	S.push_collection({source:'events', value:[res.event], unique:'slug'})
-	S.push_collection({source:'pages', value:res.template, unique:'slug'})
+	S.push_collection({source:res.event.source, value:res.template, unique:'slug'})
 
 	/*
 		get collection
@@ -53,6 +54,8 @@ export const read = (event_slug, optimistic = false) => {
 		}
 		S.push_collection({source:res.event.collection.source, value:res.collection, unique:'slug'})
 	}	
+	
+	
 	return res
 }
 
