@@ -91,11 +91,10 @@ This will generate static version of Soyuz Frontend with router base set to: `/F
 - [ ] Aplications manager (Application)
 - [ ] Events manager (Application)
 - [ ] Ecommerce module (Application)
-- [ ] STRAPI integration
+- [ ] MONGODB backend service (working with events)
 - [ ] Documentation
 - [ ] Ecommerce extended process, invoices, cash flow, store (Application)
-- [ ] Soyuz elasticsarch backend service
-- [ ] Soyuz elasticsarch backend integration 
+- [ ] Soyuz elasticsarch backend service (working with events)
 - [ ] Elasticsarch statement api
 - [ ] WordPerss integration
 - [ ] Woocommerce integration
