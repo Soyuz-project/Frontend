@@ -1,5 +1,7 @@
 # Soyuz-project Frontend application
 
+(development stopped due to lack of funds)
+
 Next generation frontend engine, sharpen to driven bussinness focused applications.
 
 Sojuz project is technological 
