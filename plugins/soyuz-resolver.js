@@ -2,6 +2,8 @@ import { S, store, first, query_filters, p } from '~/plugins/soyuz-store-api';
 import { transformer } from '~/plugins/soyuz-walker';
 import { soyuzRouter } from '~/plugins/soyuz-actions-router';
 import { refreshBlockPaths } from '~/plugins/soyuz-targeter';
+
+
 export const read = (event_slug, optimistic = false) => {
 
 	/*

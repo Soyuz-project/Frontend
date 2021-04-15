@@ -13,8 +13,8 @@ Extremely light, engine core below 10kb
 ```
 
    
-   SOYUZ                                   Extended GUTENBERG
-   app mockup builder                      blocks shema called
+   SOYUZ                                   Extended Gutenberg
+   app mockup builder                      blocks schema called
    ══════════════════                      SoyuzShema
                                            ═════════════════════
  ╭─────────┐ 
@@ -32,7 +32,7 @@ Extremely light, engine core below 10kb
 
 
 
-   With frontend events,                   And pluggable parts,
+   With frontend custom events,            And pluggable schema parts,
    triggered on the backend side           working as applications
    ═════════════════════════════           ═══════════════════════
 

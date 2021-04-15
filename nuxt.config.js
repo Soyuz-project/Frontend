@@ -121,7 +121,9 @@ export default {
       // you can setup multiple clients with arbitrary names
       default: {
         // required
-        httpEndpoint: 'http://185.243.54.202:1337/graphql',
+        // strapi
+        // httpEndpoint: 'http://185.243.54.202:1337/graphql',
+        httpEndpoint: 'http://localhost:4000/graphql',
 
       },
     }
